@@ -22,11 +22,9 @@ register_deactivation_hook(__FILE__,"zing_deactivate");
 function zing_plot($atts,$content=null){
   STATIC $divId = 0;
   $divId++;
-  echo("in plot chartCount is:".$chartCount);
   /* If we need to have deafult vals we have to use this otherise,user can define everything
   $atts = shortcode_atts(array('type' => 'bar','vals1' => '' , 'vals2' => '','vals3'=>'','vals4'=>'','vals5'=>'',
     'vals6'=>'','vals7'=>'','vals8'=>'','vals9'=>'','vals10'=>'','height' =>'400','width' => '600'),$atts);*/
-
   $valueHolders = '';  
   foreach($atts as $key => $value){
     if (!empty($value)) {
@@ -56,7 +54,6 @@ function zing_window_onload($content){
   if(is_feed()) {
     return $content;
   }
-  
   for($i =1; $i<= 10;$i++) {
             $objectLoop .= 'zingchart.render({';
             $objectLoop .= 'id:"chartDiv'.$i.'",';
