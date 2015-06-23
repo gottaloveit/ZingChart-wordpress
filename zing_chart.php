@@ -22,23 +22,28 @@ register_deactivation_hook(__FILE__,"zing_deactivate");
 function zing_plot($atts,$content=null){
   STATIC $divId = 0;
   $divId++;
+  $legend ='';
   /* If we need to have deafult vals we have to use this otherise,user can define everything
   $atts = shortcode_atts(array('type' => 'bar','vals1' => '' , 'vals2' => '','vals3'=>'','vals4'=>'','vals5'=>'',
     'vals6'=>'','vals7'=>'','vals8'=>'','vals9'=>'','vals10'=>'','height' =>'400','width' => '600'),$atts);*/
   $valueHolders = '';  
   foreach($atts as $key => $value){
     if (!empty($value)) {
-      if (strcmp($key,'type') && strcmp($key, 'height') && strcmp($key, 'width')) {
+      if (strcmp($key,'type') && strcmp($key, 'height') && strcmp($key, 'width')&&strcmp($key,'legend')) {
           $valueHolders .= '{ "values": ['.$value.'] },';
       }
       
     }
+  if(!strcmp($key,'legend')){ 
+   $legend ='legend:'. $value.',';
+  }
   }
   $valueHolders =  rtrim($valueHolders,",");
   return '
   <script>
   var chartData'.$divId.'={
-    "type":"'.$atts["type"] .'",
+    "type":"'.$atts["type"] .'",'.
+  $legend.'
     "series": [
       '.$valueHolders.'
     ]
