@@ -43,6 +43,21 @@ function zing_plot($atts,$content=null){
       $itISCsv = TRUE;
       $data .= '"csv":{'.$value.'}';
     }
+    if (!strcmp($key, "plotarea")) {
+      $data .= '"plotarea":{'.$value.'},';
+    }
+    if(!strcmp($key, "scaler")) {
+      $data .= '"scale-r":{'.$value.'},';
+    }
+    if(!strcmp($key, 'title')) {
+      $data .= '"title":{'.$value .'},';
+    }
+    if(!strcmp($key, 'subtitle')) {
+      $data .= '"subtitle":{'.$value .'},';
+    }
+    if (!strcmp($key, 'labels')) {
+      $data .= '"labels":[{'.$value.'}],';
+    }
   }
   $valueHolders =  '"series": ['.rtrim($valueHolders,",").']';
   if (!$itISCsv) {
