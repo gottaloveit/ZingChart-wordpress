@@ -32,7 +32,9 @@ function zing_plot($atts,$content=null){
           $valueHolders .= '{ "values": ['.$value.'] },';
       }
     }
-    
+    /*if (!strcmp($key, 'text')) {
+      $valueHolders .= '"text":'.
+    }*/
     if (!strcmp($key, 'plot')) {
       $data .= '"plot":{'.$value.'},';
     }
