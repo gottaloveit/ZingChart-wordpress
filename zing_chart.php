@@ -1,78 +1,33 @@
 <?php
-/*
-Plugin Name: Zing Charts
-Plugin URI:http://www.zingchart.com/
-Description: This plugin adds Zing charts to wordpress.
-Author: Hamid Tavakoli
-Version:1.0
-Author URI: http://pint.com
+/* Plugin Name: Zing Charts
+ * Plugin URI:http://www.zingchart.com/
+ * Description: This plugin adds Zing charts to wordpress.
+ * Author: Hamid Tavakoli
+ * Version:1.0
+ * Author URI: http://pint.com
+ * Lisense :???
+ */
+
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
 
 
-Lisense :???
-*/
-function zing_activate(){
+define('ZING_PLUGIN_URL',plugin_dir_url(__FILE__));
+define('ZING_PLUGIN_PATH',plugin_dir_path(__FILE__));
+require_once(ZING_PLUGIN_PATH.'Zing_lib.php');
+require_once(ZING_PLUGIN_PATH.'Zing_help.php');
+
+function zing_activate() {
   //Just a place holder
 }
 register_activation_hook(__FILE__,"zing_activate");
-function zing_deactivate(){
+function zing_deactivate() {
   //Just another place holder
 }
 register_deactivation_hook(__FILE__,"zing_deactivate");
-
 function zing_plot($atts,$content=null){
-  STATIC $divId = 0;
-  $divId++;
-  $legend ='';
-  $data = '';
-  $valueHolders = '';  
-  $itISCsv = FALSE;
-  foreach($atts as $key => $value) {
-    if (!empty($value)) {
-      if (!strncmp($key, 'values', 6)) {
-          $valueHolders .= '{ "values": ['.$value.'] },';
-      }
-    }
-    /*if (!strcmp($key, 'text')) {
-      $valueHolders .= '"text":'.
-    }*/
-    if (!strcmp($key, 'plot')) {
-      $data .= '"plot":{'.$value.'},';
-    }
-    if(!strcmp($key,'legend')) { 
-     $legend ='legend:'. $value.',';
-    }
-    if (!strcmp($key, 'csv')) {
-      $itISCsv = TRUE;
-      $data .= '"csv":{'.$value.'}';
-    }
-    if (!strcmp($key, "plotarea")) {
-      $data .= '"plotarea":{'.$value.'},';
-    }
-    if(!strcmp($key, "scaler")) {
-      $data .= '"scale-r":{'.$value.'},';
-    }
-    if(!strcmp($key, 'title')) {
-      $data .= '"title":{'.$value .'},';
-    }
-    if(!strcmp($key, 'subtitle')) {
-      $data .= '"subtitle":{'.$value .'},';
-    }
-    if (!strcmp($key, 'labels')) {
-      $data .= '"labels":[{'.$value.'}],';
-    }
-  }
-  $valueHolders =  '"series": ['.rtrim($valueHolders,",").']';
-  if (!$itISCsv) {
-     $data .= $valueHolders;
-  }
-  return '
-  <script>
-  var chartData'.$divId.'={
-    "type":"'.$atts["type"] .'",'.
-    $legend.$data.
-  '};
-  </script> 
-  <div id="chartDiv'.$divId.'"></div>';  
+  $jasonMaker = new ZingChart($atts);
+  return $jasonMaker->JasonIt();  
 }
 add_shortcode("zing","zing_plot");
 
@@ -99,16 +54,10 @@ function zing_window_onload($content){
 }
 add_action('the_content','zing_window_onload');
 
-function zing_admin(){
-?>
-  <div class="wrap">
-    <?php screen_icon();?>
-    <h2>Zing Chart</h2>
-    <p>Welcome to Zing Chart plugin.<br>
-    In order to use this plugin simply add the following shortcode to your text <br>
-    [zing type="" values1="" values2="" ..... height="[optional]" weidth="[optional]"]</p>
-  </div>
-<?php
+function zing_admin() {
+  $Help = new Zing_help();
+  echo $Help->GetText();
+
 }
 function zing_admin_menu(){
   add_options_page('Zing Charts setting','Zing Chart','manage_options','Zing-chart','zing_admin');
