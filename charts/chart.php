@@ -3,12 +3,14 @@
  * This is a general class for charts 
  * For now line, bar, and area will be based on this class
  */
+
+require_once(plugin_dir_path(__FILE__).'Chart_interface.php');
 class chart {
-	private $shortCodeArray = '';
+	protected $shortCodeArray = '';
 	function Chart($inputArray) {
 		$this->shortCodeArray = $inputArray;
 	}
-	function JasonIt() {
+	function JsonIt() {
 		STATIC $divId = 0;
     $divId++;
     $legend ='';
