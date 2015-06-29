@@ -16,7 +16,7 @@ TO DOs:
 * Get the Image for the icon!! Function zing_custompost
 * Check user credentials before saving for zing_save
 * Create a database tabel for charts and put defult values in them.
-* 
+* Creat a editor button for inserting shortcodes
 */
 ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
@@ -52,7 +52,6 @@ add_action('wp_enqueue_scripts','zing_loadLib');
 /*
  * Register custom post type
  */
-add_action('init','Zing_custompost');
 function Zing_custompost() {
   register_post_type('zing_chart',
     array( 
@@ -87,15 +86,12 @@ function Zing_custompost() {
     )
   );
 }
-
-
-
-add_action( 'add_meta_boxes', 'amcharts_meta_boxes' );
+add_action('init','Zing_custompost');
 function amcharts_meta_boxes () {
   add_meta_box('zing_html',__( 'HTML', 'zingchart' ),'zing_html','zing_chart');
   add_meta_box('zing_javascript',__('Java Script','zingchart'),'zing_javascript','zing_chart');
 }
-
+add_action( 'add_meta_boxes', 'amcharts_meta_boxes' );
 function zing_html ( $post ) {
   wp_nonce_field( ZING_NOUNCE, 'zing_nounce' );
   $html = get_post_meta ($post->ID, 'zing_html_content', true );
@@ -121,7 +117,6 @@ function zing_javascript($post) {
   ?>
   <textarea name="JavaScript" class="widefat code code-html" id="amcharts-html"> <?php echo esc_textarea( $javaScript ); ?></textarea>
   <?php
-  
 }
 /**
  * Save post metadata when a post is saved.
@@ -137,7 +132,6 @@ function zing_save_chart($post_id,$post,$update) {
         update_post_meta($post_id,'zing_javascript_content',trim($_POST['JavaScript']));
       }
   }
-
 }
 add_action('save_post_zing_chart','zing_save_chart',10,3);
 /**
