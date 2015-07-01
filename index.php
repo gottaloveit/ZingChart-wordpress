@@ -123,17 +123,12 @@ function zing_designer() {
   </style>
 
 
-  <script>
-
-
-
-  </script>
-
   Chart type:
   <select onchange="chartRouter()" id="whichChart">
     <option value="area">Area</option>
     <option value="bar">Bar</option>
-    <option value="line">line</line>
+    <option value="line">Line</option>
+    <option value = "Scatter">Scatter</option>
   </select>
 
   <div style="clear:both"></div>
@@ -188,28 +183,52 @@ function zing_designer() {
       <hr>
       Text: <input type="text" id="titleText" onKeyUp="set_text_title()">
       <hr>
-      Adjust layout:<input type="checkbox" onchange="adjast_layout_title()" id="adjust-layout">
+      Adjust layout:<input type="checkbox" onchange="adjast_layout_title()" id="adjustLayoutTitle">
       <hr>
       Background :
-      <select id="background-type" onchange="set_background_type()">
+      <select id="backgroundTypeTitle" onchange="set_background_type()">
         <option value="solid"> Solid </option>
         <option value="gradiant"> Gradiant </option>
       </select><br>
-      Background color 1 : <input type="color" id="background-color-1" onchange="set_background_color()"><br>
-      Background color 2 : <input type="color" id="background-color-2" onchange="set_background_color()" style="visibility :hidden">
+      Background color 1 : <input type="color" id="backgroundColor1Title" onchange="set_background_color_title()"><br>
+      Background color 2 : <input type="color" id="backgroundColor2Title" onchange="set_background_color_title()" style="visibility :hidden">
       <hr>
       Bold :  <input type="checkbox" id="boldTitle" onchange="set_bold_title()">
       <hr>
-      Font Color : <input type="color" id= "font-color" onchange="set_font_color()"><br>
+      Font Color : <input type="color" id= "fontColorTitle" onchange="set_font_color_title()"><br>
       Font Style : 
-      <select type="text" id="font-style"  onchange="set_font_style()">
+      <select type="text" id="fontStyleTitle"  onchange="set_font_style_title()">
         <option value = "normal" > normal</option>
         <option value = "italic" > italic</option>
         <option value = "oblique"> oblique</option>
       </select><br>
       <!-- Have to change it to select later -->
-      Font Family :<input type="text" id="font-family" onKeyUp = "set_font_family_title()">
-
+      Font Family :<input type="text" id="fontFamilyTitle" onKeyUp = "set_font_family_title()"><br>
+      Text Align : 
+      <select id="textAlignTitle" onchange="set_text_align_title()">
+        <option value = 'center'> Center</option>
+        <option value = 'left'> Left</option>
+        <option value = 'right' > Right</option>
+      </select>
+      <hr>
+        Border : <input type="checkbox" id="borderTitle" onchange="set_border_title()"><br>
+        width :<input typpe= "text" id="borderWidthTitle" onKeyUp="set_border_title()"><br>
+        Color: <input type="color" id="borderColorTitle" onchange="set_border_title()"><br>
+      <hr>
+      Margins: <br>
+      Top:<input type="text" id="marginTopTitle" onKeyUp="set_margin_title()" value="10px"><br>
+      Right:<input type="text" id="marginRightTitle" onKeyUp="set_margin_title()" value="0"><br>
+      Bottom : <input type="text" id="marginBottomTitle" onKeyUp="set_margin_title()" value="10px"><br>
+      Left :<input type="text" id="marginLeftTitle" onKeyUp="set_margin_title()" value="0"><br>
+      <hr>
+      Paddings: <br>
+      Top:<input type="text" id="paddingTopTitle" onKeyUp="set_padding_title()" value="10px"><br>
+      Right:<input type="text" id="paddingRightTitle" onKeyUp="set_padding_title()" value="0"><br>
+      Bottom : <input type="text" id="paddingBottomTitle" onKeyUp="set_padding_title()" value="10px"><br>
+      Left :<input type="text" id="paddingLeftTitle" onKeyUp="set_padding_title()" value="0"><br>
+      <hr>
+      x-string : <input type="text" id="xStringTitle" onKeyUp ="set_xy_string_title()" ><br>
+      y-string : <input type="text" id="yStringTitle" onKeyUp ="set_xy_string_title()" ><br>
     </div>
   </div>
   

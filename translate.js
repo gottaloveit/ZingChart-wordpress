@@ -27,7 +27,7 @@ function adjast_layout_title() {
       graphid : 0,
       data : {
       title : {
-      "adjust-layout" : document.getElementById('adjust-layout').checked
+      "adjust-layout" : document.getElementById('adjustLayoutTitle').checked
       }
     }
   });
@@ -35,16 +35,16 @@ function adjast_layout_title() {
 }
 var backgoundType = 'solid';
 function set_background_type () {
-  bgtypes    = document.getElementById('background-type');
+  bgtypes    = document.getElementById('backgroundTypeTitle');
   backgoundType = bgtypes.options[bgtypes.selectedIndex].value;
   if (backgoundType == "gradiant") {
-    document.getElementById('background-color-2').style.visibility = "visible";
+    document.getElementById('backgroundColor2Title').style.visibility = "visible";
   } else {
-    document.getElementById('background-color-2').style.visibility = "hidden";
+    document.getElementById('backgroundColor2Title').style.visibility = "hidden";
   };
-  set_background_color ();
+  set_background_color_title ();
 }
-function set_background_color () {
+function set_background_color_title () {
  
   if (backgoundType == "gradiant") {
       //Set background-color-1 attr
@@ -52,7 +52,7 @@ function set_background_color () {
           graphid : 0,
           data : {
           title : {
-          "background-color-1" : document.getElementById('background-color-1').value
+          "background-color-1" : document.getElementById('backgroundColor1Title').value
           }
         }
       });
@@ -61,7 +61,7 @@ function set_background_color () {
           graphid : 0,
           data : {
           title : {
-          "background-color-2" : document.getElementById('background-color-2').value
+          "background-color-2" : document.getElementById('backgroundColor2Title').value
           }
         }
       });
@@ -71,7 +71,7 @@ function set_background_color () {
           graphid : 0,
           data : {
           title : {
-          "background-color-1" : document.getElementById('background-color-1').value
+          "background-color-1" : document.getElementById('backgroundColor1Title').value
           }
         }
       });
@@ -80,7 +80,7 @@ function set_background_color () {
           graphid : 0,
           data : {
           title : {
-          "background-color-2" : document.getElementById('background-color-1').value
+          "background-color-2" : document.getElementById('backgroundColor1Title').value
           }
         }
       });
@@ -111,20 +111,20 @@ function set_bold_title () {
   });
   creat_json();
 }
-function set_font_color () {
+function set_font_color_title () {
   // Set the font-color attr
   zingchart.exec('chartDiv','modify', {
       graphid : 0,
       data : {
       title : {
-      "font-color" : document.getElementById('font-color').value
+      "font-color" : document.getElementById('fontColorTitle').value
       }
     }
   });
   creat_json();
 }
-function set_font_style () {
-  var style= document.getElementById('font-style');
+function set_font_style_title () {
+  var style= document.getElementById('fontStyleTitle');
   var selectedStyle = style.options[style.selectedIndex].value;
   // Set the font-color attr
   zingchart.exec('chartDiv','modify', {
@@ -137,17 +137,101 @@ function set_font_style () {
   });
   creat_json();
 }
-function set_font_family() {
+function set_font_family_title() {
   // Set the font-family attr
   zingchart.exec('chartDiv','modify', {
       graphid : 0,
       data : {
       title : {
-      "font-family" : document.getElementById('font-family').value
+      "font-family" : document.getElementById('fontFamilyTitle').value
       }
     }
   });
   creat_json();
+}
+function set_text_align_title() {
+  var align = document.getElementById('textAlignTitle')
+  var selectedAlign = align.options[align.selectedIndex].value;
+  // Set the text-align attr
+  zingchart.exec('chartDiv','modify', {
+      graphid : 0,
+      data : {
+      title : {
+      "text-align" : selectedAlign
+      }
+    }
+  });
+  creat_json();
+}
+function set_margin_title() {
+   // Set the margin attr
+  zingchart.exec('chartDiv','modify', {
+      graphid : 0,
+      data : {
+      title : {
+      "margin-top" : document.getElementById('marginTopTitle').value,
+      "margin-right" : document.getElementById('marginRightTitle').value,
+      "margin-bottom" : document.getElementById('marginBottomTitle').value,
+      "margin-left" : document.getElementById('marginLeftTitle').value
+      }
+    }
+  });
+  creat_json();
+}
+function set_padding_title() {
+   // Set the margin attr
+  zingchart.exec('chartDiv','modify', {
+      graphid : 0,
+      data : {
+      title : {
+      "padding-top" : document.getElementById('paddingTopTitle').value,
+      "padding-right" : document.getElementById('paddingRightTitle').value,
+      "padding-bottom" : document.getElementById('paddingBottomTitle').value,
+      "padding-left" : document.getElementById('paddingLeftTitle').value
+      }
+    }
+  });
+  creat_json();
+}
+function set_xy_string_title () {
+  if (document.getElementById('visibleTitle').checked) {
+    // Set the text-align attr
+    zingchart.exec('chartDiv','modify', {
+        graphid : 0,
+        data : {
+        title : {
+        "x" : document.getElementById('xStringTitle').value,
+        "y" : document.getElementById('yStringTitle').value,
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_border_title() {
+  if (document.getElementById("borderTitle").checked) {
+      // Set the text-align attr
+    zingchart.exec('chartDiv','modify', {
+        graphid : 0,
+        data : {
+        title : {
+        "border-width" : document.getElementById('borderWidthTitle').value,
+        "border-color" : document.getElementById('borderColorTitle').value
+        }
+      }
+    });
+    creat_json();
+  } else {
+     zingchart.exec('chartDiv','modify', {
+        graphid : 0,
+        data : {
+        title : {
+        "border-width" : 0
+        }
+      }
+    });
+    creat_json();
+  }
 }
 function creat_json() {
   document.getElementById('zingcharts-javaScript').value = JSON.stringify(zingchart.exec('chartDiv','getdata' ));
@@ -183,14 +267,6 @@ function chartRouter() {
                       "values":[53,42,-27,-92,6,13,60,-83,-7,-92,47,-71,32,31,-85,-86,8,-12,97,-96],
                       "text":"Item 1"
                   },
-                  {
-                      "values":[18,-50,53,-36,-35,-51,49,-24,-14,-30,34,62,11,52,-81,-94,46,57,-62,-70],
-                      "text":"Item 2"
-                  },
-                  {
-                      "values":[8,40,6,-82,12,-76,-2,-97,13,-12,-71,-100,-31,9,7,-51,90,-40,-19,-27],
-                      "text":"Item 3"
-                  }
               ]
           }
       ]
