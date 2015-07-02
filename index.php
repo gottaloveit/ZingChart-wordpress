@@ -108,7 +108,7 @@ function zing_designer() {
   <script>
   jQuery(document).ready(function($) {
     $('#tabs').tabs();
-    $('#accordion').accordion();
+    $('#accordion').accordion({ autoHeight: false });
     $( "#slider" ).slider();
     
   });
@@ -116,7 +116,7 @@ function zing_designer() {
   <style type="text/css">
   #accordion{
     float: left;
-    width: 30%;
+    width: 40%;
   }
 
 
@@ -186,7 +186,7 @@ function zing_designer() {
       Adjust layout:<input type="checkbox" onchange="adjast_layout_title()" id="adjustLayoutTitle">
       <hr>
       Background :
-      <select id="backgroundTypeTitle" onchange="set_background_type()">
+      <select id="backgroundTypeTitle" onchange="set_background_type_title()">
         <option value="solid"> Solid </option>
         <option value="gradiant"> Gradiant </option>
       </select><br>
@@ -229,6 +229,92 @@ function zing_designer() {
       <hr>
       x-string : <input type="text" id="xStringTitle" onKeyUp ="set_xy_string_title()" ><br>
       y-string : <input type="text" id="yStringTitle" onKeyUp ="set_xy_string_title()" ><br>
+    </div>
+    <h3>Sub title</h3>
+    <div>
+      Visible : <input type="checkbox" onchange="show_sub_title()" id="visibleSubTitle">
+      <hr>
+      Text: <input type="text" id="subTitleText" onKeyUp="set_text_sub_title()">
+      <hr>
+      Adjust layout:<input type="checkbox" onchange="adjast_layout_sub_title()" id="adjustLayoutSubTitle">
+      <hr>
+      Background :
+      <select id="backgroundTypeSubTitle" onchange="set_background_type_sub_title()">
+        <option value="solid"> Solid </option>
+        <option value="gradiant"> Gradiant </option>
+      </select><br>
+      Background color 1 : <input type="color" id="backgroundColor1SubTitle" onchange="set_background_color_sub_title()"><br>
+      Background color 2 : <input type="color" id="backgroundColor2SubTitle" onchange="set_background_color_sub_title()" style="visibility :hidden">
+      <hr>
+      Bold :  <input type="checkbox" id="boldSubTitle" onchange="set_bold_sub_title()">
+      <hr>
+      Font Color : <input type="color" id= "fontColorSubTitle" onchange="set_font_color_sub_title()"><br>
+      Font Style : 
+      <select type="text" id="fontStyleSubTitle"  onchange="set_font_style_sub_title()">
+        <option value = "normal" > normal</option>
+        <option value = "italic" > italic</option>
+        <option value = "oblique"> oblique</option>
+      </select><br>
+      <!-- Have to change it to select later -->
+      Font Family :<input type="text" id="fontFamilySubTitle" onKeyUp = "set_font_family_sub_title()"><br>
+      Text Align : 
+      <select id="textAlignSubTitle" onchange="set_text_align_sub_title()">
+        <option value = 'center'> Center</option>
+        <option value = 'left'> Left</option>
+        <option value = 'right' > Right</option>
+      </select>
+      <hr>
+        Border : <input type="checkbox" id="borderSubTitle" onchange="set_border_sub_title()"><br>
+        width :<input typpe= "text" id="borderWidthSubTitle" onKeyUp="set_border_sub_title()"><br>
+        Color: <input type="color" id="borderColorSubTitle" onchange="set_border_sub_title()"><br>
+      <hr>
+      Margins: <br>
+      Top:<input type="text" id="marginTopSubTitle" onKeyUp="set_margin_sub_title()" value="10px"><br>
+      Right:<input type="text" id="marginRightSubTitle" onKeyUp="set_margin_sub_title()" value="0"><br>
+      Bottom : <input type="text" id="marginBottomSubTitle" onKeyUp="set_margin_sub_title()" value="10px"><br>
+      Left :<input type="text" id="marginLeftSubTitle" onKeyUp="set_margin_sub_title()" value="0"><br>
+      <hr>
+      Paddings: <br>
+      Top:<input type="text" id="paddingTopSubTitle" onKeyUp="set_padding_sub_title()" value="10px"><br>
+      Right:<input type="text" id="paddingRightSubTitle" onKeyUp="set_padding_sub_title()" value="0"><br>
+      Bottom : <input type="text" id="paddingBottomSubTitle" onKeyUp="set_padding_sub_title()" value="10px"><br>
+      Left :<input type="text" id="paddingLeftSubTitle" onKeyUp="set_padding_sub_title()" value="0"><br>
+      <hr>
+      x-string : <input type="text" id="xStringSubTitle" onKeyUp ="set_xy_string_sub_title()" ><br>
+      y-string : <input type="text" id="yStringSubTitle" onKeyUp ="set_xy_string_sub_title()" ><br>
+    </div>
+    <h3> Legend</h3>
+    <div>
+      Visible : <input type="checkbox" onchange="show_legend()" id="visibleLegend">
+      <hr>
+      Adjust layout:<input type="checkbox" onchange="adjast_layout_legend()" id="adjustLayoutLegend">
+      <hr>
+      Align:
+       <select id="alignLegend" onchange="align_legend()">
+        <option value = 'center'> Center</option>
+        <option value = 'left'> Left</option>
+        <option value = 'right' > Right</option>
+      </select>
+      <hr>
+      Draggable:<input type="checkbox" onchange="draggable_legend()" id="draggableLegend">
+      <hr>
+      Layout : 
+      <select id="layoutLegend" onchange="set_layout_legend()">
+        <option value = "vertical"> Vertical</option>
+        <option value = "horizontal"> Horizontal </option>
+        <option value = "float" >Float </option>
+        <option value = "colXrow" > Col X Row </option>
+      </select><br>
+      <span style="visibility :hidden" id="colRowLegend">
+        Row : <input type= "text" id="rowsLayout" onKeyUp="set_layout_legend()"><br>
+        Column :<input type="text" id="colsLayout" onKeyUp="set_layout_legend()"><br>
+      </span>
+      <hr>
+      x-string : <input type="text" id="xStringLegend" onKeyUp ="set_xy_string_legend()" ><br>
+      y-string : <input type="text" id="yStringLegend" onKeyUp ="set_xy_string_legend()" ><br>
+      <hr>
+      Minimize:<input type="checkbox" onchange="draggable_legend()" id="draggableLegend">
+      <hr>
     </div>
   </div>
   
