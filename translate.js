@@ -3,6 +3,7 @@
  * TO DO : 
  * Make grapgh div naming dynamic
  * Be able to feed data as a csv file to it
+ * Validate form inputs
  */
 var jsonObject = '';
 var chartTitle = '';
@@ -201,15 +202,28 @@ function set_padding_title() {
   });
   creat_json();
 }
-function set_xy_string_title () {
-  if (document.getElementById('visibleTitle').checked) {
+function set_x_string_title () {
+  if (document.getElementById('visibleTitle').checked && document.getElementById('xStringTitle').value !='') {
     // Set the text-align attr
     zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : {
         title : {
-        "x" : document.getElementById('xStringTitle').value,
-        "y" : document.getElementById('yStringTitle').value,
+        "x" : document.getElementById('xStringTitle').value
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_y_string_title () {
+  if (document.getElementById('visibleTitle').checked && document.getElementById('yStringTitle').value !='' ) {
+    // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        title : {
+        "y" : document.getElementById('yStringTitle').value
         }
       }
     });
@@ -430,15 +444,28 @@ function set_padding_sub_title() {
   });
   creat_json();
 }
-function set_xy_string_sub_title () {
-  if (document.getElementById('visibleTitle').checked) {
+function set_x_string_sub_title () {
+  if (document.getElementById('visibleTitle').checked && document.getElementById('xStringSubTitle').value !='') {
     // Set the text-align attr
     zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : {
         subtitle : {
-        "x" : document.getElementById('xStringSubTitle').value,
-        "y" : document.getElementById('yStringSubTitle').value,
+        "x" : document.getElementById('xStringSubTitle').value
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_y_string_sub_title () {
+  if (document.getElementById('visibleTitle').checked && document.getElementById('yStringSubTitle').value !='') {
+    // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        subtitle : {
+        "y" : document.getElementById('yStringSubTitle').value
         }
       }
     });
@@ -546,14 +573,27 @@ function set_layout_legend() {
   }
   creat_json();
 }
-function set_xy_string_legend() {
-  if (document.getElementById('visibleLegend').checked) {
+function set_x_string_legend() {
+  if (document.getElementById('visibleLegend').checked && document.getElementById('xStringLegend').value !='' ) {
     // Set the text-align attr
     zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : {
         legend : {
-        "x" : document.getElementById('xStringLegend').value,
+        "x" : document.getElementById('xStringLegend').value
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_y_string_legend() {
+  if (document.getElementById('visibleLegend').checked && document.getElementById('yStringLegend').value != '') {
+    // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
         "y" : document.getElementById('yStringLegend').value
         }
       }
@@ -561,8 +601,326 @@ function set_xy_string_legend() {
     creat_json();
   };
 }
+function minimize_legend() {
+  if (document.getElementById('visibleLegend').checked) {
+    // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+        "minimize" : document.getElementById('minimizeLegend').checked,
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function toggle_action_legend() {
+  var action = document.getElementById('toggleActionLegend');
+  var selectedAction = action.options[action.selectedIndex].value;
+  if (document.getElementById('visibleLegend').checked) {
+    // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+        "toggle-action" : selectedAction,
+        }
+      }
+    });
+    creat_json();
+  };
+}
+var backgoundTypeLegend ='';
+function set_background_type_legend () {
+  var bgtypesLegend    = document.getElementById('backgroundTypeLegend');
+  backgoundTypeLegend = bgtypesLegend.options[bgtypesLegend.selectedIndex].value;
+  if (backgoundTypeLegend == "gradiant") {
+    document.getElementById('backgroundColor2Legend').style.visibility = "visible";
+  } else {
+    document.getElementById('backgroundColor2Legend').style.visibility = "hidden";
+  };
+  set_background_color_legend ();
+}
+function set_background_color_legend () {
+ 
+  if (backgoundTypeLegend == "gradiant") {
+      //Set background-color-1 attr
+      zingchart.exec(chartID,'modify', {
+          graphid : 0,
+          data : {
+         legend : {
+          "background-color-1" : document.getElementById('backgroundColor1Legend').value
+          }
+        }
+      });
+      //Set background-color-1 attr
+      zingchart.exec(chartID,'modify', {
+          graphid : 0,
+          data : {
+          legend : {
+          "background-color-2" : document.getElementById('backgroundColor2Legend').value
+          }
+        }
+      });
+  } else {
+    //Set background-color-1 attr
+      zingchart.exec(chartID,'modify', {
+          graphid : 0,
+          data : {
+          legend : {
+          "background-color-1" : document.getElementById('backgroundColor1Legend').value
+          }
+        }
+      });
+      //Set background-color-1 attr
+      zingchart.exec(chartID,'modify', {
+          graphid : 0,
+          data : {
+          legend : {
+          "background-color-2" : document.getElementById('backgroundColor1Legend').value
+          }
+        }
+      });
+  }
+  creat_json();
+}
+
+function set_border_legend() {
+  if (document.getElementById("borderLegend").checked) {
+      // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+        "border-width" : document.getElementById('borderWidthLegend').value,
+        "border-color" : document.getElementById('borderColorLegend').value
+        }
+      }
+    });
+    creat_json();
+  } else {
+     zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+        "border-width" : 0
+        }
+      }
+    });
+    creat_json();
+  }
+}
+function set_margin_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+      // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "margin-top"    : document.getElementById('marginTopLegend').value,
+          "margin-right"  : document.getElementById('marginRightLegend').value,
+          "margin-bottom" : document.getElementById('marginBottomLegend').value,
+          "margin-left"   : document.getElementById('marginLeftLegend').value
+        }
+      }
+    });
+    creat_json();
+  } 
+}
+function set_padding_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+      // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "paddingTop"    : document.getElementById('paddingTopLegend').value,
+          "paddingRight"  : document.getElementById('paddingRightLegend').value,
+          "paddingBottom" : document.getElementById('paddingBottomLegend').value,
+          "paddingLeft"   : document.getElementById('paddingLeftLegend').value
+        }
+      }
+    });
+    creat_json();
+  } 
+}
+function set_highlight_plot () {
+  if (document.getElementById("visibleLegend").checked) {
+      // Set the text-align attr
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "highlight-plot" : document.getElementById('highlightPlotLegend').checked,
+        }
+      }
+    });
+    creat_json();
+  } 
+}
+function set_xy_position_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "position" : document.getElementById('xPositionLegend').value+' '+document.getElementById('yPositionLegend').value,
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_item_bold_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "item" :{
+            'bold' :document.getElementById('boldItemLegend').checked,
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_item_font_color_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "item" :{
+            'font-color' :document.getElementById('fontColorItemLegend').value,
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_font_style_item_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    var style = document.getElementById('fontStyleItemLegend');
+    var selected = style.options[style.selectedIndex].value;
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "item" :{
+            'font-style' :selected,
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_font_family_item_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "item" :{
+            'font-family' :document.getElementById('fontFamilyItemLegend').value
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_text_align_item_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    var align = document.getElementById('textAlignItemLegend');
+    var selected = align.options[align.selectedIndex].value;
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "item" :{
+            'text-align' :selected
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_margin_item_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "item" :{
+            "margin-top"    : document.getElementById('marginTopItemLegend').value,
+            "margin-right"  : document.getElementById('marginRightItemLegend').value,
+            "margin-bottom" : document.getElementById('marginBottomitemLegend').value,
+            "margin-left"   : document.getElementById('marginLeftItemLegend').value,
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_padding_item_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "item" :{
+            "padding-top"    : document.getElementById('paddingTopItemLegend').value,
+            "padding-right"  : document.getElementById('paddingRightItemLegend').value,
+            "padding-bottom" : document.getElementById('paddingBottomItemLegend').value,
+            "padding-left"   : document.getElementById('paddingLeftItemLegend').value,
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_marker_type_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    var marker = document.getElementById('typeMarkerLegend');
+    var selected = marker.options[marker.selectedIndex].value;
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "marker" :{
+            'type' :selected
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
+function set_alpha_marker_legend() {
+  if (document.getElementById("visibleLegend").checked) {
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+        legend : {
+          "marker" :{
+            'alpha' :document.getElementById('alphaMarkerLegend').value
+          },
+        }
+      }
+    });
+    creat_json();
+  };
+}
 function creat_json() {
-  document.getElementById('zingcharts-javaScript').value = JSON.stringify(zingchart.exec(chartID,'getdata' ));
+  document.getElementById('zingcharts-javaScript').value = JSON.stringify(zingchart.exec(chartID,'getdata' ),null,"\t");
 }
 function chartRouter() {
   var charts = document.getElementById('whichChart');
@@ -601,13 +959,111 @@ function chartRouter() {
       };
 
     break;
+    case 'area':
+      chartData = {
+         "type":"area",
+          "series":[
+            {
+            "values":[11,36,7,44,11,28,42,26,13,32,12,24,16,11,43,39]
+            },
+            {
+            "values":[21,29,14,16,28,35,21,18,11,7,4,9,25,15,33,13]
+          }
+        ] 
+      };
+    break;
+    case 'scatter':
+      chartData = 
+                  {
+            "graphset":[
+                {
+                    "type":"scatter",
+                    "series":[
+                        {
+                            "values":[[1,15],
+                            [2.3,4],
+                            [5,10.4],
+                            [6,7],
+                            [3,6],
+                            [7.5,15],
+                            [8,2.3],
+                            [.81,7],
+                            [2,12.5],
+                            [4.2,4],
+                            [5,1],
+                            [6,3],
+                            [8.8,16.8]]
+                        },
+                        {
+                            "values":[[3,5],
+                            [2.3,17],
+                            [8,8],
+                            [6.4,12.3],
+                            [4,6.6],
+                            [7.2,3],
+                            [2,12],
+                            [1.5,4.3],
+                            [6.7,2],
+                            [4,10],
+                            [3.4,10],
+                            [6,14],
+                            [2,6.7]]
+                        },
+                        {
+                            "values":[[3,11],
+                            [6.2,7.2],
+                            [8,14],
+                            [3,2.5],
+                            [4.4,5],
+                            [8,13],
+                            [2,1],
+                            [7.9,4.1],
+                            [6,16.3],
+                            [.51,8],
+                            [3,6],
+                            [5.7,14.8],
+                            [2,2]]
+                        }
+                    ]   
+                }
+            ]
+        };
+    break;
+    case 'pie':
+       chartData =
+        {
+            "graphset":[
+                {    
+                    "type":"pie",
+                    "series":[
+                        {
+                            "text":"Apples",
+                            "values":[5]
+                        },
+                        {
+                            "text":"Oranges",
+                            "values":[8]
+                        },
+                        {
+                            "text":"Bananas",
+                            "values":[22]
+                        },
+                        {
+                            "text":"Grapes",
+                            "values":[16]
+                        },
+                        {
+                            "text":"Cherries",
+                            "values":[12]
+                        }
+                    ]
+                }
+            ]
+        
+      };
+    break;
   }
   drawChart();
-}
-
-function buildJason() {
-  
-  
 }
 
 function drawChart(){

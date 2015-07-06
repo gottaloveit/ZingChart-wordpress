@@ -95,13 +95,13 @@ function Zing_custompost() {
   );
 }
 add_action('init','Zing_custompost');
-function amcharts_meta_boxes () {
+function zingchart_meta_boxes () {
   add_meta_box('zing_designer',__('Chart Designer','zingchart'),'zing_designer','zing_chart','high');
   add_meta_box('zing_html',__( 'HTML', 'zingchart' ),'zing_html','zing_chart');
   add_meta_box('zing_javascript',__('Java Script','zingchart'),'zing_javascript','zing_chart');
   
 }
-add_action( 'add_meta_boxes', 'amcharts_meta_boxes' );
+add_action( 'add_meta_boxes', 'zingchart_meta_boxes' );
 function zing_designer() {
 
   ?> 
@@ -118,17 +118,21 @@ function zing_designer() {
     float: left;
     width: 40%;
   }
-
+  .ui-accordion .ui-accordion-header .ui-icon {
+    left: -0.25em;
+  }
 
   </style>
 
 
   Chart type:
   <select onchange="chartRouter()" id="whichChart">
+     <option value=""></option>
     <option value="area">Area</option>
     <option value="bar">Bar</option>
     <option value="line">Line</option>
-    <option value = "Scatter">Scatter</option>
+    <option value="pie">Pie</option>
+    <option value = "scatter">Scatter</option>
   </select>
 
   <div style="clear:both"></div>
@@ -280,8 +284,8 @@ function zing_designer() {
       Bottom : <input type="text" id="paddingBottomSubTitle" onKeyUp="set_padding_sub_title()" value="10px"><br>
       Left :<input type="text" id="paddingLeftSubTitle" onKeyUp="set_padding_sub_title()" value="0"><br>
       <hr>
-      x-string : <input type="text" id="xStringSubTitle" onKeyUp ="set_xy_string_sub_title()" ><br>
-      y-string : <input type="text" id="yStringSubTitle" onKeyUp ="set_xy_string_sub_title()" ><br>
+      x-string : <input type="text" id="xStringSubTitle" onKeyUp ="set_x_string_sub_title()" ><br>
+      y-string : <input type="text" id="yStringSubTitle" onKeyUp ="set_y_string_sub_title()" ><br>
     </div>
     <h3> Legend</h3>
     <div>
@@ -290,7 +294,7 @@ function zing_designer() {
       Adjust layout:<input type="checkbox" onchange="adjast_layout_legend()" id="adjustLayoutLegend">
       <hr>
       Align:
-       <select id="alignLegend" onchange="align_legend()">
+      <select id="alignLegend" onchange="align_legend()">
         <option value = 'center'> Center</option>
         <option value = 'left'> Left</option>
         <option value = 'right' > Right</option>
@@ -310,11 +314,116 @@ function zing_designer() {
         Column :<input type="text" id="colsLayout" onKeyUp="set_layout_legend()"><br>
       </span>
       <hr>
-      x-string : <input type="text" id="xStringLegend" onKeyUp ="set_xy_string_legend()" ><br>
-      y-string : <input type="text" id="yStringLegend" onKeyUp ="set_xy_string_legend()" ><br>
+      x-string : <input type="text" id="xStringLegend" onKeyUp ="set_x_string_legend()" ><br>
+      y-string : <input type="text" id="yStringLegend" onKeyUp ="set_y_string_legend()" ><br>
       <hr>
-      Minimize:<input type="checkbox" onchange="draggable_legend()" id="draggableLegend">
+      Minimize:<input type="checkbox" onchange="minimize_legend()" id="minimizeLegend">
       <hr>
+      Toggle action:
+      <select id="toggleActionLegend" onchange="toggle_action_legend()">
+        <option value = ''> None</option>
+        <option value = 'hide'> Hide</option>
+        <option value = 'remove'> Remove</option>
+        <option value = 'disabled' > Disabled</option>
+      </select>
+       <hr>
+      Background :
+      <select id="backgroundTypeLegend" onchange="set_background_type_legend()">
+        <option value="solid"> Solid </option>
+        <option value="gradiant"> Gradiant </option>
+      </select><br>
+      Background color 1 : <input type="color" id="backgroundColor1Legend" onchange="set_background_color_legend()"><br>
+      Background color 2 : <input type="color" id="backgroundColor2Legend" onchange="set_background_color_legend()" style="visibility :hidden">
+      <hr>
+        Border : <input type="checkbox" id="borderLegend" onchange="set_border_legend()"><br>
+        width :<input typpe= "text" id="borderWidthLegend" onKeyUp="set_border_legend()"><br>
+        Color: <input type="color" id="borderColorLegend" onchange="set_border_legend()"><br>
+      <hr>
+      Margins: <br>
+      Top:<input type="text" id="marginTopLegend" onKeyUp="set_margin_legend()" value="10px"><br>
+      Right:<input type="text" id="marginRightLegend" onKeyUp="set_margin_legend()" value="0"><br>
+      Bottom : <input type="text" id="marginBottomLegend" onKeyUp="set_margin_legend()" value="10px"><br>
+      Left :<input type="text" id="marginLeftLegend" onKeyUp="set_margin_legend()" value="0"><br>
+      <hr>
+      Paddings: <br>
+      Top:<input type="text" id="paddingTopLegend" onKeyUp="set_padding_legend()" value="10px"><br>
+      Right:<input type="text" id="paddingRightLegend" onKeyUp="set_padding_legend()" value="0"><br>
+      Bottom : <input type="text" id="paddingBottomLegend" onKeyUp="set_padding_legend()" value="10px"><br>
+      Left :<input type="text" id="paddingLeftLegend" onKeyUp="set_padding_legend()" value="0"><br>
+      <hr>
+      Highlight plot : <input type="checkbox" onchange="set_highlight_plot()" id="highlightPlotLegend">
+      <hr>
+      Position:<br>
+      X : <input type="text" id="xPositionLegend" onKeyUp ="set_xy_position_legend()" value = '0' ><br>
+      Y : <input type="text" id="yPositionLegend" onKeyUp ="set_xy_position_legend()" value='0'><br>
+      <hr>
+      Item:<br>
+      Bold:<input type="checkbox" onchange="set_item_bold_legend()" id="boldItemLegend"><br>
+      Font Color: <input type="color" id="fontColorItemLegend" onchange="set_item_font_color_legend()"><br>
+      Font Style : 
+      <select type="text" id="fontStyleItemLegend"  onchange="set_font_style_item_legend()">
+        <option value = "normal" > normal</option>
+        <option value = "italic" > italic</option>
+        <option value = "oblique"> oblique</option>
+      </select><br>
+      Font Family :<input type="text" id="fontFamilyItemLegend" onKeyUp = "set_font_family_item_legend()"><br>
+      Text Align : 
+      <select id="textAlignItemLegend" onchange="set_text_align_item_legend()">
+        <option value = 'center'> Center</option>
+        <option value = 'left'> Left</option>
+        <option value = 'right' > Right</option>
+      </select><br>
+      Margins: <br>
+      Top:<input type="text" id="marginTopItemLegend" onKeyUp="set_margin_item_legend()" value="10px"><br>
+      Right:<input type="text" id="marginRightItemLegend" onKeyUp="set_margin_item_legend()" value="0"><br>
+      Bottom : <input type="text" id="marginBottomitemLegend" onKeyUp="set_margin_item_legend()" value="10px"><br>
+      Left :<input type="text" id="marginLeftItemLegend" onKeyUp="set_margin_item_legend()" value="0"><br>
+      Paddings: <br>
+      Top:<input type="text" id="paddingTopItemLegend" onKeyUp="set_padding_item_legend()" value="10px"><br>
+      Right:<input type="text" id="paddingRightItemLegend" onKeyUp="set_padding_item_legend()" value="0"><br>
+      Bottom : <input type="text" id="paddingBottomItemLegend" onKeyUp="set_padding_item_legend()" value="10px"><br>
+      Left :<input type="text" id="paddingLeftItemLegend" onKeyUp="set_padding_item_legend()" value="0"><br>
+      <hr>
+      Marker:<br>
+      Type:
+      <select id="typeMarkerLegend" onchange="set_marker_type_legend()">
+        <option value="triangle">Triangle</option>
+        <option value="square"> Square</option>
+        <option value="circle"> Circle</option>
+        <option value="diamond"> Diamond</option>
+        <option value="trapezoid"> Trapezoid</option>
+        <option value="rectangle"> Rectangle</option>
+        <option value="parallelogram"> Parallelogram</option>
+        <option value="plus"> Plus</option>
+        <option value="cross"> Cross</option>
+        <option value="arrow"> arrow</option>
+        <option value="ellipse"> Ellipse</option>
+        <option value="arc"> Arc</option>
+        <option value="pie"> Pie</option>
+        <option value="star3">Star3</option>
+        <option value="star4">Star4</option>
+        <option value="star5">Star5</option>
+        <option value="star6">Star6</option>
+        <option value="star7">Star7</option>
+        <option value="star8">Star8</option>
+        <option value="star9">Star9</option>
+        <option value="rpoly3">Rpoly3</option>
+        <option value="rpoly4">Rpoly4</option>
+        <option value="rpoly5">Rpoly5</option>
+        <option value="rpoly6">Rpoly6</option>
+        <option value="rpoly7">Rpoly7</option>
+        <option value="rpoly8">Rpoly8</option>
+        <option value="rpoly9">Rpoly9</option>
+        <option value="gear3">Gear3</option>
+        <option value="gear4">Gear4</option>
+        <option value="gear5">Gear5</option>
+        <option value="gear6">Gear6</option>
+        <option value="gear7">Gear7</option>
+        <option value="gear8">Gear8</option>
+        <option value="gear9">Gear9</option>
+      </select>
+      <br>
+      Alpha: <input type="text" value='1' id="alphaMarkerLegend" onKeyUp="set_alpha_marker_legend()" >
     </div>
   </div>
   
@@ -329,8 +438,6 @@ function zing_designer() {
 function zing_html ( $post ) {
   wp_nonce_field( ZING_NOUNCE, 'zing_nounce' );
   $html = get_post_meta ($post->ID, 'zing_html_content', true );
-  // get settings
-  //$settings = get_option( 'amcharts_options', amcharts_get_defaults() );
   
   ?>
   
