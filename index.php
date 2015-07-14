@@ -108,8 +108,9 @@ function zing_designer() {
   <script>
   jQuery(document).ready(function($) {
     $('#tabs').tabs();
-    $('#accordion').accordion({ autoHeight: false });
+    $('#accordion').accordion({ autoHeight: false,collapsible: true,heightStyle: "fill" });
     $( "#slider" ).slider();
+    $("#plotTabs").tabs();
     
   });
   </script> 
@@ -424,7 +425,89 @@ function zing_designer() {
       </select>
       <br>
       Alpha: <input type="text" value='1' id="alphaMarkerLegend" onKeyUp="set_alpha_marker_legend()" >
+      <br>
+      Background :
+      <select id="backgroundTypeMarkerLegend" onchange="set_background_type_marker_legend()">
+        <option value="solid"> Solid </option>
+        <option value="gradiant"> Gradiant </option>
+      </select>
+      <br>
+      Background color 1 : <input type="color" id="backgroundColor1MarkerLegend" onchange="set_background_color_marker_legend()"><br>
+      Background color 2 : <input type="color" id="backgroundColor2MarkerLegend" onchange="set_background_color_marker_legend()" style="visibility :hidden">
+      <br>
+      Background Image: <input type="text" id="backgroundImageMarkerLegend" onKeyUp="set_background_image_marker_legend()">
+      <br>
+      Border : <input type="checkbox" id="borderMarkerLegend" onchange="set_border_marker_legend()"><br>
+        width :<input typpe= "text" id="borderWidthMarkerLegend" onKeyUp="set_border_marker_legend()" value='1px'><br>
+        Color: <input type="color" id="borderColorMarkerLegend" onchange="set_border_marker_legend()" value='#000000'><br>
     </div>
+    <h3>Plotarea</h3>
+    <div>
+      Adjast Layout : <input type="checkbox" id="adjustLayoutPlotArea" onchange="adjust_layout_plot_area()"><hr>
+      Alpha: <input type="text" value='1' id="alphaPlotArea" onKeyUp="set_alpha_plot_area()" ><hr>
+      Background :
+      <select id="backgroundTypePlotArea" onchange="set_background_type_plot_area()">
+        <option value="solid"> Solid </option>
+        <option value="gradiant"> Gradiant </option>
+      </select>
+      <br>
+      Background color 1 : <input type="color" id="backgroundColor1PlotArea" onchange="set_background_color_plot_area()"><br>
+      Background color 2 : <input type="color" id="backgroundColor2PlotArea" onchange="set_background_color_plot_area()" style="visibility :hidden">
+      <hr>
+       Background Image: <input type="text" id="backgroundImagePlotArea" onKeyUp="set_background_image_plot_area()">
+       <hr>
+       Background Fit:
+       <select id="backgroundFitPlotArea" onchange="set_background_fir_plot_area()">
+        <option value='x'>x</option>
+        <option value='y'>y</option>
+        <option value='xy'>xy</option>
+       </select>
+       <hr>
+       Background Repeat: 
+       <select id= "backgroundRepeatPlotArea" onchange="set_background_repeat_plot_area()">
+        <option value="no-repeat">No Repeat</option>
+        <option value="repaet">Repeat</option>
+        <option value="repeat-x">Repeat X</option>
+        <option value="repeat-y">Repeat Y</option>
+       </select><br>
+       Background Position: <br>
+       X : <input type="text" value='0' id="backgroundPositionXPlotArea" onKeyUp="set_background_position_plot_area()" ><br>
+       Y : <input type="text" value='0' id="backgroundPositionYPlotArea" onKeyUp="set_background_position_plot_area()" ><hr>
+       Border : <input type="checkbox" id="borderPlotArea" onchange="set_border_plot_area()"><br>
+        width :<input typpe= "text" id="borderWidthPlotArea" onKeyUp="set_border_plot_area()" value='1px'><br>
+        Color: <input type="color"  id="borderColorPlotArea" onchange="set_border_plot_area()" value='#000000'><hr>
+      Margins: <br>
+      Top:<input type="text" id="marginTopPlotArea" onKeyUp="set_margin_plot_area()" value="10px"><br>
+      Right:<input type="text" id="marginRightPlotArea" onKeyUp="set_margin_plot_area()" value="0"><br>
+      Bottom : <input type="text" id="marginBottomPlotArea" onKeyUp="set_margin_plot_area()" value="10px"><br>
+      Left :<input type="text" id="marginLeftPlotArea" onKeyUp="set_margin_item_plot_area()" value="0"><hr>
+      Paddings: <br>
+      Top:<input type="text" id="paddingTopPlotArea" onKeyUp="set_padding_plot_area()" value="10px"><br>
+      Right:<input type="text" id="paddingRightPlotArea" onKeyUp="set_padding_plot_area()" value="0"><br>
+      Bottom : <input type="text" id="paddingBottomPlotArea" onKeyUp="set_padding_plot_area()" value="10px"><br>
+      Left :<input type="text" id="paddingLeftPlotArea" onKeyUp="set_padding_plot_area()" value="0"><br>
+    </div>
+    <h3>Plot</h3>
+    <div>
+      <div id="plotTabs">
+        <ul>
+          <li><a href="#plotTab1">General</a></li>
+          <li><a href="#plotTab2">Animation</a></li>
+          <li><a href="#plotTab3">Hover state</a></li>
+          <li><a href="#plotTab4">Hover marker</a></li>
+          <li><a href="#plotTab5">Marker</a></li>
+          <li><a href="#plotTab6">Tool Tip</a></li>
+        </ul>
+        <div id="plotTab1" class="frm-el" data-category = "plot" data-sub-category = "plot"></div>
+        <div id="plotTab2" class="frm-el" data-category = "plot" data-sub-category = "animation"></div>
+        <div id="plotTab3" class="frm-el" data-category = "plot" data-sub-category = "hoverState"></div>
+        <div id="plotTab4" class="frm-el" data-category = "plot" data-sub-category = "hoverMarker"></div>
+        <div id="plotTab5" class="frm-el" data-category = "plot" data-sub-category = "marker"></div>
+        <div id="plotTab6" class="frm-el" data-category = "plot" data-sub-category = "tooltip"></div>
+      </div>
+    </div>
+    <h3>Preview </h3>
+    <div id="preview" class="frm-el" data-category = "preview" data-sub-category = "preview"></div>
   </div>
   
   <div>
