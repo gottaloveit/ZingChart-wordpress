@@ -111,6 +111,7 @@ function zing_designer() {
     $('#accordion').accordion({ autoHeight: false,collapsible: true,heightStyle: "fill" });
     $( "#slider" ).slider();
     $("#plotTabs").tabs();
+    $("#labelsAccordion").accordion({ autoHeight: false,collapsible: true,heightStyle: "fill" });
     
   });
   </script> 
@@ -497,6 +498,7 @@ function zing_designer() {
           <li><a href="#plotTab4">Hover marker</a></li>
           <li><a href="#plotTab5">Marker</a></li>
           <li><a href="#plotTab6">Tool Tip</a></li>
+          <li><a href="#plotTab7">Value Box</a></li>
         </ul>
         <div id="plotTab1" class="frm-el" data-category = "plot" data-sub-category = "plot"></div>
         <div id="plotTab2" class="frm-el" data-category = "plot" data-sub-category = "animation"></div>
@@ -504,16 +506,30 @@ function zing_designer() {
         <div id="plotTab4" class="frm-el" data-category = "plot" data-sub-category = "hoverMarker"></div>
         <div id="plotTab5" class="frm-el" data-category = "plot" data-sub-category = "marker"></div>
         <div id="plotTab6" class="frm-el" data-category = "plot" data-sub-category = "tooltip"></div>
+        <div id="plotTab7" class="frm-el" data-category = "plot" data-sub-category = "value-box"></div>
       </div>
     </div>
+    <h3>Labels</h3>
+      <div >
+        <div id="labelsAccordion">
+
+          <h3  id = "LabelsTitle"  >Label 1</h3>
+          <div id = "lableConfig" class="frm-el" data-category = "labels" data-sub-category = "labels"></div>
+
+        </div>
+        <button type="button" onclick="new_label(); return false;">New Label</button>
+      </div>
     <h3>Preview </h3>
-    <div id="preview" class="frm-el" data-category = "preview" data-sub-category = "preview"></div>
+    <div id="preview" class="frm-el" data-category = "preview" data-sub-category = "preview">
+    </div>
   </div>
   
   <div>
     <span id='ttl'></span>
 
 <div id='chartDiv'></div>
+<div id='jsonData'> 
+</div>
   </div>
   <div style="clear:both"></div>
   <?php

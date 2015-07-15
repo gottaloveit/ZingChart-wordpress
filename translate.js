@@ -1,3 +1,14 @@
+/*
+ * TO DO : 
+ * Make grapgh div naming dynamic
+ * Be able to feed data as a csv file to it
+ * Validate form inputs
+
+
+
+
+ * have a data part s
+ */
 var plotGeneralData = {
     "category" : "plot",
     "subcategory" :"plot",
@@ -179,8 +190,7 @@ var plotGeneralData = {
         "divider" :"true",
       },
       
-    ],
-};
+    ],};
 var plotAnimationData ={
     "category" : "plot",
     "subcategory" :"animation",
@@ -246,8 +256,7 @@ var plotAnimationData ={
         "divider" :"true"
       },
       
-    ],
-};
+    ],};
 var plotHoverState = {
     "category" : "plot",
     "subcategory" :"hoverState",
@@ -283,8 +292,7 @@ var plotHoverState = {
         "label": "",
         "divider" :"true",
       }
-    ],
-}
+    ],};
 var hoverMarker = {
    "category" : "plot",
     "subcategory" :"hoverMarker",
@@ -375,8 +383,7 @@ var hoverMarker = {
         "label": "Visib",
         "divider" :"true"
       },
-      ]
-};
+      ]};
 var plotMarkerData ={
     "category" : "plot",
     "subcategory" :"marker",
@@ -467,8 +474,7 @@ var plotMarkerData ={
         "label": "Visib",
         "divider" :"true"
       },
-    ]
-};
+    ]};
 var tooltip ={
     "category" : "plot",
     "subcategory" :"tooltip",
@@ -550,26 +556,472 @@ var tooltip ={
       },
       {
         "type" : "font",
-        "id"   : "tooltipPlot",
+        "id"   : "tooltipplot",
         "key"  : "",
         "label": "",
         "divider" :"true"
       },
-    ]
-};
+      {
+        "type" : "text",
+        "id"   : "heightTooltipPlot",
+        "key"  : "height",
+        "label": "Height ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "widthTooltipPlot",
+        "key"  : "width",
+        "label": "Width ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginToptooltipplot",
+        "key"  : "marginTop",
+        "label": "Margin Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginRighttooltipplot",
+        "key"  : "marginRight",
+        "label": "Margin Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginBottomtooltipplot",
+        "key"  : "marginBottom",
+        "label": "Margin Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginLefttooltipplot",
+        "key"  : "marginLeft",
+        "label": "Margin Left",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingToptooltipplot",
+        "key"  : "paddingTop",
+        "label": "Padding Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRighttooltipplot",
+        "key"  : "paddingRight",
+        "label": "Padding Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomtooltipplot",
+        "key"  : "paddingBottom",
+        "label": "Padding Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingLefttooltipplot",
+        "key"  : "paddingLeft",
+        "label": "Padding Left",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "calloutTooltipPlot",
+        "key"  : "callout",
+        "label": "Callout",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutHeightTooltipplot",
+        "key"  : "calloutHeight",
+        "label": "Callout Height",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutWidthTooltipplot",
+        "key"  : "calloutWidth",
+        "label": "Callout Width",
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "labels" :[
+        "Top",
+        "Right",
+        "Bottom",
+        "Left",
+        ],
+        "label" :"Callout Position ",
+        "id"    :"calloutPositionTooltipPlot",
+        "key"   :"calloutPosition",
+      },
+      {
+        "type" : "text",
+        "id"   : "xTooltipPlot",
+        "key"  : "x",
+        "label": "Offset X",
+        "divider" :"true",
+        "defValue" : "0"
+      },
+      {
+        "type" : "text",
+        "id"   : "yTooltipPlot",
+        "key"  : "y",
+        "label": "Offset Y",
+        "defValue" : "0"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "wrapTextTooltipPlot",
+        "key"  : "wrapText",
+        "label": "Wrap text",
+        "divider" :"true"
+      },
+    ]};
+var valueBox ={
+    "category" : "plot",
+    "subcategory" :"value-box",
+    "inputs" :[
+      {
+        "type" : "range",
+        "id"   : "alphavalueBoxPlot",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "value-boxplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+       {
+        "type" : "text",
+        "id"   : "backgroundImagevalueBoxPlot",
+        "key"  : "backgroundImage",
+        "label": "Background Image",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "x",
+          "y",
+          "xy"
+        ],
+        "label" :"background Fit ",
+        "id"    :"backgroundFitvalueBoxPlot",
+        "key"   :"background-fit ",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "no-repeat",
+          "repeat",
+          "repeat-x",
+          "repeat-y"
+        ],
+        "labels" :[
+        "No Repeat",
+        "Repeat",
+        "Repeat X",
+        "Repeat Y",
+        ],
+        "label" :"background Repeat ",
+        "id"    :"backgroundRepeatvalueBoxPlot",
+        "key"   :"background-repeat ",
+        "divider" :"true"
+      },
+      {
+       "type" : "border",
+        "id"   : "value-boxplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "line",
+        "id"   : "value-boxplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "visiblevalueBoxPlot",
+        "key"  : "visib",
+        "label": "Visib",
+        "divider" :"true"
+      },
+      {
+        "type" : "font",
+        "id"   : "value-boxplot",
+        "key"  : "",
+        "label": "",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "heightvalueBoxPlot",
+        "key"  : "height",
+        "label": "Height ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "widthvalueBoxPlot",
+        "key"  : "width",
+        "label": "Width ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginTopvalueBoxPlot",
+        "key"  : "marginTop",
+        "label": "Margin Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginRightvalueBoxPlot",
+        "key"  : "marginRight",
+        "label": "Margin Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginBottomvalueBoxPlot",
+        "key"  : "marginBottom",
+        "label": "Margin Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginLeftvalueBoxPlot",
+        "key"  : "marginLeft",
+        "label": "Margin Left",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopvalueBoxPlot",
+        "key"  : "paddingTop",
+        "label": "Padding Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightvalueBoxPlot",
+        "key"  : "paddingRight",
+        "label": "Padding Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomvalueBoxPlot",
+        "key"  : "paddingBottom",
+        "label": "Padding Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingLeftvalueBoxPlot",
+        "key"  : "paddingLeft",
+        "label": "Padding Left",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "calloutvalueBoxPlot",
+        "key"  : "callout",
+        "label": "Callout",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutHeightvalueBoxPlot",
+        "key"  : "calloutHeight",
+        "label": "Callout Height",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutWidthvalueBoxPlot",
+        "key"  : "calloutWidth",
+        "label": "Callout Width",
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "labels" :[
+        "Top",
+        "Right",
+        "Bottom",
+        "Left",
+        ],
+        "label" :"Callout Position ",
+        "id"    :"calloutPositionvalueBoxPlot",
+        "key"   :"calloutPosition",
+      },
+      {
+        "type" : "text",
+        "id"   : "xvalueBoxPlot",
+        "key"  : "x",
+        "label": "Offset X",
+        "divider" :"true",
+        "defValue" : "0"
+      },
+      {
+        "type" : "text",
+        "id"   : "yvalueBoxPlot",
+        "key"  : "y",
+        "label": "Offset Y",
+        "defValue" : "0"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "wrapTextvalueBoxPlot",
+        "key"  : "wrapText",
+        "label": "Wrap text",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "placementvalueBoxPlot",
+        "key"  : "placement",
+        "label": "Placement",
+        "divider" :"true"
+      },
+    ]};
 var previewData ={
-    "category" : "preview",
-    "subcategory" :"preview",
-    "inputs" : [ 
-    {
-      "type" : "checkbox",
-      "id"   : "adjustLayoutPreview",
-      "key"  : "adjust-layout",
-      "label": "Adjust Layout",
-    }
+      "category" : "preview",
+      "subcategory" :"preview",
+      "inputs" : [ 
+      {
+        "type" : "checkbox",
+        "id"   : "visiblePreview",
+        "key"  : "visible",
+        "label": "Visib",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "adjustLayoutPreview",
+        "key"  : "adjust-layout",
+        "label": "Adjust Layout",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "heightPreview",
+        "key"  : "height",
+        "label": "Height",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "widthPreview",
+        "key"  : "width",
+        "label": "Width",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginPreview",
+        "key"  : "marginTop",
+        "label": "Margin Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginRightPreview",
+        "key"  : "marginRight",
+        "label": "Margin Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginBottomPreview",
+        "key"  : "marginBottom",
+        "label": "Margin Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginLeftPreview",
+        "key"  : "marginLeft",
+        "label": "Margin Left",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopPreview",
+        "key"  : "paddingTop",
+        "label": "Padding Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightPreview",
+        "key"  : "paddingRight",
+        "label": "Padding Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomPreview",
+        "key"  : "paddingBottom",
+        "label": "Padding Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingLeftPreview",
+        "key"  : "paddingLeft",
+        "label": "Padding Left",
+      },
+      {
+        "type" : "text",
+        "id"   : "xPreview",
+        "key"  : "x",
+        "label": "Offset X",
+        "divider" :"true",
+        "defValue" : "0"
+      },
+      {
+        "type" : "text",
+        "id"   : "yPreview",
+        "key"  : "y",
+        "label": "Offset Y",
+        "defValue" : "0"
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "preview", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
     ],
 }
-var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,previewData];
+var labelData = {
+      "category" : "labels",
+      "subcategory" :"labels",
+      "inputs" : [ 
+      {
+        "type" : "text",
+        "id"   : "callout-height",
+        "key"  : "callout-height",
+        "label": "Callout Height",
+      }
+      ],
+}
+var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,valueBox,previewData,labelData];
 var j = 0;
 window.onload =function() {
   var element = document.getElementsByClassName("frm-el");
@@ -589,12 +1041,16 @@ window.onload =function() {
               +"' onchange='Modify_chart(this.id, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
             break;
             case("text") :
+              var defaultVal= ''; 
+              if (typeof formData[m].inputs[j].defValue != 'undefined' ) {
+                defaultVal = formData[m].inputs[j].defValue;
+              };
               element[i].innerHTML += linebreak
               +"<label>"+ formData[m].inputs[j].label+": </label>"
               +"<input type='text' id='"+formData[m].inputs[j].id+"' data-category='"
               +formData[m]["category"]+"' data-key='"+formData[m].inputs[j].key+"' dat-subcat='"+
               formData[m].subcategory
-              +"'onKeyUp='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              +"'onKeyUp='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
             break;
             case ('select'):
               var options = ''
@@ -661,14 +1117,28 @@ window.onload =function() {
             case ("font") :
               element[i].innerHTML += linebreak+"<lable> Font color :</label>";
               element[i].innerHTML += " <input type='color' id='fontColor"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]+"' dat-subcat='"+formData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              element[i].innerHTML += "<lable> Font size :</lable><input type='text' id='fontSize"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]
+              +"' dat-subcat='"+formData[m]["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='12px'><br>";
               element[i].innerHTML += "<lable>Font style: </lable>";
               element[i].innerHTML += "<select id='fontStyle"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]+"' dat-subcat='"+formData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
               +"<option value ='normal' > normal</option>"
-              +"<option value = 'italic' > italic</option>"
-              +"<option value = 'oblique'> oblique</option>"
-              +"</select>";
+              +"<option value ='italic' > italic</option>"
+              +"<option value ='oblique'> oblique</option>"
+              +"</select><br>";
               element[i].innerHTML += "<lable> Font family :</lable>"; // It should get converted to select sometime!!!
-              element[i].innerHTML += "<input type='text' id='fontFamily'"+formData[m].inputs[j].id;
+              element[i].innerHTML += "<input type='text' id='fontFamily"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]+"' dat-subcat='"+formData[m]["subcategory"]
+              +"' onKeyUp='set_font(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' ><br>";
+              element[i].innerHTML += "<lable> Text :</label>";
+              element[i].innerHTML += "<input  type='text' id='text"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]+"' dat-subcat='"+formData[m]["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              element[i].innerHTML += "<lable>Text align :</lable>"
+              +"<select id='textAlign"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]+"' dat-subcat='"+formData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option></option>"
+              +"<option value='center'> Center</option>"
+              +"<option value='left'> Left</option>"
+              +"<option value='right'> Right </option>"
+              +"</select><br>";
+              element[i].innerHTML += "<lable> Bold : </label> <input type='checkbox' id='fontBold"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]+"' dat-subcat='"+formData[m]["subcategory"]
+              +"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
             break;
           };
         };
@@ -694,18 +1164,29 @@ function Modify_chart(id,type,key,category,subcategory) {
 
   var dataObj = {};
   dataObj[category] = {};
-  if (category != subcategory) {
-    dataObj[category][subcategory] ={};
-    dataObj[category][subcategory][key] = value;
+
+  if (category == "preview" && !document.getElementById(id).checked && id =="visiblePreview") {
+    var tempobj = zingchart.exec(chartID,'getdata' );
+      delete tempobj.graphset[0][category];
+      zingchart.exec(chartID,'setdata', {
+        data : tempobj
+      });
+      creat_json();
   } else {
-    dataObj[category][key] = value;
+   
+    if (category != subcategory ) {
+      dataObj[category][subcategory] ={};
+      dataObj[category][subcategory][key] = value;
+    } else {
+      dataObj[category][key] = value;
+    }
+    zingchart.exec(chartID,'modify', {
+          graphid : 0,
+          data : dataObj
+        
+    });
+    creat_json();}
   }
-  zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : dataObj
-      
-  });
-  creat_json();}
 /*
  * Generic functions for bg Color
  */
@@ -811,7 +1292,6 @@ function set_border(category,subCategory) {
 
 
   creat_json();}
-
 /*
  * Generic function for seting line
  */
@@ -845,18 +1325,53 @@ function set_line(category,subCategory) {
 /*
  * Generic function for seting font
  */
-function set_line(category,subCategory) { 
+function set_font(category,subCategory) { 
+
   var dataObj = {};
   dataObj[category] = {};
-
+  if (category != subCategory) {
+    var txtalgn = document.getElementById('textAlign'+subCategory+category);
+    var selected = txtalgn.options[txtalgn.selectedIndex].value;
+    var fontstls = document.getElementById('fontStyle'+subCategory+category);
+    var style = fontstls.options[fontstls.selectedIndex].value;
+    dataObj[category][subCategory] ={};
+    dataObj[category][subCategory]["fontColor"] = document.getElementById('fontColor'+subCategory+category).value;
+    dataObj[category][subCategory]["fontSize"] = document.getElementById('fontSize'+subCategory+category).value;
+    dataObj[category][subCategory]["fontFamily"] = document.getElementById('fontFamily'+subCategory+category).value;
+    if (document.getElementById('text'+subCategory+category).value !='') {
+      dataObj[category][subCategory]["text"] = document.getElementById('text'+subCategory+category).value;
+    } else {
+      var tempobj = zingchart.exec(chartID,'getdata' );
+      delete tempobj.graphset[0][category][subCategory]["text"];
+      zingchart.exec(chartID,'setdata', {
+        graphid: 0,
+        data : tempobj.graphset[0]
+      });
+      creat_json();
+    }
+    dataObj[category][subCategory]["textAlign"] = selected;
+    dataObj[category][subCategory]["fontStyle"] = style;
+    dataObj[category][subCategory]["bold"] = document.getElementById('fontBold'+subCategory+category).checked;
+  } else {
+      dataObj[category]["fontColor"] = document.getElementById('fontColor'+category).value;
+  } 
+  zingchart.exec(chartID,'modify', {
+    graphid : 0,
+    data : dataObj
+  });
+  zingchart.exec(chartID,'update');
+  creat_json();
 }
 
-/*
- * TO DO : 
- * Make grapgh div naming dynamic
- * Be able to feed data as a csv file to it
- * Validate form inputs
- */
+function new_label() {
+  var lbl = document.getElementById("lableConfig");
+  var ttl = document.getElementById("LabelsTitle");
+  var clnlLbl = lbl.cloneNode(true);
+  var clnttl = ttl.cloneNode(true);
+  document.querySelector("#labelsAccordion").appendChild(clnttl);
+  document.querySelector("#labelsAccordion").appendChild(clnlLbl);
+  $('#labelsAccordion').accordion("refresh");  
+}
 var jsonObject = '';
 var chartTitle = '';
 var chartType  = 'Bar';
@@ -2031,7 +2546,8 @@ function creat_json() {
   // At some point we have to fix this this does not work correctly
   var jsonString = JSON.stringify(zingchart.exec(chartID,'getdata' ),null,"\t");
   //if (typeof jsonString != "undefined") {
-    document.getElementById('zingcharts-javaScript').value = jsonString;
+    document.getElementById('jsonData').innerHTML = "<em>"+jsonString+"</em>";
+     document.getElementById('zingcharts-javaScript').value = jsonString;
   //} else {
    // alert("Please select your chart first!!!");
   //}
