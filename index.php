@@ -108,17 +108,21 @@ function zing_designer() {
   <script>
   jQuery(document).ready(function($) {
     $('#tabs').tabs();
-    $('#accordion').accordion({ autoHeight: false,collapsible: true,heightStyle: "fill" });
+    $('#accordion').accordion({ autoHeight: false,collapsible: true,heightStyle: "content" });
     $( "#slider" ).slider();
     $("#plotTabs").tabs();
-    $("#labelsAccordion").accordion({ autoHeight: false,collapsible: true,heightStyle: "fill" });
+    $("#labelsAccordion").accordion({
+      heightStyle: "content",
+      collapsible: true,
+    });
+    $("#plotJson").tabs();
     
   });
   </script> 
   <style type="text/css">
   #accordion{
     float: left;
-    width: 40%;
+    width: 60%;
   }
   .ui-accordion .ui-accordion-header .ui-icon {
     left: -0.25em;
@@ -140,49 +144,6 @@ function zing_designer() {
   <div style="clear:both"></div>
 
   <div id="accordion">
-    <h3>General</h3>
-    <div>
-      <div id="tabs">
-        <ul>  
-          <li><a href="#canvas">Canvas</a></li>
-          <li><a href="#chart">Chart</a></li>
-        </ul>
-        <div id="canvas">
-          Animate: <input type="checkbox"><br>
-          <div class="yesAimate">
-            Effect: 
-            <select>
-              <option >Defult</option>
-              <option >Strech Vertical</option>
-              <option >Strech Horizontal</option>
-              <option >Slide Down</option>
-              <option >SLide up</option>
-              <option >SLide left</option>
-              <option >SLide wight</option>
-            </select><br>
-            Speed:<div id="slider"></div>
-          </div>
-          <hr>
-          Dimensions:  Width:<input type='text'> height: <input type="text">
-          <hr>
-          Background :
-          <select>
-            <option>Default</option>
-            <option>Solid</option>
-            <option>Gradiant</option>
-            <option>Image</option>
-          </select>
-          Bg Color: <input type="text"><!-- Have to insert color picker here-->
-        </div>
-        <div id="chart">
-          Dimension: <br> Width:<input type="text"> <br>Hight: <input type="text">
-        </div>
-      </div>
-    </div>
-    <h3>Chart specific</h3>
-    <div>
-      Nothing
-    </div>
     <h3>Title</h3>
     <div>
       Visible : <input type="checkbox" onchange="showtitle()" id="visibleTitle">
@@ -509,13 +470,15 @@ function zing_designer() {
         <div id="plotTab7" class="frm-el" data-category = "plot" data-sub-category = "value-box"></div>
       </div>
     </div>
+    <h3>Scale R</h3>
+    <div class="frm-el" data-category = "scale-r" data-sub-category = "scale-r"></div>
+    <h3>Scale</h3>
+    <div class="frm-el" data-category = "scale" data-sub-category = "scale"></div>
     <h3>Labels</h3>
       <div >
         <div id="labelsAccordion">
-
-          <h3  id = "LabelsTitle"  >Label 1</h3>
-          <div id = "lableConfig" class="frm-el" data-category = "labels" data-sub-category = "labels"></div>
-
+          <h3  id = "LabelsTitle" > Label </h3>
+          <div id = "lableConfig" class="lbl-el" data-category = "labels" data-sub-category = "labels"></div>
         </div>
         <button type="button" onclick="new_label(); return false;">New Label</button>
       </div>
@@ -525,11 +488,18 @@ function zing_designer() {
   </div>
   
   <div>
-    <span id='ttl'></span>
-
+<span id='ttl'></span>
 <div id='chartDiv'></div>
+
+
+
 <div id='jsonData'> 
+<div id='Data'> 
 </div>
+
+
+
+
   </div>
   <div style="clear:both"></div>
   <?php

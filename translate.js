@@ -1006,13 +1006,58 @@ var previewData ={
         "key"  : "",
         "label": "",
         "divider" :"true",
+      },],}
+var scaleRData = {
+  "category" : "scale-r",
+      "subcategory" :"scale-r",
+      "inputs" : [ 
+      {
+        "type" : "range",
+        "id"   : "aperture",
+        "key"  : "aperture",
+        "label": "Aperture",
+        "min"  : '0',
+        "max"  : '360',
+        "step" :'1'
       },
-    ],
-}
+      ],};
+var scaleData = {
+    "category" : "scale",
+      "subcategory" :"scale",
+      "inputs" : [ 
+      {
+        "type"  :"select",
+        "values":[
+          "auto",
+        ],
+        "labels" :[
+        "Auto",
+        ],
+        "label" :"Size Factor ",
+        "id"    :"size-factorscalescale",
+        "key"   :"size-factor",
+      },
+      {
+        "type" : "range",
+        "id"   : "size-factor2scalescale",
+        "key"  : "size-factor",
+        "label": "Size Factor",
+        "min"  : '0',
+        "max"  : '10',
+        "step" :'.1'
+      },
+      ],};
 var labelData = {
       "category" : "labels",
       "subcategory" :"labels",
       "inputs" : [ 
+      {
+        "type" : "bgcolor",
+        "id"   : "labelslabels", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
       {
         "type" : "text",
         "id"   : "callout-height",
@@ -1021,9 +1066,131 @@ var labelData = {
       }
       ],
 }
-var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,valueBox,previewData,labelData];
+var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,valueBox,scaleData,scaleRData,previewData];
 var j = 0;
+var  labelConfigId = 1; // This is for the label replaction. It holds each labels id.
 window.onload =function() {
+/*Lables will go here */
+  var lblArrayElemnt = document.getElementsByClassName("lbl-el");
+  for (var i=  0 ; i< lblArrayElemnt.length;i++) { // This should be only one
+    for (var j = 0; j<labelData.inputs.length; j++ ) {
+      var linebreak = (labelData.inputs[j].divider) ? "<hr>" : "";
+      switch(labelData.inputs[j].type){
+            case('checkbox') :
+              lblArrayElemnt[i].innerHTML += linebreak
+              +"<label>"+ labelData.inputs[j].label+": </label>"
+              +"<input type='checkbox' id='"+labelData.inputs[j].id+"' data-category='"
+              +labelData["category"]+"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
+              valueBoxPlot.subcategory
+              +"' onchange='Modify_chart(this.id, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case("text") :
+              var defaultVal= ''; 
+              if (typeof labelData.inputs[j].defValue != 'undefined' ) {
+                defaultVal = labelData.inputs[j].defValue;
+              };
+              lblArrayElemnt[i].innerHTML += linebreak
+              +"<label>"+ labelData.inputs[j].label+": </label>"
+              +"<input type='text' id='"+labelData.inputs[j].id+"' data-category='"
+              +labelData["category"]+"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
+              labelData.subcategory
+              +"'onKeyUp='Modify_chart_label(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+            break;
+            case ('select'):
+              var options = ''
+              var optionLable = '';
+              for (var k=0; k<labelData.inputs[j].values.length;k++) {
+                if (labelData.inputs[j].labels) {
+                   optionLable = labelData.inputs[j].labels[k];
+                } else {
+                  optionLable = labelData.inputs[j].values[k];
+                }
+                options += "<option value='"+labelData.inputs[j].values[k]+"'>"+optionLable +"</option>"
+              };
+              lblArrayElemnt[i].innerHTML += linebreak
+              +"<label>"+ labelData.inputs[j].label+": </label>"
+              +"<select id='"+labelData.inputs[j].id+"' data-category='"+labelData["category"]
+              +"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
+              labelData.subcategory
+              +"'onchange='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
+            break;
+            case ("range") :
+            //oninput is for IE compatibility.
+              lblArrayElemnt[i].innerHTML += linebreak
+              +"<label>"+ labelData.inputs[j].label+": </label>"
+              +"<input type='range' id='"+labelData.inputs[j].id+"' data-category='"
+              +labelData["category"]+"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
+              labelData.subcategory
+              +"' min='"+labelData.inputs[j].min+"' max='"+labelData.inputs[j].max+"' step='"+labelData.inputs[j].step
+              +"' onchange='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'"
+              +"  oninput='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case ("bgcolor") :
+              lblArrayElemnt[i].innerHTML += linebreak +"<label> Background:</lable>";//ID here represents category
+              lblArrayElemnt[i].innerHTML += "<select id='backgroundType"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+
+              labelData["subcategory"]+"'onchange='set_bg_type(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option value='solid'>Solid</option><option value='gradiant'>Gradiant</option></select><br>"
+              +"<label> Background color 1 : </lable> <input type='color' id='backgroundColor1"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]
+              +"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_bg_color(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>"
+              +"<label> Background color 2 : </lable> <input type='color' id='backgroundColor2"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]
+              +"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_bg_color(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' style='visibility :hidden'><br>";
+            break;
+            case ("border") :
+              lblArrayElemnt[i].innerHTML += linebreak +"<label> Border :</lable>";//ID here represents category
+              lblArrayElemnt[i].innerHTML += "<input type='checkbox' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' id='border"+labelData.inputs[j].id
+              +"' onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";  
+              lblArrayElemnt[i].innerHTML += "<label> Border width :</lable><input type='text' id='borderWidth"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"
+              +labelData["subcategory"]+"' onKeyUp='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='1px'><br>";
+              lblArrayElemnt[i].innerHTML += " <label> Border color:</lable><input type='color' id='borderColor"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"
+              +labelData["subcategory"]+"'onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case ("line") :
+              lblArrayElemnt[i].innerHTML += linebreak + "<label>Line color :</lable>";
+              lblArrayElemnt[i].innerHTML += "<input type='color' id='lineColor"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              lblArrayElemnt[i].innerHTML += "<label>Line width :</lable> <input type='text' id='lineWidth"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px'><br>";
+              lblArrayElemnt[i].innerHTML += "<lable> Line style :</lable>"
+              +"<select id='lineStyle"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option></option>"
+              +"<option value='solid'> Solid</option>"
+              +"<option value='dotted'> Dotted</option>"
+              +"<option value='dashed'> Dashed</option>"
+              +"</select><br>";
+              lblArrayElemnt[i].innerHTML +="<label>Line gap size :</lable> <input type='text' id='lineGapSize"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+              lblArrayElemnt[i].innerHTML +="<label>Line segment size :</lable> <input type='text' id='lineSegmentSize"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+            break;
+            case ("font") :
+              lblArrayElemnt[i].innerHTML += linebreak+"<lable> Font color :</label>";
+              lblArrayElemnt[i].innerHTML += " <input type='color' id='fontColor"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              lblArrayElemnt[i].innerHTML += "<lable> Font size :</lable><input type='text' id='fontSize"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]
+              +"' dat-subcat='"+labelData["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='12px'><br>";
+              lblArrayElemnt[i].innerHTML += "<lable>Font style: </lable>";
+              lblArrayElemnt[i].innerHTML += "<select id='fontStyle"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option value ='normal' > normal</option>"
+              +"<option value ='italic' > italic</option>"
+              +"<option value ='oblique'> oblique</option>"
+              +"</select><br>";
+              lblArrayElemnt[i].innerHTML += "<lable> Font family :</lable>"; // It should get converted to select sometime!!!
+              lblArrayElemnt[i].innerHTML += "<input type='text' id='fontFamily"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]
+              +"' onKeyUp='set_font(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' ><br>";
+              lblArrayElemnt[i].innerHTML += "<lable> Text :</label>";
+              lblArrayElemnt[i].innerHTML += "<input  type='text' id='text"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              lblArrayElemnt[i].innerHTML += "<lable>Text align :</lable>"
+              +"<select id='textAlign"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option></option>"
+              +"<option value='center'> Center</option>"
+              +"<option value='left'> Left</option>"
+              +"<option value='right'> Right </option>"
+              +"</select><br>";
+              lblArrayElemnt[i].innerHTML += "<lable> Bold : </label> <input type='checkbox' id='fontBold"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]
+              +"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+            break;
+          };
+      
+    };
+
+  }
+
+/* ALL the generic types will go here*/  
   var element = document.getElementsByClassName("frm-el");
   var linebreak = "";
   for (var i = 0; i < element.length; i++) {
@@ -1360,18 +1527,164 @@ function set_font(category,subCategory) {
     data : dataObj
   });
   zingchart.exec(chartID,'update');
+  creat_json();}
+
+function new_label() {
+  var ttl = document.getElementById("LabelsTitle");
+  var lbl = document.getElementById("lableConfig");
+  
+  var clnlLbl = lbl.cloneNode(true);
+  var clnttl = ttl.cloneNode(true);
+  
+ 
+  childs = clnlLbl.childNodes;
+  for (var i= 0 , len = clnlLbl.childNodes.length ; i<len; i++) {
+    if (childs[i].id) {
+      childs[i].id += labelConfigId;
+    };
+  }
+  labelConfigId++;
+  document.querySelector("#labelsAccordion").appendChild(clnttl);
+  document.querySelector("#labelsAccordion").appendChild(clnlLbl);
+  jQuery(function($) {
+    $('#labelsAccordion').accordion("refresh");  
+  });
+}
+
+
+
+
+
+
+
+
+
+/*
+ * Label Modify chart
+ */
+function Modify_chart_label(id,type,key,category,subcategory) {
+
+  var value = ''
+  switch (type) {
+    case("checkbox") :
+      value = document.getElementById(id).checked;
+    break;
+    case("select-one") :
+      var opts = document.getElementById(id);
+      value  = opts.options[opts.selectedIndex].value;
+    break;
+    default:
+    //default is for text,range
+      value= document.getElementById(id).value;
+  }
+
+  var dataObj = {
+    labels :[],
+  };
+
+
+  dataObj.labels.push ({
+    key : value
+  });
+  zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj
+      
+  });
   creat_json();
 }
 
-function new_label() {
-  var lbl = document.getElementById("lableConfig");
-  var ttl = document.getElementById("LabelsTitle");
-  var clnlLbl = lbl.cloneNode(true);
-  var clnttl = ttl.cloneNode(true);
-  document.querySelector("#labelsAccordion").appendChild(clnttl);
-  document.querySelector("#labelsAccordion").appendChild(clnlLbl);
-  $('#labelsAccordion').accordion("refresh");  
-}
+
+
+/*
+ * functions for labels bg Color
+ */ /*
+var bgType= '';
+function set_bg_type(id,category,subCategory) {
+  var type = document.getElementById(id);
+  bgType = type.options[type.selectedIndex].value;
+  if (bgType =="gradiant") {
+    document.getElementById("backgroundColor2"+subCategory+category).style.visibility = "visible";
+  } else {
+    document.getElementById("backgroundColor2"+subCategory+category).style.visibility = "hidden";
+  }
+  set_bg_color(category,subCategory);}
+function set_bg_color(category,subCategory) {
+  var dataObj = {};
+  dataObj[category] = {};
+  if (category != subCategory) {
+    dataObj[category][subCategory] = {};
+    if (bgType == "gradiant") {
+      //Set background-color-1 attr
+    dataObj[category][subCategory]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj
+    });
+    dataObj[category][subCategory]['backgroundColor2'] =  document.getElementById('backgroundColor2'+subCategory+category).value;
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj
+    });
+    } else {
+    //Set background-color-1 attr
+      dataObj[category][subCategory]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj
+      });
+      dataObj[category][subCategory]['backgroundColor2'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj
+      });
+    }
+  } else {
+    
+    if (bgType == "gradiant") {
+      //Set background-color-1 attr
+    dataObj[category]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj
+    });
+    dataObj[category]['backgroundColor2'] =  document.getElementById('backgroundColor2'+subCategory+category).value;
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj
+    });
+    } else {
+    //Set background-color-1 attr
+      dataObj[category]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj
+      });
+      dataObj[category]['backgroundColor2'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj
+      });
+    }
+  }
+  
+  
+  creat_json();
+ }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 var jsonObject = '';
 var chartTitle = '';
 var chartType  = 'Bar';
