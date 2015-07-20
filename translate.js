@@ -1051,24 +1051,258 @@ var labelData = {
       "category" : "labels",
       "subcategory" :"labels",
       "inputs" : [ 
-      {
-        "type" : "bgcolor",
-        "id"   : "labelslabels", //In the case of category ID the id should match the category name
-        "key"  : "",
-        "label": "",
-        "divider" :"true",
+        {
+          "type" : "bgcolor",
+          "id"   : "labelslabels", //In the case of category ID the id should match the category name
+          "key"  : "",
+          "label": "",
+         
+        },
+        {
+          "type" : "checkbox",
+          "id"   : "callout",
+          "key"  : "callout",
+          "label": "Callout",
+           "divider" :"true",
+        },
+        {
+          "type" : "text",
+          "id"   : "callout-height",
+          "key"  : "callout-height",
+          "label": "Callout Height",
+        },
+        {
+          "type" : "text",
+          "id"   : "callout-width",
+          "key"  : "callout-width",
+          "label": "Callout Width",
+        },
+        {
+          "type" : "text",
+          "id"   : "callout-hooklabelsX",
+          "key"  : "callout-hook",
+          "label": "Callout Hook X",
+        },
+        {
+          "type" : "text",
+          "id"   : "callout-hooklabelsY",
+          "key"  : "callout-hook",
+          "label": "Callout Hook Y",
+        },
+         {
+          "type"  :"select",
+          "values":[
+            "top",
+            "right",
+            "bottom",
+            "left"
+          ],
+          "labels" :[
+          "Top",
+          "Right",
+          "Bottom",
+          "Left"
+          ],
+          "label" :"Callout position",
+          "id"    :"callout-positionlabels",
+          "key"   :"callout-position",
+        },
+        {
+          "type"  :"select",
+          "values":[
+            "",
+            "c",
+          ],
+          "labels" :[
+          "Normal",
+          "center"
+          ],
+          "label" :"Anchor",
+          "id"    :"anchorlabels",
+          "key"   :"anchor",
+          "divider" :"true",
+        },
+
+        {
+          "type" : "checkbox",
+          "id"   : "boldlabels",
+          "key"  : "bold",
+          "label": "Bold",
+          "divider" :"true"
+        },
+        {
+          "type" : "border",
+          "id"   : "labels",
+          "key"  : "",
+          "label": "",
+          "divider" :"true"
+        },
+        {
+          "type" : "text",
+          "id"   : "textlabels",
+          "key"  : "text",
+          "label": "Text",
+          "divider" :"true"
+        },
+        {
+          "type" : "select",
+          "values":["left","center","right"],
+          "labels" :["Left","Center","Right"],
+          "label"  : "Text Align",
+          "id"     : "text-alignlabels",
+          "key"    : "text-align"
+        },
+        {
+          "type" : "select",
+          "values":["Top","middle","bottom"],
+          "labels" :["Top","Middle","Bottom"],
+          "label"  : "vertical align",
+          "id"     : "vertical-alignlabels",
+          "key"    : "vertical-align"
+        },
+        {
+          "type" : "text",
+          "id"   : "urllabels",
+          "key"  : "url",
+          "label": "Url",
+        },
+        {
+          "type" : "select",
+          "values":["_self","blank"],
+          "labels" :["Self","Blank"],
+          "label"  : "Target",
+          "id"     : "targetlabels",
+          "key"    : "target"
+        },
+        {
+          "type" : "checkbox",
+          "id"   : "underlinelabels",
+          "key"  : "underline",
+          "label": "Underline",
+        },
+        {
+          "type" : "checkbox",
+          "id"   : "wrap-textlabels",
+          "key"  : "wrap-text",
+          "label": "Wrap text",
+        },
+        {
+          "type" : "color",
+          "id"   : "fontColorlabels",
+          "key"  : "font-color",
+          "label": "Font Color",
+          "divider" :"true"
+        },
+        {
+          "type" : "text",
+          "id"   : "fontSizelabels",
+          "key"  : "font-size",
+          "label": "Font Size",
+        },
+        {
+          "type" : "text",
+          "id"   : "fontFamilylabels",
+          "key"  : "font-family",
+          "label": "Font Family",
+        },
+        {
+        "type" : "range",
+        "id"   : "font-anglelabels",
+        "key"  : "font-angle",
+        "label": "Font Angle",
+        "min"  : '0',
+        "max"  : '360',
+        "step" :'1'
       },
       {
         "type" : "text",
-        "id"   : "callout-height",
-        "key"  : "callout-height",
-        "label": "Callout Height",
-      }
+        "id"   : "heightlabels",
+        "key"  : "height",
+        "label": "Height",
+        "divider" : "true"
+      },
+      {
+        "type" : "text",
+        "id"   : "widthlabels",
+        "key"  : "width",
+        "label": "Width",
+      },
+      {
+        "type" : "text",
+        "id"   : "margin-toplabels",
+        "key"  : "margin-top",
+        "label": "Margin top",
+        "divider" : "true"
+      },
+      {
+        "type" : "text",
+        "id"   : "margin-rightlabels",
+        "key"  : "margin-right",
+        "label": "Margin right",
+      },
+      {
+        "type" : "text",
+        "id"   : "margin-bottomlabels",
+        "key"  : "margin-bottom",
+        "label": "Margin bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "margin-leftlabels",
+        "key"  : "margin-left",
+        "label": "Margin left",
+      },
+       {
+        "type" : "text",
+        "id"   : "padding-toplabels",
+        "key"  : "padding-top",
+        "label": "Padding top",
+        "divider" : "true"
+      },
+      {
+        "type" : "text",
+        "id"   : "padding-rightlabels",
+        "key"  : "padding-right",
+        "label": "Padding right",
+      },
+      {
+        "type" : "text",
+        "id"   : "padding-bottomlabels",
+        "key"  : "padding-bottom",
+        "label": "Padding bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "padding-leftlabels",
+        "key"  : "padding-left",
+        "label": "Padding left",
+      },
+      {
+        "type" : "text",
+        "id"   : "padding-leftlabels",
+        "key"  : "padding-left",
+        "label": "Padding left",
+      },
+      {
+        "type" : "text",
+        "id"   : "xlabels",
+        "key"  : "x",
+        "label": "Offset X",
+        "divider" :"true",
+        "defValue" : "0"
+      },
+      {
+        "type" : "text",
+        "id"   : "ylabels",
+        "key"  : "y",
+        "label": "Offset Y",
+        "defValue" : "0"
+      },
       ],
 }
 var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,valueBox,scaleData,scaleRData,previewData];
 var j = 0;
-var  labelConfigId = 1; // This is for the label replaction. It holds each labels id.
+var  labelConfigId = 0; // This is for the label replaction. It holds each labels id.
 window.onload =function() {
 /*Lables will go here */
   var lblArrayElemnt = document.getElementsByClassName("lbl-el");
@@ -1081,8 +1315,8 @@ window.onload =function() {
               +"<label>"+ labelData.inputs[j].label+": </label>"
               +"<input type='checkbox' id='"+labelData.inputs[j].id+"' data-category='"
               +labelData["category"]+"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
-              valueBoxPlot.subcategory
-              +"' onchange='Modify_chart(this.id, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              labelData.subcategory+"' data-count='"+labelConfigId
+              +"'onchange='Modify_chart_label(this.id, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><br>";
             break;
             case("text") :
               var defaultVal= ''; 
@@ -1093,8 +1327,20 @@ window.onload =function() {
               +"<label>"+ labelData.inputs[j].label+": </label>"
               +"<input type='text' id='"+labelData.inputs[j].id+"' data-category='"
               +labelData["category"]+"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
-              labelData.subcategory
-              +"'onKeyUp='Modify_chart_label(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+              labelData.subcategory+"' data-count='"+labelConfigId
+              +"' onchange='Modify_chart_label(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))' value='"+defaultVal+"'><br>";
+            break;
+             case("color") :
+              var defaultVal= ''; 
+              if (typeof labelData.inputs[j].defValue != 'undefined' ) {
+                defaultVal = labelData.inputs[j].defValue;
+              };
+              lblArrayElemnt[i].innerHTML += linebreak
+              +"<label>"+ labelData.inputs[j].label+": </label>"
+              +"<input type='color' id='"+labelData.inputs[j].id+"' data-category='"
+              +labelData["category"]+"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
+              labelData.subcategory+"' data-count='"+labelConfigId
+              +"' onchange='Modify_chart_label(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))' value='"+defaultVal+"'><br>";
             break;
             case ('select'):
               var options = ''
@@ -1110,9 +1356,8 @@ window.onload =function() {
               lblArrayElemnt[i].innerHTML += linebreak
               +"<label>"+ labelData.inputs[j].label+": </label>"
               +"<select id='"+labelData.inputs[j].id+"' data-category='"+labelData["category"]
-              +"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
-              labelData.subcategory
-              +"'onchange='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
+              +"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+labelData.subcategory+"' data-count='"+labelConfigId
+              +"'onchange='Modify_chart_label(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><option></option> "+options+"</select><br>";
             break;
             case ("range") :
             //oninput is for IE compatibility.
@@ -1120,29 +1365,33 @@ window.onload =function() {
               +"<label>"+ labelData.inputs[j].label+": </label>"
               +"<input type='range' id='"+labelData.inputs[j].id+"' data-category='"
               +labelData["category"]+"' data-key='"+labelData.inputs[j].key+"' dat-subcat='"+
-              labelData.subcategory
-              +"' min='"+labelData.inputs[j].min+"' max='"+labelData.inputs[j].max+"' step='"+labelData.inputs[j].step
-              +"' onchange='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'"
-              +"  oninput='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              labelData.subcategory+"' min='"+labelData.inputs[j].min+"' max='"+labelData.inputs[j].max+"' step='"+labelData.inputs[j].step+"' data-count='"+labelConfigId
+              +"'onchange='Modify_chart_label(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'"
+              +"  oninput='Modify_chart_label(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><br>";
             break;
             case ("bgcolor") :
-              lblArrayElemnt[i].innerHTML += linebreak +"<label> Background:</lable>";//ID here represents category
-              lblArrayElemnt[i].innerHTML += "<select id='backgroundType"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"+
-              labelData["subcategory"]+"'onchange='set_bg_type(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              lblArrayElemnt[i].innerHTML += linebreak +"<label> Background:</label>";
+              lblArrayElemnt[i].innerHTML += "<select id='backgroundType"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' data-count='"+labelConfigId
+              +"'dat-subcat='"+ labelData["subcategory"]+"'onchange='set_bg_type_label(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'>"
               +"<option value='solid'>Solid</option><option value='gradiant'>Gradiant</option></select><br>"
-              +"<label> Background color 1 : </lable> <input type='color' id='backgroundColor1"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]
-              +"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_bg_color(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>"
-              +"<label> Background color 2 : </lable> <input type='color' id='backgroundColor2"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]
-              +"' dat-subcat='"+labelData["subcategory"]+"' onchange='set_bg_color(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' style='visibility :hidden'><br>";
+              +"<label> Background color 1 : </label> <input type='color' id='backgroundColor1"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]
+              +"' dat-subcat='"+labelData["subcategory"]+"' data-count='"+labelConfigId
+              +"'onchange='set_bg_color_label(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><br>"
+              +"<label> Background color 2 : </label> <input type='color' id='backgroundColor2"+labelData.inputs[j].id+"' data-count='"+labelConfigId
+              +"'data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]
+              +"' onchange='set_bg_color_label(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))' style='visibility :hidden'><br>";
             break;
             case ("border") :
-              lblArrayElemnt[i].innerHTML += linebreak +"<label> Border :</lable>";//ID here represents category
+              lblArrayElemnt[i].innerHTML += linebreak +"<label> Border :</lable>";
               lblArrayElemnt[i].innerHTML += "<input type='checkbox' data-category ='"+labelData["category"]+"' dat-subcat='"+labelData["subcategory"]+"' id='border"+labelData.inputs[j].id
-              +"' onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";  
-              lblArrayElemnt[i].innerHTML += "<label> Border width :</lable><input type='text' id='borderWidth"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"
-              +labelData["subcategory"]+"' onKeyUp='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='1px'><br>";
-              lblArrayElemnt[i].innerHTML += " <label> Border color:</lable><input type='color' id='borderColor"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"
-              +labelData["subcategory"]+"'onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              +"' data-count='"+labelConfigId
+              +"'onchange='set_border_label(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><br>";  
+              lblArrayElemnt[i].innerHTML += "<label> Border width :</label><input type='text' id='borderWidth"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"
+              +labelData["subcategory"]+"' data-count='"+labelConfigId
+              +"' oninput='set_border_label(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))' value='1px'><br>";
+              lblArrayElemnt[i].innerHTML += " <label> Border color:</label><input type='color' id='borderColor"+labelData.inputs[j].id+"' data-category ='"+labelData["category"]+"' dat-subcat='"
+              +labelData["subcategory"]+"' data-count='"+labelConfigId
+              +"'onchange='set_border_label(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><br>";
             break;
             case ("line") :
               lblArrayElemnt[i].innerHTML += linebreak + "<label>Line color :</lable>";
@@ -1249,11 +1498,11 @@ window.onload =function() {
               +"  oninput='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
             break;
             case ("bgcolor") :
-              element[i].innerHTML += linebreak +"<label> Background:</lable>";//ID here represents category
+              element[i].innerHTML += linebreak +"<label> Background:</label>";//ID here represents category
               element[i].innerHTML += "<select id='backgroundType"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]+"' dat-subcat='"+
               formData[m]["subcategory"]+"'onchange='set_bg_type(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
               +"<option value='solid'>Solid</option><option value='gradiant'>Gradiant</option></select><br>"
-              +"<label> Background color 1 : </lable> <input type='color' id='backgroundColor1"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]
+              +"<label> Background color 1 : </label> <input type='color' id='backgroundColor1"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]
               +"' dat-subcat='"+formData[m]["subcategory"]+"' onchange='set_bg_color(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>"
               +"<label> Background color 2 : </lable> <input type='color' id='backgroundColor2"+formData[m].inputs[j].id+"' data-category ='"+formData[m]["category"]
               +"' dat-subcat='"+formData[m]["subcategory"]+"' onchange='set_bg_color(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' style='visibility :hidden'><br>";
@@ -1532,38 +1781,69 @@ function set_font(category,subCategory) {
 function new_label() {
   var ttl = document.getElementById("LabelsTitle");
   var lbl = document.getElementById("lableConfig");
-  
   var clnlLbl = lbl.cloneNode(true);
   var clnttl = ttl.cloneNode(true);
-  
- 
   childs = clnlLbl.childNodes;
+  labelConfigId++;
   for (var i= 0 , len = clnlLbl.childNodes.length ; i<len; i++) {
     if (childs[i].id) {
       childs[i].id += labelConfigId;
+      childs[i].setAttribute("data-count",labelConfigId);
+      if (childs[i].type == "select-one") {
+        childs[i].value = "solid";
+      };
+      if (childs[i].id =="backgroundColor2labelslabels"+labelConfigId) {
+        childs[i].style.visibility ="hidden";
+      };
     };
   }
-  labelConfigId++;
+  clnttl.innerHTML += labelConfigId;
   document.querySelector("#labelsAccordion").appendChild(clnttl);
   document.querySelector("#labelsAccordion").appendChild(clnlLbl);
   jQuery(function($) {
     $('#labelsAccordion').accordion("refresh");  
   });
+  if (labelConfigId == 1 ) {
+    var chartDta = zingchart.exec(chartID, 'getdata');
+    var chartLabels = chartDta['graphset'][0]['labels'];
+    if( typeof chartLabels == "undefined") {
+      var dataObj = {
+        labels :[]
+      };
+      var vals ={}
+      dataObj.labels.push(vals);
+      dataObj.labels.push(vals);
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj  
+      });
+    } else {
+      var vals ={};
+      chartLabels.push(vals);
+       zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "labels" : chartLabels
+        }  
+      });
+    }
+
+  } else {
+    var chartDta = zingchart.exec(chartID, 'getdata');
+    var chartLabels = chartDta['graphset'][0];
+    var empty ={}
+    chartLabels['labels'].push(empty);
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : chartLabels  
+    });
+  }
+  creat_json();
 }
-
-
-
-
-
-
-
-
-
 /*
  * Label Modify chart
  */
-function Modify_chart_label(id,type,key,category,subcategory) {
-
+function Modify_chart_label(id,type,key,category,subcategory,count) {
   var value = ''
   switch (type) {
     case("checkbox") :
@@ -1577,111 +1857,179 @@ function Modify_chart_label(id,type,key,category,subcategory) {
     //default is for text,range
       value= document.getElementById(id).value;
   }
-
-  var dataObj = {
-    labels :[],
-  };
-
-
-  dataObj.labels.push ({
-    key : value
-  });
-  zingchart.exec(chartID,'modify', {
+  // Get chart JSON
+  var chartDta = zingchart.exec(chartID, 'getdata');
+  var chartLabels = chartDta['graphset'][0]['labels']; // Ternary operator to check to see if 'labels' exists
+  if (typeof chartLabels  == "undefined" ){ //Empty array situation, creating a new label
+    var dataObj = {
+      labels :[],
+    };
+    var vals = {};
+    if (key == 'callout-hook') {
+        calloutHook =[];
+      calloutHook.push(document.getElementById("callout-hooklabelsX").value);
+      calloutHook.push(document.getElementById("callout-hooklabelsY").value);
+      dataObj.labels.push(calloutHook);
+    } else {
+      vals[key] = value;
+      dataObj.labels.push(vals);
+    }
+      zingchart.exec(chartID,'modify', {
         graphid : 0,
-        data : dataObj
-      
-  });
-  creat_json();
-}
-
-
-
+        data : dataObj  
+      });
+  } else { //Labels already exists, so we're modifying instead of creating 
+    if (count == chartLabels.length) {//New elemnt case we hace to push it 
+      if (key == 'callout-hook') {
+        calloutHook =[];
+        calloutHook.push(document.getElementById("callout-hooklabelsX").value);
+        calloutHook.push(document.getElementById("callout-hooklabelsY").value);
+        chartLabels.push(calloutHook);
+      } else {
+        var vals = {};
+        vals[key] = value;
+        chartLabels.push(vals);
+      }
+       zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "labels": chartLabels
+        }
+      });
+    } else {
+      chartLabels[count][key] = value;
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "labels": chartLabels
+        }
+      });
+    }
+  }
+  creat_json();}
 /*
  * functions for labels bg Color
- */ /*
-var bgType= '';
-function set_bg_type(id,category,subCategory) {
+ */ 
+var bgTypelbl= [];
+function set_bg_type_label(id,category,subCategory,count) {
+  count = (count != 0) ? count : ''; 
+  var typeLblIndex = (count == "" ) ? 0 : count;
   var type = document.getElementById(id);
-  bgType = type.options[type.selectedIndex].value;
-  if (bgType =="gradiant") {
-    document.getElementById("backgroundColor2"+subCategory+category).style.visibility = "visible";
+  bgTypelbl.push(type.options[type.selectedIndex].value);
+  if (bgTypelbl[typeLblIndex] =="gradiant") {
+    document.getElementById("backgroundColor2"+subCategory+category+count).style.visibility = "visible";
   } else {
-    document.getElementById("backgroundColor2"+subCategory+category).style.visibility = "hidden";
+    document.getElementById("backgroundColor2"+subCategory+category+count).style.visibility = "hidden";
   }
-  set_bg_color(category,subCategory);}
-function set_bg_color(category,subCategory) {
-  var dataObj = {};
-  dataObj[category] = {};
-  if (category != subCategory) {
-    dataObj[category][subCategory] = {};
-    if (bgType == "gradiant") {
+  set_bg_color_label(category,subCategory,count);}
+function set_bg_color_label(category,subCategory,count) {
+  count = (count != 0) ? count : ''; 
+  var typeLblIndex = (count == "" ) ? 0 : count;
+  // Get chart JSON
+  var chartDta = zingchart.exec(chartID, 'getdata');
+  var chartLabels = chartDta['graphset'][0]['labels']
+  if (typeof chartLabels  == "undefined" ){ //Empty array situation, creating a new label
+    console.log("We have to add label!!");
+    var dataObj = {
+      labels :[],
+    };
+    var vals = {};
+    if (bgTypelbl[typeLblIndex] == "gradiant") {
       //Set background-color-1 attr
-    dataObj[category][subCategory]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
-    zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : dataObj
-    });
-    dataObj[category][subCategory]['backgroundColor2'] =  document.getElementById('backgroundColor2'+subCategory+category).value;
+    vals['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+    vals['backgroundColor2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
+    dataObj.labels.push (vals);
     zingchart.exec(chartID,'modify', {
       graphid : 0,
       data : dataObj
     });
     } else {
     //Set background-color-1 attr
-      dataObj[category][subCategory]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
+      vals['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+      vals['backgroundColor2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+      dataObj.labels.push (vals);
       zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : dataObj
       });
-      dataObj[category][subCategory]['backgroundColor2'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
-      zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : dataObj
-      });
-    }
+    }  
   } else {
+    if (count == chartLabels.length) {
+      if (bgTypelbl[typeLblIndex] == "gradiant") {
+        //Set background-color-1 attr
+        var vals = {};
+        vals['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        vals['background-color-2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
+      } else {
+        //Set background-color-1 attr
+        vals['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        vals['background-color-2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value; 
+      } 
+      chartLabels.push (vals);
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "labels":chartLabels
+        }
+      }); 
+    } else {
+      if (bgTypelbl[typeLblIndex] == "gradiant") {
+        //Set background-color-1 attr
+        chartLabels[(count == "" ) ? 0 : count]['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        chartLabels[(count == "" ) ? 0 : count]['background-color-2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
+      } else {
+        //Set background-color-1 attr
+        chartLabels[(count == "" ) ? 0 : count]['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        chartLabels[(count == "" ) ? 0 : count]['background-color-2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value; 
+      }
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "labels":chartLabels
+        }
+      }); 
+    }
     
-    if (bgType == "gradiant") {
-      //Set background-color-1 attr
-    dataObj[category]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
-    zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : dataObj
-    });
-    dataObj[category]['backgroundColor2'] =  document.getElementById('backgroundColor2'+subCategory+category).value;
-    zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : dataObj
-    });
-    } else {
-    //Set background-color-1 attr
-      dataObj[category]['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
-      zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : dataObj
-      });
-      dataObj[category]['backgroundColor2'] =  document.getElementById('backgroundColor1'+subCategory+category).value;
-      zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : dataObj
-      });
-    }
-  }
-  
-  
+  }   
   creat_json();
  }
+function set_border_label(category,subCategory,count) {
 
-*/
-
-
-
-
-
-
-
-
-
+  count = (count != 0) ? count : ''; 
+  // Get chart JSON
+  var chartDta = zingchart.exec(chartID, 'getdata');
+  var chartLabels = chartDta['graphset'][0]['labels']; 
+  if (typeof chartLabels  == "undefined") { 
+    var dataObj = {
+      labels :[],
+    };
+    var vals = {};
+    if (document.getElementById('border'+category+count).checked) {
+      vals["border-width"] = document.getElementById('borderWidth'+category+count).value;
+      vals["border-color"] = document.getElementById('borderColor'+category+count).value;
+    } else {
+      vals["border-width"] = 0;
+    }
+    dataObj.labels.push (vals);
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj  
+    });
+  } else {
+    if (document.getElementById('border'+category+count).checked) {
+      chartLabels[(count == "" ) ? 0 : count]["border-width"] = document.getElementById('borderWidth'+category+count).value;
+      chartLabels[(count == "" ) ? 0 : count]["border-color"] = document.getElementById('borderColor'+category+count).value;
+    } else {
+       chartLabels[(count == "" ) ? 0 : count]["border-width"] = 0;
+    }
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : {
+        "labels":chartLabels
+      }
+    });
+  } 
+  creat_json();}
 
 
 

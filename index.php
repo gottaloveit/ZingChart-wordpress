@@ -478,7 +478,7 @@ function zing_designer() {
       <div >
         <div id="labelsAccordion">
           <h3  id = "LabelsTitle" > Label </h3>
-          <div id = "lableConfig" class="lbl-el" data-category = "labels" data-sub-category = "labels"></div>
+          <div id = "lableConfig" class="lbl-el" data-category = "labels" data-sub-category = "labels" data-count ="0"></div>
         </div>
         <button type="button" onclick="new_label(); return false;">New Label</button>
       </div>
