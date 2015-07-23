@@ -115,7 +115,13 @@ function zing_designer() {
       heightStyle: "content",
       collapsible: true,
     });
+    $("#seriesAccordion").accordion({
+      heightStyle: "content",
+      collapsible: true,
+    });
+    $(".seriesTabs").tabs();
     $("#plotJson").tabs();
+    $("#dataTabs").tabs();
     
   });
   </script> 
@@ -493,15 +499,49 @@ function zing_designer() {
 
 
 
-<div id='jsonData'> 
-<div id='Data'> 
-</div>
 
+  <div style="clear:both"></div>
 
+  <div id='dataTabs'> 
+  <ul>
+    <li><a href="#jsonString">Json</a></li>
+    <li><a href="#series">data</a></li>
+  </ul>
+  <div id='jsonString'> 
+    <textarea name="JavaScript" class="widefat code code-html" id="zingcharts-javaScript"> </textarea>
+  </div>
+  <div id="series">
+
+    <div id="seriesAccordion">
+        <h3 id="seriesTitle">Series </h3>
+        <div id="seriesConfig">
+          <div id="seriesTabs" class="seriesTabs" data-count = "0">
+            <ul>
+              <li><a href="#seriesTab0">Data</a></li>
+              <li><a href="#seriesTab1">General</a></li>
+              <li><a href="#seriesTab2">Animation</a></li>
+              <li><a href="#seriesTab3">Hover state</a></li>
+              <li><a href="#seriesTab4">Hover marker</a></li>
+              <li><a href="#seriesTab5">Marker</a></li>
+              <li><a href="#seriesTab6">Tool Tip</a></li>
+              <li><a href="#seriesTab7">Value Box</a></li>
+            </ul>
+            <div id="seriesTab0" class="series-el" data-category = "series" data-sub-category = "data"></div>
+            <div id="seriesTab1" class="series-el" data-category = "series" data-sub-category = "series"></div>
+            <div id="seriesTab2" class="series-el" data-category = "series" data-sub-category = "animation"></div>
+            <div id="seriesTab3" class="series-el" data-category = "series" data-sub-category = "hoverState"></div>
+            <div id="seriesTab4" class="series-el" data-category = "series" data-sub-category = "hoverMarker"></div>
+            <div id="seriesTab5" class="series-el" data-category = "series" data-sub-category = "marker"></div>
+            <div id="seriesTab6" class="series-el" data-category = "series" data-sub-category = "tooltip"></div>
+            <div id="seriesTab7" class="series-el" data-category = "series" data-sub-category = "value-box"></div>
+          </div>
+        </div>
+      </div>
+      <button type="button" onclick="new_series(); return false;">New Series</button>
 
 
   </div>
-  <div style="clear:both"></div>
+</div>
   <?php
 }
 function zing_html ( $post ) {

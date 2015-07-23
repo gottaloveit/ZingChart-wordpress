@@ -3,6 +3,7 @@
  * Make grapgh div naming dynamic
  * Be able to feed data as a csv file to it
  * Validate form inputs
+ * Fix the Series duplication part that prevents tabs to work anymore.
 
 
 
@@ -14,7 +15,7 @@ var plotGeneralData = {
     "subcategory" :"plot",
     "inputs":[
       {
-        "type":"text",
+        "type":"checkbox",
         "label": "Active Area",
         "id" :"activeAreaPlot",
         "key" :"active_area"
@@ -1020,7 +1021,8 @@ var scaleRData = {
         "max"  : '360',
         "step" :'1'
       },
-      ],};
+      ],
+};
 var scaleData = {
     "category" : "scale",
       "subcategory" :"scale",
@@ -1300,10 +1302,1036 @@ var labelData = {
       },
       ],
 }
+
+
+var seriesGeneralData = {
+    "category" : "series",
+    "subcategory" :"series",
+    "inputs":[
+      {
+        "type":"checkbox",
+        "label": "Active Area",
+        "id" :"activeAreaSeries",
+        "key" :"active_area"
+      },
+      {
+        "type" : "range",
+        "id"   : "alphaAreaSeries",
+        "key"  : "alphaArea",
+        "label": "Alpha Area",
+        "divider" :"true",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "hand",
+          "normal"
+        ],
+        "labels" :[
+          "Hand",
+          "Normal"
+        ],
+        "label" :"Cursor",
+        "id"    :"cursorSeries",
+        "key"   :"cursor",
+        "divider":"true"
+      },
+      {   
+        "type"  :"select",
+        "values":[
+          "cone",
+          "cylinder",
+          "pyramid",
+          "histogram",
+          "stepped",
+          "spline",
+          "segmented"
+        ],
+        "label" :"Aspect",
+        "id"    :"aspectSeries",
+        "key"   :"aspect",
+        "divider":"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "decimalsSeries",
+        "key"  : "decimals",
+        "label": "decimals",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "decimalsSeparatorSeries",
+        "key"  : "decimalsSeparator",
+        "label": "Decimals Separator",
+        "divider" :"true"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "detachSeries",
+        "key"  : "detach",
+        "label": "Detach",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "maxNodesSeries",
+        "key"  : "maxNodes",
+        "label": "max Nodes",
+        "divider" :"true"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "multiplierSeries",
+        "key"  : "multiplier",
+        "label": "Multiplier",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "standard",
+          "currency"
+        ],
+        "label" :"Negation",
+        "id"    :"negationSeries",
+        "key"   :"negation",
+        "divider":"true"
+      },
+      {
+        "type" : "range",
+        "id"   : "refAngleSeries",
+        "key"  : "refAngle",
+        "label": "Ref Angle",
+        "divider" :"true",
+        "min"  : '0',
+        "max"  : '360',
+        "step" :'1'
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "shortSeries",
+        "key"  : "short",
+        "label": "Short",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "K",
+          "M",
+          "B"
+        ],
+        "label" :"Short Unit",
+        "id"    :"shortUnitSeries",
+        "key"   :"shortUnit",
+      },
+      {
+        "type" : "range",
+        "id"   : "sliceSeries",
+        "key"  : "slice",
+        "label": "Slice",
+        "divider" :"true",
+        "min"  : '0',
+        "max"  : '100',
+        "step" :'1'
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "stackedSeries",
+        "key"  : "stacked",
+        "label": "Stacked",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "thousandsSeparatorSeries",
+        "key"  : "thousandsSeparator",
+        "label": "Thousands Separator",
+        "divider" :"true"
+      },
+      {
+        "type" : "range",
+        "id"   : "alphaSeries",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "divider" :"true",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "seriesseries", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+       "type" : "border",
+        "id"   : "series", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "line",
+        "id"   : "series", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      
+    ],};
+var seriesAnimationData ={
+    "category" : "series",
+    "subcategory" :"animation",
+    "inputs" :[
+      {
+        "type" : "select",
+        "id"   : "effectAnimation", 
+        "values" :[1,2,3,4,5,6,7,8,9,10,11,12,13
+        ],
+        "labels" :['FADE IN',
+        'EXPAND VERTICAL',
+        'EXPAND TOP',
+        'EXPAND BOTTOM',
+        'EXPAND LEFT',
+        'EXPAND RIGHT',
+        'EXPAND HORIZONTAL',
+        'SLIDE LEFT',
+        'SLIDE RIGHT',
+        'SLIDE TOP',
+        'SLIDE BOTTOM',
+        'UNFOLD HORIZONTAL',
+        'UNFOLD VERTICAL'],
+        "key"  : "effect",
+        "label": "Effect",
+      },
+      {
+        "type" : "select",
+        "id"   : "methodAnimation", 
+        "values" :[1,2,3,4,5],
+        "labels" :['LINEAR',
+        'BACK EASE OUT',
+        'ELASTIC EASE OUT',
+        'BOUNCE EASE OUT',
+        'STRONG EASE OUT',
+        'REGULAR EASE OUT'
+        ],
+        "key"  : "method",
+        "label": "Method",
+        "divider" :"true"
+      },
+      {
+        "type" : "select",
+        "id"   : "sequenceAnimation", 
+        "values" :[1,2,3],
+        "labels" :['NO SEQUENCE',
+        'BY PLOT',
+        'BY NODE',
+        'BY PLOT AND NODE',
+        ],
+        "key"  : "sequence",
+        "label": "Sequence",
+        "divider" :"true"
+      },
+      {
+        "type" : "select",
+        "id"   : "speedAnimation", 
+        "values" :[4000,1000],
+        "labels" :['Slow',
+        'Fast',
+        ],
+        "key"  : "speed",
+        "label": "Speed",
+        "divider" :"true"
+      },
+      
+    ],};
+var seriesHoverState = {
+    "category" : "series",
+    "subcategory" :"hoverState",
+    "inputs" : [
+      {
+        "type" : "range",
+        "id"   : "alphaHoverStatePlot",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "divider" :"true",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "hoverStateplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+       "type" : "border",
+        "id"   : "hoverStateplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "line",
+        "id"   : "hoverStateplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      }
+    ],};
+var serieshoverMarker = {
+   "category" : "series",
+    "subcategory" :"hoverMarker",
+    "inputs" : [
+      {
+        "type" : "range",
+        "id"   : "alphaHoverMarkerPlot",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "hoverMarkerplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+       {
+        "type" : "text",
+        "id"   : "backgroundImageHoverMarkerPlot",
+        "key"  : "backgroundImage",
+        "label": "Background Image",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "x",
+          "y",
+          "xy"
+        ],
+        "label" :"background Fit ",
+        "id"    :"backgroundFithoverMarkerPlot",
+        "key"   :"background-fit ",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "no-repeat",
+          "repeat",
+          "repeat-x",
+          "repeat-y"
+        ],
+        "labels" :[
+        "No Repeat",
+        "Repeat",
+        "Repeat X",
+        "Repeat Y",
+        ],
+        "label" :"background Repeat ",
+        "id"    :"backgroundRepeathoverMarkerPlot",
+        "key"   :"background-repeat ",
+        "divider" :"true"
+      },
+      {
+       "type" : "border",
+        "id"   : "hoverMarkerplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "line",
+        "id"   : "hoverMarkerplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type"  :"select",
+        "values":["triangle", "square", "circle", "diamond", "trapezoid", "rectangle"
+        , "parallelogram", "plus", "cross", "arrow", "star3","star4","star5","star6","star7",
+        "star8","star9","rpoly3","rpoly4","rpoly5","rpoly6","rpoly7","rpoly8","rpoly9","gear3","gear4","gear5","gear6","gear7","gear8","gear9", "ellipse", "arc", "pie"
+        ],
+        "label" :"Type",
+        "id"    :"typehoverMarkerPlot",
+        "key"   :"type ",
+        "divider" :"true"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "visiblehoverMarkerPlot",
+        "key"  : "visib",
+        "label": "Visib",
+        "divider" :"true"
+      },
+      ]};
+var seriesMarkerData ={
+    "category" : "series",
+    "subcategory" :"marker",
+    "inputs" :[
+      {
+        "type" : "range",
+        "id"   : "alphaMarkerPlot",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "markerplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+       {
+        "type" : "text",
+        "id"   : "backgroundImageMarkerPlot",
+        "key"  : "backgroundImage",
+        "label": "Background Image",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "x",
+          "y",
+          "xy"
+        ],
+        "label" :"background Fit ",
+        "id"    :"backgroundFitMarkerPlot",
+        "key"   :"background-fit ",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "no-repeat",
+          "repeat",
+          "repeat-x",
+          "repeat-y"
+        ],
+        "labels" :[
+        "No Repeat",
+        "Repeat",
+        "Repeat X",
+        "Repeat Y",
+        ],
+        "label" :"background Repeat ",
+        "id"    :"backgroundRepeatMarkerPlot",
+        "key"   :"background-repeat ",
+        "divider" :"true"
+      },
+      {
+       "type" : "border",
+        "id"   : "markerplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "line",
+        "id"   : "markerplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type"  :"select",
+        "values":["triangle", "square", "circle", "diamond", "trapezoid", "rectangle"
+        , "parallelogram", "plus", "cross", "arrow", "star3","star4","star5","star6","star7",
+        "star8","star9","rpoly3","rpoly4","rpoly5","rpoly6","rpoly7","rpoly8","rpoly9","gear3","gear4","gear5","gear6","gear7","gear8","gear9", "ellipse", "arc", "pie"
+        ],
+        "label" :"Type ",
+        "id"    :"typeMarkerPlot",
+        "key"   :"type",
+        "divider" :"true"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "visibleMarkerPlot",
+        "key"  : "visib",
+        "label": "Visib",
+        "divider" :"true"
+      },
+    ]};
+var seriestooltip ={
+    "category" : "series",
+    "subcategory" :"tooltip",
+    "inputs" :[
+      {
+        "type" : "range",
+        "id"   : "alphatooltipPlot",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "tooltipplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+       {
+        "type" : "text",
+        "id"   : "backgroundImagetooltipPlot",
+        "key"  : "backgroundImage",
+        "label": "Background Image",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "x",
+          "y",
+          "xy"
+        ],
+        "label" :"background Fit ",
+        "id"    :"backgroundFittooltipPlot",
+        "key"   :"background-fit ",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "no-repeat",
+          "repeat",
+          "repeat-x",
+          "repeat-y"
+        ],
+        "labels" :[
+        "No Repeat",
+        "Repeat",
+        "Repeat X",
+        "Repeat Y",
+        ],
+        "label" :"background Repeat ",
+        "id"    :"backgroundRepeatTooltipPlot",
+        "key"   :"background-repeat ",
+        "divider" :"true"
+      },
+      {
+       "type" : "border",
+        "id"   : "tooltipplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "line",
+        "id"   : "tooltipplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "visibletooltipPlot",
+        "key"  : "visib",
+        "label": "Visib",
+        "divider" :"true"
+      },
+      {
+        "type" : "font",
+        "id"   : "tooltipplot",
+        "key"  : "",
+        "label": "",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "heightTooltipPlot",
+        "key"  : "height",
+        "label": "Height ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "widthTooltipPlot",
+        "key"  : "width",
+        "label": "Width ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginToptooltipplot",
+        "key"  : "marginTop",
+        "label": "Margin Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginRighttooltipplot",
+        "key"  : "marginRight",
+        "label": "Margin Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginBottomtooltipplot",
+        "key"  : "marginBottom",
+        "label": "Margin Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginLefttooltipplot",
+        "key"  : "marginLeft",
+        "label": "Margin Left",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingToptooltipplot",
+        "key"  : "paddingTop",
+        "label": "Padding Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRighttooltipplot",
+        "key"  : "paddingRight",
+        "label": "Padding Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomtooltipplot",
+        "key"  : "paddingBottom",
+        "label": "Padding Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingLefttooltipplot",
+        "key"  : "paddingLeft",
+        "label": "Padding Left",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "calloutTooltipPlot",
+        "key"  : "callout",
+        "label": "Callout",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutHeightTooltipplot",
+        "key"  : "calloutHeight",
+        "label": "Callout Height",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutWidthTooltipplot",
+        "key"  : "calloutWidth",
+        "label": "Callout Width",
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "labels" :[
+        "Top",
+        "Right",
+        "Bottom",
+        "Left",
+        ],
+        "label" :"Callout Position ",
+        "id"    :"calloutPositionTooltipPlot",
+        "key"   :"calloutPosition",
+      },
+      {
+        "type" : "text",
+        "id"   : "xTooltipPlot",
+        "key"  : "x",
+        "label": "Offset X",
+        "divider" :"true",
+        "defValue" : "0"
+      },
+      {
+        "type" : "text",
+        "id"   : "yTooltipPlot",
+        "key"  : "y",
+        "label": "Offset Y",
+        "defValue" : "0"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "wrapTextTooltipPlot",
+        "key"  : "wrapText",
+        "label": "Wrap text",
+        "divider" :"true"
+      },
+    ]};
+var seriesvalueBox ={
+    "category" : "series",
+    "subcategory" :"value-box",
+    "inputs" :[
+      {
+        "type" : "range",
+        "id"   : "alphavalueBoxPlot",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "value-boxplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+       {
+        "type" : "text",
+        "id"   : "backgroundImagevalueBoxPlot",
+        "key"  : "backgroundImage",
+        "label": "Background Image",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "x",
+          "y",
+          "xy"
+        ],
+        "label" :"background Fit ",
+        "id"    :"backgroundFitvalueBoxPlot",
+        "key"   :"background-fit ",
+        "divider" :"true"
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "no-repeat",
+          "repeat",
+          "repeat-x",
+          "repeat-y"
+        ],
+        "labels" :[
+        "No Repeat",
+        "Repeat",
+        "Repeat X",
+        "Repeat Y",
+        ],
+        "label" :"background Repeat ",
+        "id"    :"backgroundRepeatvalueBoxPlot",
+        "key"   :"background-repeat ",
+        "divider" :"true"
+      },
+      {
+       "type" : "border",
+        "id"   : "value-boxplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "line",
+        "id"   : "value-boxplot", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "visiblevalueBoxPlot",
+        "key"  : "visib",
+        "label": "Visib",
+        "divider" :"true"
+      },
+      {
+        "type" : "font",
+        "id"   : "value-boxplot",
+        "key"  : "",
+        "label": "",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "heightvalueBoxPlot",
+        "key"  : "height",
+        "label": "Height ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "widthvalueBoxPlot",
+        "key"  : "width",
+        "label": "Width ",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginTopvalueBoxPlot",
+        "key"  : "marginTop",
+        "label": "Margin Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginRightvalueBoxPlot",
+        "key"  : "marginRight",
+        "label": "Margin Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginBottomvalueBoxPlot",
+        "key"  : "marginBottom",
+        "label": "Margin Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "MarginLeftvalueBoxPlot",
+        "key"  : "marginLeft",
+        "label": "Margin Left",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopvalueBoxPlot",
+        "key"  : "paddingTop",
+        "label": "Padding Top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightvalueBoxPlot",
+        "key"  : "paddingRight",
+        "label": "Padding Right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomvalueBoxPlot",
+        "key"  : "paddingBottom",
+        "label": "Padding Bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingLeftvalueBoxPlot",
+        "key"  : "paddingLeft",
+        "label": "Padding Left",
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "calloutvalueBoxPlot",
+        "key"  : "callout",
+        "label": "Callout",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutHeightvalueBoxPlot",
+        "key"  : "calloutHeight",
+        "label": "Callout Height",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "calloutWidthvalueBoxPlot",
+        "key"  : "calloutWidth",
+        "label": "Callout Width",
+      },
+      {
+        "type"  :"select",
+        "values":[
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "labels" :[
+        "Top",
+        "Right",
+        "Bottom",
+        "Left",
+        ],
+        "label" :"Callout Position ",
+        "id"    :"calloutPositionvalueBoxPlot",
+        "key"   :"calloutPosition",
+      },
+      {
+        "type" : "text",
+        "id"   : "xvalueBoxPlot",
+        "key"  : "x",
+        "label": "Offset X",
+        "divider" :"true",
+        "defValue" : "0"
+      },
+      {
+        "type" : "text",
+        "id"   : "yvalueBoxPlot",
+        "key"  : "y",
+        "label": "Offset Y",
+        "defValue" : "0"
+      },
+      {
+        "type" : "checkbox",
+        "id"   : "wrapTextvalueBoxPlot",
+        "key"  : "wrapText",
+        "label": "Wrap text",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "placementvalueBoxPlot",
+        "key"  : "placement",
+        "label": "Placement",
+        "divider" :"true"
+      },
+    ]};
+
 var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,valueBox,scaleData,scaleRData,previewData];
+var seriesData  =[seriesGeneralData,seriesAnimationData,seriesHoverState,serieshoverMarker,seriesMarkerData,seriestooltip,seriesvalueBox];
 var j = 0;
-var  labelConfigId = 0; // This is for the label replaction. It holds each labels id.
+var labelConfigId  = 0; // This is for the label replaction. It holds each labels id.
+var seriesConfigId = 0;
 window.onload =function() {
+
+/* ALL the series types will go here*/  
+  var seriesElement = document.getElementsByClassName("series-el");
+  var linebreak = "";
+  for (var i = 0; i < seriesElement.length; i++) {
+    for (var m=0; m <seriesData.length;m++) {
+      if (seriesElement[i].getAttribute('data-category') == seriesData[m]["category"] && seriesElement[i].getAttribute('data-sub-category') == seriesData[m]["subcategory"]) {
+        for (j=0; j<seriesData[m].inputs.length; j++) {
+            linebreak = seriesData[m].inputs[j].divider ? "<hr>" :" ";
+            switch(seriesData[m].inputs[j].type){
+            case('checkbox') :
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ seriesData[m].inputs[j].label+": </label>"
+              +"<input type='checkbox' id='"+seriesData[m].inputs[j].id+"' data-category='"
+              +seriesData[m]["category"]+"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
+              seriesData[m].subcategory
+              +"' onchange='Modify_chart_series(this.id, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case("text") :
+              var defaultVal= ''; 
+              if (typeof seriesData[m].inputs[j].defValue != 'undefined' ) {
+                defaultVal = seriesData[m].inputs[j].defValue;
+              };
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ seriesData[m].inputs[j].label+": </label>"
+              +"<input type='text' id='"+seriesData[m].inputs[j].id+"' data-category='"
+              +seriesData[m]["category"]+"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
+              seriesData[m].subcategory +"' onKeyUp='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+            break;
+            case ('select'):
+              var options = ''
+              var optionLable = '';
+              for (var k=0; k<seriesData[m].inputs[j].values.length;k++) {
+                if (seriesData[m].inputs[j].labels) {
+                   optionLable = seriesData[m].inputs[j].labels[k];
+                } else {
+                  optionLable = seriesData[m].inputs[j].values[k];
+                }
+                options += "<option value='"+seriesData[m].inputs[j].values[k]+"'>"+optionLable +"</option>"
+              };
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ seriesData[m].inputs[j].label+": </label>"
+              +"<select id='"+seriesData[m].inputs[j].id+"' data-category='"+seriesData[m]["category"]
+              +"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
+              seriesData[m].subcategory 
+              +"'onchange='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
+            break;
+            case ("range") :
+            //oninput is for IE compatibility.
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ seriesData[m].inputs[j].label+": </label>"
+              +"<input type='range' id='"+seriesData[m].inputs[j].id+"' data-category='"
+              +seriesData[m]["category"]+"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
+              seriesData[m].subcategory
+              +"' min='"+seriesData[m].inputs[j].min+"' max='"+seriesData[m].inputs[j].max+"' step='"+seriesData[m].inputs[j].step+"' data-count='"+seriesConfigId
+              +"' onchange='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'"
+              +"  oninput='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case ("bgcolor") :
+              seriesElement[i].innerHTML += linebreak +"<label> Background:</label>";//ID here represents category
+              seriesElement[i].innerHTML += "<select id='backgroundType"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+
+              seriesData[m]["subcategory"]+"' data-count='"+seriesConfigId
+              +"'onchange='set_bg_type_series(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'>"
+              +"<option value='solid'>Solid</option><option value='gradiant'>Gradiant</option></select><br>"
+              +"<label> Background color 1 : </label> <input type='color' id='backgroundColor1"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]
+              +"' data-count='"+seriesConfigId+"'dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onchange='set_bg_color_series(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><br>"
+              +"<label> Background color 2 : </lable> <input type='color' id='backgroundColor2"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]
+              +"' data-count='"+seriesConfigId+"'dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onchange='set_bg_color_series(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))' style='visibility :hidden'><br>";
+            break;
+            case ("border") :
+              seriesElement[i].innerHTML += linebreak +"<label> Border :</lable>";//ID here represents category
+              seriesElement[i].innerHTML += "<input type='checkbox' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' id='border"+seriesData[m].inputs[j].id
+              +"' onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";  
+              seriesElement[i].innerHTML += "<label> Border width :</lable><input type='text' id='borderWidth"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"
+              +seriesData[m]["subcategory"]+"' onKeyUp='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='1px'><br>";
+              seriesElement[i].innerHTML += " <label> Border color:</lable><input type='color' id='borderColor"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"
+              +seriesData[m]["subcategory"]+"'onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case ("line") :
+              seriesElement[i].innerHTML += linebreak + "<label>Line color :</lable>";
+              seriesElement[i].innerHTML += "<input type='color' id='lineColor"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              seriesElement[i].innerHTML += "<label>Line width :</lable> <input type='text' id='lineWidth"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px'><br>";
+              seriesElement[i].innerHTML += "<lable> Line style :</lable>"
+              +"<select id='lineStyle"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option></option>"
+              +"<option value='solid'> Solid</option>"
+              +"<option value='dotted'> Dotted</option>"
+              +"<option value='dashed'> Dashed</option>"
+              +"</select><br>";
+              seriesElement[i].innerHTML +="<label>Line gap size :</lable> <input type='text' id='lineGapSize"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+              seriesElement[i].innerHTML +="<label>Line segment size :</lable> <input type='text' id='lineSegmentSize"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+            break;
+            case ("font") :
+              seriesElement[i].innerHTML += linebreak+"<lable> Font color :</label>";
+              seriesElement[i].innerHTML += " <input type='color' id='fontColor"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              seriesElement[i].innerHTML += "<lable> Font size :</lable><input type='text' id='fontSize"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]
+              +"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='12px'><br>";
+              seriesElement[i].innerHTML += "<lable>Font style: </lable>";
+              seriesElement[i].innerHTML += "<select id='fontStyle"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option value ='normal' > normal</option>"
+              +"<option value ='italic' > italic</option>"
+              +"<option value ='oblique'> oblique</option>"
+              +"</select><br>";
+              seriesElement[i].innerHTML += "<lable> Font family :</lable>"; // It should get converted to select sometime!!!
+              seriesElement[i].innerHTML += "<input type='text' id='fontFamily"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onKeyUp='set_font(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' ><br>";
+              seriesElement[i].innerHTML += "<lable> Text :</label>";
+              seriesElement[i].innerHTML += "<input  type='text' id='text"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              seriesElement[i].innerHTML += "<lable>Text align :</lable>"
+              +"<select id='textAlign"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option></option>"
+              +"<option value='center'> Center</option>"
+              +"<option value='left'> Left</option>"
+              +"<option value='right'> Right </option>"
+              +"</select><br>";
+              seriesElement[i].innerHTML += "<lable> Bold : </label> <input type='checkbox' id='fontBold"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+            break;
+          };
+        };
+      };
+    };
+  };
+
 /*Lables will go here */
   var lblArrayElemnt = document.getElementsByClassName("lbl-el");
   for (var i=  0 ; i< lblArrayElemnt.length;i++) { // This should be only one
@@ -2032,7 +3060,256 @@ function set_border_label(category,subCategory,count) {
   creat_json();}
 
 
+function new_series() {
+  var title = document.getElementById("seriesTitle");
+  var series = document.getElementById("seriesConfig");
+  var clonedSeries = series.cloneNode(true);
+  var clonedTitle = title.cloneNode(true);
+  childs = clonedSeries.childNodes;
+  seriesConfigId++;
+  // THis for will add id to the id and data count,
+  // In our case this will be only the tabseris div
+  for (var i= 0 , len = clonedSeries.childNodes.length ; i<len; i++) {
+    //We only care about the elements that has id
+    if (childs[i].id) {
+      childs[i].id += seriesConfigId;
+      childs[i].setAttribute("data-count",seriesConfigId);
+      
+      //This one checks for the childs of the cloned node
+      //it checks for the childs of tabseries div
+      for (var k= 0;k<childs[i].childNodes.length;k++ ) {
+          //if the child has data-category == series and it is a elemnet 
+        if (childs[i].childNodes[k].nodeName != "#text") {
+          if (childs[i].childNodes[k].getAttribute("data-category") == "series") {
+            childs[i].childNodes[k] += seriesConfigId;
+            childs[i].childNodes[k].setAttribute("data-count",seriesConfigId);
+          };
+        };
+      };
+    };
+  }
+  clonedTitle.innerHTML += seriesConfigId;
+  document.querySelector("#seriesAccordion").appendChild(clonedTitle);
+  document.querySelector("#seriesAccordion").appendChild(clonedSeries);
+  //Refrreshing Ui toaccomedate new elemnts
+  jQuery(function($) {
+    $('#seriesAccordion').accordion("refresh"); 
+    $("#"+childs[1].id).tabs(); 
+  });
+  if (seriesConfigId == 1 ) {
+    var chartDta = zingchart.exec(chartID, 'getdata');
+    var chartseries = chartDta['graphset'][0]['series'];
+    if( typeof chartseries == "undefined") {
+      var dataObj = {
+        series :[]
+      };
+      var vals ={}
+      dataObj.labels.push(vals);
+      dataObj.labels.push(vals);
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj  
+      });
+    } else {
+      var vals ={};
+      chartseries.push(vals);
+       zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "series" : chartseries
+        }  
+      });
+    }
 
+  } else {
+    var chartDta = zingchart.exec(chartID, 'getdata');
+    var chartseries = chartDta['graphset'][0];
+    var empty ={}
+    chartseries['series'].push(empty);
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : chartseries  
+    });
+  }
+  creat_json();
+}
+
+var bgTypeseries= [];
+function set_bg_type_series(id,category,subCategory,count) {
+  count = (count != 0) ? count : ''; 
+  var typeSeriesIndex = (count == "" ) ? 0 : count;
+  var type = document.getElementById(id);
+  bgTypeseries.push(type.options[type.selectedIndex].value);
+  if (bgTypeseries[typeSeriesIndex] =="gradiant") {
+    document.getElementById("backgroundColor2"+subCategory+category+count).style.visibility = "visible";
+  } else {
+    document.getElementById("backgroundColor2"+subCategory+category+count).style.visibility = "hidden";
+  }
+  set_bg_color_series(category,subCategory,count);}
+function set_bg_color_series(category,subCategory,count) {
+  count = (count != 0) ? count : ''; 
+  var typeSeriesIndex = (count == "" ) ? 0 : count;
+  // Get chart JSON
+  var chartDta = zingchart.exec(chartID, 'getdata');
+  var chartSeries = chartDta['graphset'][0]['series']
+  if (typeof chartSeries  == "undefined" ){ //Empty array situation, creating a new label
+    var dataObj = {
+      series :[],
+    };
+    var vals = {};
+    if (bgTypeseries[typeSeriesIndex] == "gradiant") {
+      //Set background-color-1 attr
+    vals['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+    vals['backgroundColor2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
+    dataObj.labels.push (vals);
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj
+    });
+    } else {
+    //Set background-color-1 attr
+      vals['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+      vals['backgroundColor2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+      dataObj.labels.push (vals);
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj
+      });
+    }  
+  } else {
+    if (count == chartSeries.length) {
+      if (bgTypelbl[typeSeriesIndex] == "gradiant") {
+        //Set background-color-1 attr
+        var vals = {};
+        vals['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        vals['background-color-2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
+      } else {
+        //Set background-color-1 attr
+        vals['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        vals['background-color-2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value; 
+      } 
+      chartSeries.push (vals);
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "series":chartSeries
+        }
+      }); 
+    } else {
+      if (bgTypeseries[typeSeriesIndex] == "gradiant") {
+        //Set background-color-1 attr
+        chartSeries[(count == "" ) ? 0 : count]['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        chartSeries[(count == "" ) ? 0 : count]['background-color-2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
+      } else {
+        //Set background-color-1 attr
+        chartSeries[(count == "" ) ? 0 : count]['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+        chartSeries[(count == "" ) ? 0 : count]['background-color-2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value; 
+      }
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "series":chartSeries
+        }
+      }); 
+    }
+    
+  }   
+  creat_json();
+ }
+function set_border_series(category,subCategory,count) {
+
+  count = (count != 0) ? count : ''; 
+  // Get chart JSON
+  var chartDta = zingchart.exec(chartID, 'getdata');
+  var chartLabels = chartDta['graphset'][0]['labels']; 
+  if (typeof chartLabels  == "undefined") { 
+    var dataObj = {
+      labels :[],
+    };
+    var vals = {};
+    if (document.getElementById('border'+category+count).checked) {
+      vals["border-width"] = document.getElementById('borderWidth'+category+count).value;
+      vals["border-color"] = document.getElementById('borderColor'+category+count).value;
+    } else {
+      vals["border-width"] = 0;
+    }
+    dataObj.labels.push (vals);
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj  
+    });
+  } else {
+    if (document.getElementById('border'+category+count).checked) {
+      chartLabels[(count == "" ) ? 0 : count]["border-width"] = document.getElementById('borderWidth'+category+count).value;
+      chartLabels[(count == "" ) ? 0 : count]["border-color"] = document.getElementById('borderColor'+category+count).value;
+    } else {
+       chartLabels[(count == "" ) ? 0 : count]["border-width"] = 0;
+    }
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : {
+        "labels":chartLabels
+      }
+    });
+  } 
+  creat_json();}
+
+
+/*
+ * Label Modify chart
+ */
+function Modify_chart_series(id,type,key,category,subcategory,count) {
+  count = document.getElementById(id).parentElement.parentElement.dataset.count;
+  var value = ''
+  switch (type) {
+    case("checkbox") :
+      value = document.getElementById(id).checked;
+    break;
+    case("select-one") :
+      var opts = document.getElementById(id);
+      value  = opts.options[opts.selectedIndex].value;
+    break;
+    default:
+    //default is for text,range
+      value= document.getElementById(id).value;
+  }
+  // Get chart JSON
+  var chartDta = zingchart.exec(chartID, 'getdata');
+  var chartSeries = chartDta['graphset'][0]['series']; // Ternary operator to check to see if 'labels' exists
+
+  if (typeof chartSeries  == "undefined" ){ //Empty array situation, creating a new label
+    var dataObj = {
+      series :[],
+    };
+    var vals = {};
+    vals[key] = value;
+    dataObj.series.push(vals);
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj  
+      });
+  } else { //Labels already exists, so we're modifying instead of creating 
+    if (count == chartSeries.length) {//New elemnt case we hace to push it 
+        var vals = {};
+        vals[key] = value;
+        chartLabels.push(vals);
+       zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "series": chartSeries
+        }
+      });
+    } else {
+      chartSeries[count][key] = value;
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : {
+          "series": chartSeries
+        }
+      });
+    }
+  }
+  creat_json();}
 var jsonObject = '';
 var chartTitle = '';
 var chartType  = 'Bar';
@@ -3207,7 +4484,7 @@ function creat_json() {
   // At some point we have to fix this this does not work correctly
   var jsonString = JSON.stringify(zingchart.exec(chartID,'getdata' ),null,"\t");
   //if (typeof jsonString != "undefined") {
-    document.getElementById('jsonData').innerHTML = "<em>"+jsonString+"</em>";
+    //document.getElementById('jsonData').innerHTML = "<em>"+jsonString+"</em>";
      document.getElementById('zingcharts-javaScript').value = jsonString;
   //} else {
    // alert("Please select your chart first!!!");
