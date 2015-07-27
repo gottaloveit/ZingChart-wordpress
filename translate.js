@@ -4,8 +4,8 @@
  * Be able to feed data as a csv file to it
  * Validate form inputs
  * Fix the Series duplication part that prevents tabs to work anymore.
-
-
+ * Chart series types should be implenmented
+ * The same for trhe 
 
 
  * have a data part s
@@ -1302,8 +1302,6 @@ var labelData = {
       },
       ],
 }
-
-
 var seriesGeneralData = {
     "category" : "series",
     "subcategory" :"series",
@@ -1691,6 +1689,15 @@ var seriesMarkerData ={
         "min"  : '0',
         "max"  : '1',
         "step" :'.1'
+      },
+       {
+        "type" : "range",
+        "id"   : "sizePlot",
+        "key"  : "size",
+        "label": "Size",
+        "min"  : '0',
+        "max"  : '100',
+        "step" :'1'
       },
       {
         "type" : "bgcolor",
@@ -2199,6 +2206,28 @@ var seriesvalueBox ={
         "divider" :"true"
       },
     ]};
+var scaleX = {
+  "category" : "scale",
+  "subcategory" :"scaleX",
+  "inputs" :[
+  {
+        "type" : "range",
+        "id"   : "alphascaleX",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+  },
+  {
+        "type" : "text",
+        "id"   : "placementvalueBoxPlot",
+        "key"  : "placement",
+        "label": "Placement",
+        "divider" :"true"
+  },
+  ],
+}
 
 var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,valueBox,scaleData,scaleRData,previewData];
 var seriesData  =[seriesGeneralData,seriesAnimationData,seriesHoverState,serieshoverMarker,seriesMarkerData,seriestooltip,seriesvalueBox];
@@ -2222,7 +2251,7 @@ window.onload =function() {
               +"<input type='checkbox' id='"+seriesData[m].inputs[j].id+"' data-category='"
               +seriesData[m]["category"]+"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
               seriesData[m].subcategory
-              +"' onchange='Modify_chart_series(this.id, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              +"' onchange='Modify_chart_series(this, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
             break;
             case("text") :
               var defaultVal= ''; 
@@ -2233,7 +2262,7 @@ window.onload =function() {
               +"<label>"+ seriesData[m].inputs[j].label+": </label>"
               +"<input type='text' id='"+seriesData[m].inputs[j].id+"' data-category='"
               +seriesData[m]["category"]+"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
-              seriesData[m].subcategory +"' onKeyUp='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+              seriesData[m].subcategory +"' onKeyUp='Modify_chart_series(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
             break;
             case ('select'):
               var options = ''
@@ -2251,7 +2280,7 @@ window.onload =function() {
               +"<select id='"+seriesData[m].inputs[j].id+"' data-category='"+seriesData[m]["category"]
               +"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
               seriesData[m].subcategory 
-              +"'onchange='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
+              +"'onchange='Modify_chart_series(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
             break;
             case ("range") :
             //oninput is for IE compatibility.
@@ -2260,45 +2289,49 @@ window.onload =function() {
               +"<input type='range' id='"+seriesData[m].inputs[j].id+"' data-category='"
               +seriesData[m]["category"]+"' data-key='"+seriesData[m].inputs[j].key+"' dat-subcat='"+
               seriesData[m].subcategory
-              +"' min='"+seriesData[m].inputs[j].min+"' max='"+seriesData[m].inputs[j].max+"' step='"+seriesData[m].inputs[j].step+"' data-count='"+seriesConfigId
+              +"' min='"+seriesData[m].inputs[j].min+"' max='"+seriesData[m].inputs[j].max+"' step='"+seriesData[m].inputs[j].step
               +"' onchange='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'"
-              +"  oninput='Modify_chart_series(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              +"  oninput='Modify_chart_series(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
             break;
             case ("bgcolor") :
               seriesElement[i].innerHTML += linebreak +"<label> Background:</label>";//ID here represents category
               seriesElement[i].innerHTML += "<select id='backgroundType"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+
               seriesData[m]["subcategory"]+"' data-count='"+seriesConfigId
-              +"'onchange='set_bg_type_series(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'>"
+              +"'onchange='set_bg_type_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'>"
               +"<option value='solid'>Solid</option><option value='gradiant'>Gradiant</option></select><br>"
               +"<label> Background color 1 : </label> <input type='color' id='backgroundColor1"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]
-              +"' data-count='"+seriesConfigId+"'dat-subcat='"+seriesData[m]["subcategory"]
-              +"' onchange='set_bg_color_series(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'><br>"
-              +"<label> Background color 2 : </lable> <input type='color' id='backgroundColor2"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]
-              +"' data-count='"+seriesConfigId+"'dat-subcat='"+seriesData[m]["subcategory"]
-              +"' onchange='set_bg_color_series(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))' style='visibility :hidden'><br>";
+              +"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onchange='set_bg_color_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>"
+              +"<label> Background color 2 : </label> <input type='color' id='backgroundColor2"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]
+              +"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onchange='set_bg_color_series(this.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' style='visibility :hidden'><br>";
             break;
             case ("border") :
-              seriesElement[i].innerHTML += linebreak +"<label> Border :</lable>";//ID here represents category
+              seriesElement[i].innerHTML += linebreak +"<label> Border :</label>";//ID here represents category
               seriesElement[i].innerHTML += "<input type='checkbox' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' id='border"+seriesData[m].inputs[j].id
-              +"' onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";  
-              seriesElement[i].innerHTML += "<label> Border width :</lable><input type='text' id='borderWidth"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"
-              +seriesData[m]["subcategory"]+"' onKeyUp='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='1px'><br>";
-              seriesElement[i].innerHTML += " <label> Border color:</lable><input type='color' id='borderColor"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"
-              +seriesData[m]["subcategory"]+"'onchange='set_border(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              +"' onchange='set_border_series(this.nextElementSibling.nextElementSibling.nextElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";  
+              seriesElement[i].innerHTML += "<label> Border width :</label><input type='text' id='borderWidth"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"
+              +seriesData[m]["subcategory"]+"' onKeyUp='set_border_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='1px'><br>";
+              seriesElement[i].innerHTML += " <label> Border color:</label><input type='color' id='borderColor"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"
+              +seriesData[m]["subcategory"]+"'onchange='set_border_series(this.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
             break;
             case ("line") :
               seriesElement[i].innerHTML += linebreak + "<label>Line color :</lable>";
-              seriesElement[i].innerHTML += "<input type='color' id='lineColor"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
-              seriesElement[i].innerHTML += "<label>Line width :</lable> <input type='text' id='lineWidth"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px'><br>";
-              seriesElement[i].innerHTML += "<lable> Line style :</lable>"
-              +"<select id='lineStyle"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              seriesElement[i].innerHTML += "<input type='color' id='lineColor"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onchange='set_line_series(this.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              seriesElement[i].innerHTML += "<label>Line width :</label> <input type='text' id='lineWidth"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onKeyUp='set_line_series(this.nextElementSibling.nextElementSibling.nextElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px'><br>";
+              seriesElement[i].innerHTML += "<label> Line style :</label>"
+              +"<select id='lineStyle"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onchange='set_line_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
               +"<option></option>"
               +"<option value='solid'> Solid</option>"
               +"<option value='dotted'> Dotted</option>"
               +"<option value='dashed'> Dashed</option>"
               +"</select><br>";
-              seriesElement[i].innerHTML +="<label>Line gap size :</lable> <input type='text' id='lineGapSize"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
-              seriesElement[i].innerHTML +="<label>Line segment size :</lable> <input type='text' id='lineSegmentSize"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]+"' onKeyUp='set_line(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+              seriesElement[i].innerHTML +="<label>Line gap size :</label> <input type='text' id='lineGapSize"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onKeyUp='set_line_series(this.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+              seriesElement[i].innerHTML +="<label>Line segment size :</label> <input type='text' id='lineSegmentSize"+seriesData[m].inputs[j].id+"' data-category ='"+seriesData[m]["category"]+"' dat-subcat='"+seriesData[m]["subcategory"]
+              +"' onKeyUp='set_line_series(this.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
             break;
             case ("font") :
               seriesElement[i].innerHTML += linebreak+"<lable> Font color :</label>";
@@ -2943,7 +2976,12 @@ function set_bg_type_label(id,category,subCategory,count) {
   count = (count != 0) ? count : ''; 
   var typeLblIndex = (count == "" ) ? 0 : count;
   var type = document.getElementById(id);
-  bgTypelbl.push(type.options[type.selectedIndex].value);
+  if (count == bgTypelbl.length) {
+    bgTypelbl.push(type.options[type.selectedIndex].value);
+  } else {
+    bgTypelbl[typeLblIndex] = type.options[type.selectedIndex].value;
+  }
+
   if (bgTypelbl[typeLblIndex] =="gradiant") {
     document.getElementById("backgroundColor2"+subCategory+category+count).style.visibility = "visible";
   } else {
@@ -3058,8 +3096,6 @@ function set_border_label(category,subCategory,count) {
     });
   } 
   creat_json();}
-
-
 function new_series() {
   var title = document.getElementById("seriesTitle");
   var series = document.getElementById("seriesConfig");
@@ -3074,7 +3110,6 @@ function new_series() {
     if (childs[i].id) {
       childs[i].id += seriesConfigId;
       childs[i].setAttribute("data-count",seriesConfigId);
-      
       //This one checks for the childs of the cloned node
       //it checks for the childs of tabseries div
       for (var k= 0;k<childs[i].childNodes.length;k++ ) {
@@ -3135,58 +3170,73 @@ function new_series() {
 }
 
 var bgTypeseries= [];
-function set_bg_type_series(id,category,subCategory,count) {
-  count = (count != 0) ? count : ''; 
+function set_bg_type_series(element,category,subCategory,count) {
+  count = (element.parentElement.parentElement.dataset.count != 0) ? element.parentElement.parentElement.dataset.count : ''; 
   var typeSeriesIndex = (count == "" ) ? 0 : count;
-  var type = document.getElementById(id);
-  bgTypeseries.push(type.options[type.selectedIndex].value);
-  if (bgTypeseries[typeSeriesIndex] =="gradiant") {
-    document.getElementById("backgroundColor2"+subCategory+category+count).style.visibility = "visible";
+  if (count == bgTypeseries.length) {
+    bgTypeseries.push(element.options[element.selectedIndex].value);
   } else {
-    document.getElementById("backgroundColor2"+subCategory+category+count).style.visibility = "hidden";
+    bgTypeseries[typeSeriesIndex] = element.options[element.selectedIndex].value;
   }
-  set_bg_color_series(category,subCategory,count);}
-function set_bg_color_series(category,subCategory,count) {
-  count = (count != 0) ? count : ''; 
+  if (bgTypeseries[typeSeriesIndex] =="gradiant") {
+    element.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.style.visibility = "visible";
+  } else {
+    element.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.style.visibility = "hidden";
+  }
+  set_bg_color_series(element.nextElementSibling.nextElementSibling.nextElementSibling,category,subCategory,count);
+}
+
+function set_bg_color_series(element,category,subCategory) {
+  count = (element.parentElement.parentElement.dataset.count != 0) ? element.parentElement.parentElement.dataset.count : ''; 
   var typeSeriesIndex = (count == "" ) ? 0 : count;
   // Get chart JSON
   var chartDta = zingchart.exec(chartID, 'getdata');
   var chartSeries = chartDta['graphset'][0]['series']
   if (typeof chartSeries  == "undefined" ){ //Empty array situation, creating a new label
-    var dataObj = {
-      series :[],
-    };
-    var vals = {};
-    if (bgTypeseries[typeSeriesIndex] == "gradiant") {
-      //Set background-color-1 attr
-    vals['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
-    vals['backgroundColor2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
-    dataObj.labels.push (vals);
-    zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : dataObj
-    });
-    } else {
-    //Set background-color-1 attr
-      vals['backgroundColor1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
-      vals['backgroundColor2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
+    if (category == subcategory) {
+      var dataObj = {
+        series :[],
+      };
+      var vals = {};
+      if (bgTypeseries[typeSeriesIndex] == "gradiant") {
+        //Set background-color-1 attr
+      vals['backgroundColor1'] =  element.value;
+      vals['backgroundColor2'] =  element.nextElementSibling.nextElementSibling.nextElementSibling.value;
       dataObj.labels.push (vals);
       zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : dataObj
       });
-    }  
-  } else {
-    if (count == chartSeries.length) {
-      if (bgTypelbl[typeSeriesIndex] == "gradiant") {
-        //Set background-color-1 attr
-        var vals = {};
-        vals['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
-        vals['background-color-2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
       } else {
-        //Set background-color-1 attr
-        vals['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
-        vals['background-color-2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value; 
+      //Set background-color-1 attr
+        vals['backgroundColor1'] =  element.value;
+        vals['backgroundColor2'] =  element.value;
+        dataObj.labels.push (vals);
+        zingchart.exec(chartID,'modify', {
+          graphid : 0,
+          data : dataObj
+        });
+      }  
+    } else {
+      //TODO
+    }
+
+  } else {
+    // We are short in series, so we have to add new sereis elment
+    if (count == chartSeries.length) { 
+      if (category == subCategory) {
+        if (bgTypelbl[typeSeriesIndex] == "gradiant") {
+          //Set background-color-1 attr
+          var vals = {};
+          vals['background-color-1'] =  element.value;
+          vals['background-color-2'] =  element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+        } else {
+          //Set background-color-1 attr
+          vals['background-color-1'] =  element.value;
+          vals['background-color-2'] =  element.value; 
+        } 
+      } else {
+        //TODO : case that the 
       } 
       chartSeries.push (vals);
       zingchart.exec(chartID,'modify', {
@@ -3194,120 +3244,237 @@ function set_bg_color_series(category,subCategory,count) {
         data : {
           "series":chartSeries
         }
-      }); 
+      });
+      // We are modifying the exisiting series
     } else {
-      if (bgTypeseries[typeSeriesIndex] == "gradiant") {
-        //Set background-color-1 attr
-        chartSeries[(count == "" ) ? 0 : count]['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
-        chartSeries[(count == "" ) ? 0 : count]['background-color-2'] =  document.getElementById('backgroundColor2'+subCategory+category+count).value;
+      if (category == subCategory) {
+        if (bgTypeseries[typeSeriesIndex] == "gradiant") {
+          //Set background-color-1 attr
+          chartSeries[(count == "" ) ? 0 : count]['background-color-1'] =  element.value;
+          chartSeries[(count == "" ) ? 0 : count]['background-color-2'] =  element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+        } else {
+          //Set background-color-1 attr
+          chartSeries[(count == "" ) ? 0 : count]['background-color-1'] =  element.value;
+          chartSeries[(count == "" ) ? 0 : count]['background-color-2'] =  element.value; 
+        }
       } else {
-        //Set background-color-1 attr
-        chartSeries[(count == "" ) ? 0 : count]['background-color-1'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value;
-        chartSeries[(count == "" ) ? 0 : count]['background-color-2'] =  document.getElementById('backgroundColor1'+subCategory+category+count).value; 
+        //If we have subcategory, then we only need to change it
+        if (chartSeries[(count == "" ) ? 0 : count][subCategory]) {
+          if (bgTypeseries[typeSeriesIndex] == "gradiant") {
+            //Set background-color-1 attr
+            chartSeries[(count == "" ) ? 0 : count][subCategory]['background-color-1'] =  element.value;
+            chartSeries[(count == "" ) ? 0 : count][subCategory]['background-color-2'] =  element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+          } else {
+            //Set background-color-1 attr
+            chartSeries[(count == "" ) ? 0 : count][subCategory]['background-color-1'] =  element.value;
+            chartSeries[(count == "" ) ? 0 : count][subCategory]['background-color-2'] =  element.value; 
+          }
+        // If we dont have the subcat, then we have to creat it and assing values to it.
+        } else {
+          
+          var data = {};
+          if (bgTypeseries[typeSeriesIndex] == "gradiant") {
+            //Set background-color-1 attr
+            data['background-color-1'] =  element.value;
+            data['background-color-2'] =  element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+          } else {
+            //Set background-color-1 attr
+            data['background-color-1'] =  element.value;
+            data['background-color-2'] =  element.value; 
+          }
+          chartSeries[(count == "" ) ? 0 : count][subCategory]  = data;
+        }
       }
+
       zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : {
           "series":chartSeries
         }
       }); 
-    }
-    
+    } 
   }   
   creat_json();
- }
-function set_border_series(category,subCategory,count) {
+}
+function set_border_series(element,category,subCategory) {
 
-  count = (count != 0) ? count : ''; 
+  count = (element.parentElement.parentElement.dataset.count != 0) ? element.parentElement.parentElement.dataset.count : ''; 
   // Get chart JSON
-  var chartDta = zingchart.exec(chartID, 'getdata');
-  var chartLabels = chartDta['graphset'][0]['labels']; 
-  if (typeof chartLabels  == "undefined") { 
-    var dataObj = {
-      labels :[],
-    };
-    var vals = {};
-    if (document.getElementById('border'+category+count).checked) {
-      vals["border-width"] = document.getElementById('borderWidth'+category+count).value;
-      vals["border-color"] = document.getElementById('borderColor'+category+count).value;
-    } else {
-      vals["border-width"] = 0;
-    }
-    dataObj.labels.push (vals);
-    zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : dataObj  
-    });
+  var chartData = zingchart.exec(chartID, 'getdata');
+  var chartSeries = chartData['graphset'][0]['series']; 
+
+  if (typeof chartSeries  == "undefined") { 
+      // We are short in series we have to add one
+      if (category ==  subCategory) {
+        var dataObj = {
+          series :[],
+        };
+        var vals = {};
+        if (element.previousElementSibling.previousElementSibling.previousElementSibling.checked) {
+          vals["border-width"] = element.value;
+          vals["border-color"] = element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+        } else {
+          vals["border-width"] = 0;
+        }
+        dataObj.labels.push (vals);
+      } else {
+        // Our category and subcategory is different
+        // TODO
+      }
+      zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj  
+      });
   } else {
-    if (document.getElementById('border'+category+count).checked) {
-      chartLabels[(count == "" ) ? 0 : count]["border-width"] = document.getElementById('borderWidth'+category+count).value;
-      chartLabels[(count == "" ) ? 0 : count]["border-color"] = document.getElementById('borderColor'+category+count).value;
+    if (category == subCategory) {
+      if (element.previousElementSibling.previousElementSibling.previousElementSibling.checked) {
+        chartSeries[(count == "" ) ? 0 : count]["border-width"] = element.value;
+        chartSeries[(count == "" ) ? 0 : count]["border-color"] = element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+      } else {
+         chartSeries[(count == "" ) ? 0 : count]["border-width"] = 0;
+      }
     } else {
-       chartLabels[(count == "" ) ? 0 : count]["border-width"] = 0;
+      var data = {};
+      chartSeries[(count == "" ) ? 0 : count][subCategory] = data;
+      if (element.previousElementSibling.previousElementSibling.previousElementSibling.checked) {
+        chartSeries[(count == "" ) ? 0 : count][subCategory]["border-width"] = element.value;
+        chartSeries[(count == "" ) ? 0 : count][subCategory]["border-color"] = element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+      } else {
+         chartSeries[(count == "" ) ? 0 : count][subCategory]["border-width"] = 0;
+      }
     }
     zingchart.exec(chartID,'modify', {
       graphid : 0,
       data : {
-        "labels":chartLabels
+        "series":chartSeries
       }
     });
   } 
   creat_json();}
-
+/*
+ * series setting line
+ */
+function set_line_series(element,category,subCategory) {
+  count = (element.parentElement.parentElement.dataset.count != 0) ? element.parentElement.parentElement.dataset.count : '';
+  var chartData = zingchart.exec(chartID, 'getdata');
+  var chartSeries = chartData['graphset'][0]['series']; 
+  if (category != subCategory) {
+    if (count == chartSeries.length ) {
+      //TO DO
+    } else  {
+      var data = {}
+      data["line-color"]        = element.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.value;
+      data["line-style"]        = element.options[element.selectedIndex].value;
+      data["line-width"]        = element.previousElementSibling.previousElementSibling.previousElementSibling.value;
+      data["line-gap-size"]     = element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+      data["line-segment-size"] = element.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.value;
+      chartSeries[(count == "" ) ? 0 : count][subCategory] = data;
+    }
+  } else {//Same category and subcategory
+    if (count == chartSeries.length ) {
+      //TODO 
+    } else {
+       chartSeries[(count == "" ) ? 0 : count]["line-color"]        = element.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.value;
+       chartSeries[(count == "" ) ? 0 : count]["line-style"]        = element.options[element.selectedIndex].value;
+       chartSeries[(count == "" ) ? 0 : count]["line-width"]        = element.previousElementSibling.previousElementSibling.previousElementSibling.value;
+       chartSeries[(count == "" ) ? 0 : count]["line-gap-size"]     = element.nextElementSibling.nextElementSibling.nextElementSibling.value;
+       chartSeries[(count == "" ) ? 0 : count]["line-segment-size"] = element.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.value;
+    }
+  }
+  
+  zingchart.exec(chartID,'modify', {
+    graphid : 0,
+    data : {
+      "series" : chartSeries
+    }
+  });
+  creat_json();
+}
 
 /*
- * Label Modify chart
+ * Series Modify chart
  */
-function Modify_chart_series(id,type,key,category,subcategory,count) {
-  count = document.getElementById(id).parentElement.parentElement.dataset.count;
+function Modify_chart_series(element,type,key,category,subCategory) {
+  count = element.parentElement.parentElement.dataset.count;
   var value = ''
   switch (type) {
     case("checkbox") :
-      value = document.getElementById(id).checked;
+      value = element.checked;
     break;
     case("select-one") :
-      var opts = document.getElementById(id);
-      value  = opts.options[opts.selectedIndex].value;
+      value  = element.options[element.selectedIndex].value;
     break;
     default:
     //default is for text,range
-      value= document.getElementById(id).value;
+      value= element.value;
   }
   // Get chart JSON
   var chartDta = zingchart.exec(chartID, 'getdata');
   var chartSeries = chartDta['graphset'][0]['series']; // Ternary operator to check to see if 'labels' exists
 
-  if (typeof chartSeries  == "undefined" ){ //Empty array situation, creating a new label
+  if (typeof chartSeries  == "undefined" ){ //Empty array situation, creating a new series
     var dataObj = {
       series :[],
     };
     var vals = {};
     vals[key] = value;
-    dataObj.series.push(vals);
+    if (category == subCategory) { // The same category part
+      dataObj.series.push(vals);
+    } else {
+      var vals ={};
+      dataObj[subCategory] = vals;
+    }
     zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : dataObj  
       });
   } else { //Labels already exists, so we're modifying instead of creating 
-    if (count == chartSeries.length) {//New elemnt case we hace to push it 
-        var vals = {};
-        vals[key] = value;
-        chartLabels.push(vals);
-       zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-          "series": chartSeries
+      if (category == subCategory) {
+        if (count == chartSeries.length) {//New elemnt case we have to push it 
+            var vals = {};
+            vals[key] = value;
+            chartLabels.push(vals);
+           zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "series": chartSeries
+            }
+          });
+        } else {
+          chartSeries[count][key] = value;
+          zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "series": chartSeries
+            }
+          });
         }
-      });
-    } else {
-      chartSeries[count][key] = value;
-      zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-          "series": chartSeries
+      } else {
+        if (count == chartSeries.length) {//New elemnt case we have to push it 
+            var vals = {};
+            vals[key] = value;
+            var sub = {}
+            sub[subCategory] = vals;
+            chartLabels.push(sub);
+            zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "series": chartSeries
+            }
+          });
+        } else {
+          var vals = {};
+          vals[key] = value;
+          chartSeries[count][subCategory] = vals;
+          zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "series": chartSeries
+            }
+          });
         }
-      });
-    }
+      }
+
   }
   creat_json();}
 var jsonObject = '';

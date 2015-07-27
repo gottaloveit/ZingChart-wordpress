@@ -58,8 +58,9 @@ add_action('wp_enqueue_scripts','zing_loadLib');
  */
 function Zing_custompost() {
   wp_enqueue_script('jquery-ui','http://code.jquery.com/ui/1.11.4/jquery-ui.min.js');
-   wp_enqueue_script('translate', ZING_PLUGIN_URL.'translate.js');
+  wp_enqueue_script('translate', ZING_PLUGIN_URL.'translate.js');
   wp_enqueue_script('Zing_chart','http://cdn.zingchart.com/zingchart.min.js');
+
   wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
   register_post_type('zing_chart',
     array( 
@@ -122,7 +123,10 @@ function zing_designer() {
     $(".seriesTabs").tabs();
     $("#plotJson").tabs();
     $("#dataTabs").tabs();
-    
+    $("#scaleAccordion").accordion({
+      heightStyle: "content",
+      collapsible: true,
+    });
   });
   </script> 
   <style type="text/css">
@@ -476,10 +480,25 @@ function zing_designer() {
         <div id="plotTab7" class="frm-el" data-category = "plot" data-sub-category = "value-box"></div>
       </div>
     </div>
-    <h3>Scale R</h3>
-    <div class="frm-el" data-category = "scale-r" data-sub-category = "scale-r"></div>
-    <h3>Scale</h3>
-    <div class="frm-el" data-category = "scale" data-sub-category = "scale"></div>
+     <h3>Scale</h3>
+    <div class="frm-el" data-category = "scale" data-sub-category = "scaleX">
+      <div id="scaleAccordion">
+        <h3> Scale-x<h3>
+        <div>
+          <div ></div>
+        </div>
+        <h3>Scale-y</h3>
+        <div></div>
+        <h3>Scale-r</h3>
+        <div class="frm-el" data-category = "scale-r" data-sub-category = "scale-r"></div>
+        <h3>Scale</h3>
+        <div class="frm-el" data-category = "scale" data-sub-category = "scale"></div>
+      </div>
+      <button type="button">New Scale-X</button>
+      <button type="button">New Scale-Y</button>
+    </div>
+    
+    
     <h3>Labels</h3>
       <div >
         <div id="labelsAccordion">
