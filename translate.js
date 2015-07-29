@@ -10,7 +10,648 @@
 
  * have a data part s
  */
-var plotGeneralData = {
+var titleData          = {
+    "category" : "title",
+    "subcategory" :"title",
+    "inputs" : [
+      {
+        "type":"checkbox",
+        "label": "Visible",
+        "id" :"visibleTitle",
+        "key" :"visible"
+      },
+      {
+        "type" : "text",
+        "id"   : "textTitle",
+        "key"  : "text",
+        "label": "text",
+        "divider" :"true"
+      },
+      {
+        "type":"checkbox",
+        "label": "Adjust Layout",
+        "id" :"adjustLayoutTitle",
+        "key" :"adjust-layout",
+        "divider" :"true"
+      },
+      {
+        "type":"checkbox",
+        "label": "Bold",
+        "id" :"boldTitle",
+        "key" :"bold",
+        "divider" :"true"
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "titletitle", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "font",
+        "id"   : "title", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "border",
+        "id"   : "title", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopTitle",
+        "key"  : "padding-top",
+        "label": "padding-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightTitle",
+        "key"  : "padding-right",
+        "label": "padding-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomTitle",
+        "key"  : "padding-bottom",
+        "label": "padding-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingleftTitle",
+        "key"  : "padding-left",
+        "label": "padding-left",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginTopTitle",
+        "key"  : "margin-top",
+        "label": "margin-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "marginRightTitle",
+        "key"  : "margin-right",
+        "label": "margin-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginBottomTitle",
+        "key"  : "margin-bottom",
+        "label": "margin-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "margingleftTitle",
+        "key"  : "margin-left",
+        "label": "margin-left",
+      },
+      {
+        "type" : "text",
+        "id"   : "xTitle",
+        "key"  : "x",
+        "label": "x-string",
+        "divider" : "true"
+      },
+      {
+        "type" : "text",
+        "id"   : "yTitle",
+        "key"  : "y",
+        "label": "y-string",
+      },
+    ],};
+var subtitleData       = {
+    "category" : "subtitle",
+    "subcategory" :"subtitle",
+    "inputs" : [
+      {
+        "type":"checkbox",
+        "label": "Visible",
+        "id" :"visibleSubTitle",
+        "key" :"visible"
+      },
+      {
+        "type" : "text",
+        "id"   : "textSubTitle",
+        "key"  : "text",
+        "label": "text",
+        "divider" :"true"
+      },
+      {
+        "type":"checkbox",
+        "label": "Adjust Layout",
+        "id" :"adjustLayoutSubTitle",
+        "key" :"adjust-layout",
+        "divider" :"true"
+      },
+      {
+        "type":"checkbox",
+        "label": "Bold",
+        "id" :"boldSubTitle",
+        "key" :"bold",
+        "divider" :"true"
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "subtitlesubtitle", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "font",
+        "id"   : "subtitle", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "border",
+        "id"   : "subtitle", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopSubTitle",
+        "key"  : "padding-top",
+        "label": "padding-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightSubTitle",
+        "key"  : "padding-right",
+        "label": "padding-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomSubTitle",
+        "key"  : "padding-bottom",
+        "label": "padding-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingleftSubTitle",
+        "key"  : "padding-left",
+        "label": "padding-left",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginTopSubTitle",
+        "key"  : "margin-top",
+        "label": "margin-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "marginRightSubTitle",
+        "key"  : "margin-right",
+        "label": "margin-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginBottomSubTitle",
+        "key"  : "margin-bottom",
+        "label": "margin-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "margingleftSubTitle",
+        "key"  : "margin-left",
+        "label": "margin-left",
+      },
+      {
+        "type" : "text",
+        "id"   : "xSubTitle",
+        "key"  : "x",
+        "label": "x-string",
+        "divider" : "true"
+      },
+      {
+        "type" : "text",
+        "id"   : "ySubTitle",
+        "key"  : "y",
+        "label": "y-string",
+      },
+    ],};
+var legendDatageneral  = {
+    "category" : "legend",
+    "subcategory" :"legend",
+    "inputs" : [
+      {
+        "type":"checkbox",
+        "label": "Visible",
+        "id" :"visibleLegend",
+        "key" :"visible"
+      },
+      {
+        "type":"checkbox",
+        "label": "Adjust Layout",
+        "id" :"adjustLayoutLegend",
+        "key" :"adjust-layout",
+        "divider" :"true"
+      },
+      {   
+        "type"  :"select",
+        "values":[
+          "Center",
+          "left",
+          "Right",
+        ],
+        "label" :"Align",
+        "id"    :"alignLegend",
+        "key"   :"align",
+        "divider":"true",
+      },
+      {
+        "type":"checkbox",
+        "label": "Daggable",
+        "id" :"draggableLegend",
+        "key" :"draggable",
+      },
+      {   
+        "type"  :"select",
+        "values":[
+          "vertical",
+          "horizontal",
+          "float",
+          "col x row",
+        ],
+        "label" :"Layout",
+        "id"    :"layoutlegend",
+        "key"   :"layout",
+        "divider":"true",
+      },
+      {
+        "type" : "text",
+        "id"   : "rowLayoutLegend",
+        "key"  : "",
+        "label": "Row(Works only in col x row)",
+      },
+      {
+        "type" : "text",
+        "id"   : "columnLayoutLegend",
+        "key"  : "",
+        "label": "Column(Works only in col x row)",
+      },
+      {
+        "type" : "text",
+        "id"   : "xLegend",
+        "key"  : "x",
+        "label": "x-string",
+        "divider" : "true",
+        "defValue" : "0",
+      },
+      {
+        "type" : "text",
+        "id"   : "yLegend",
+        "key"  : "y",
+        "label": "y-string",
+        "defValue" : "0",
+      },
+      {
+        "type":"checkbox",
+        "label": "Minimize",
+        "id" :"minimizeLegend",
+        "key" :"minimize",
+        "divider" :"true"
+      },
+      {   
+        "type"  :"select",
+        "values":[
+          "hide",
+          "remove",
+          "disabled",
+        ],
+        "label" :"Toggle action",
+        "id"    :"toggle-actionLegend",
+        "key"   :"toggle-action",
+        "divider":"true",
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "legendlegend",
+        "key"  : "",
+        "label": "",
+        "divider" : "true",
+      },
+      {
+        "type" : "border",
+        "id"   : "legend",
+        "key"  : "",
+        "label": "",
+        "divider" : "true",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopLegend",
+        "key"  : "padding-top",
+        "label": "padding-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightLegend",
+        "key"  : "padding-right",
+        "label": "padding-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomLegend",
+        "key"  : "padding-bottom",
+        "label": "padding-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingleftLegend",
+        "key"  : "padding-left",
+        "label": "padding-left",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginTopLegend",
+        "key"  : "margin-top",
+        "label": "margin-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "marginRightLegend",
+        "key"  : "margin-right",
+        "label": "margin-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginBottomLegend",
+        "key"  : "margin-bottom",
+        "label": "margin-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "margingleftLegend",
+        "key"  : "margin-left",
+        "label": "margin-left",
+      },
+      {
+        "type":"checkbox",
+        "label": "Highlight plot",
+        "id" :"highlight-plotLegend",
+        "key" :"highlight-plot",
+        "divider" :"true"
+      },
+    ],};
+var legendDataitem     = {
+    "category" : "legend",
+    "subcategory" :"item",
+    "inputs" : [
+      {
+        "type":"checkbox",
+        "label": "Bold",
+        "id" :"highlight-plotLegend",
+        "key" :"highlight-plot",
+      },
+      {
+        "type":"color",
+        "label": "Font color",
+        "id" :"font-colorItmeLegend",
+        "key" :"font-color",
+        "divider":"true"
+      },
+      {   
+        "type"  :"select",
+        "values":[
+          "normal",
+          "italic",
+          "oblique",
+        ],
+        "label" :"Font Style",
+        "id"    :"fontStyleItemLegend",
+        "key"   :"font-style",
+        "divider":"true",
+      },
+      {
+        "type" : "text",
+        "id"   : "fontFamilyItemLegend",
+        "key"  : "font-family",
+        "label": "Font family"
+      },
+      {   
+        "type"  :"select",
+        "values":[
+          "Center",
+          "left",
+          "Right",
+        ],
+        "label" :"Text align",
+        "id"    :"textAlignitemLegend",
+        "key"   :"text-align",
+        "divider":"true",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopItemLegend",
+        "key"  : "padding-top",
+        "label": "padding-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightItemLegend",
+        "key"  : "padding-right",
+        "label": "padding-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomItemLegend",
+        "key"  : "padding-bottom",
+        "label": "padding-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingleftItemLegend",
+        "key"  : "padding-left",
+        "label": "padding-left",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginTopItemLegend",
+        "key"  : "margin-top",
+        "label": "margin-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "marginRightItemLegend",
+        "key"  : "margin-right",
+        "label": "margin-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginBottomItemLegend",
+        "key"  : "margin-bottom",
+        "label": "margin-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "margingleftItemLegend",
+        "key"  : "margin-left",
+        "label": "margin-left",
+      },
+
+    ],};
+var legendDataMarker   = {
+    "category" : "legend",
+    "subcategory" :"marker",
+    "inputs" : [
+      {
+        "type"  :"select",
+        "values":["triangle", "square", "circle", "diamond", "trapezoid", "rectangle"
+        , "parallelogram", "plus", "cross", "arrow", "star3","star4","star5","star6","star7",
+        "star8","star9","rpoly3","rpoly4","rpoly5","rpoly6","rpoly7","rpoly8","rpoly9","gear3","gear4","gear5","gear6","gear7","gear8","gear9", "ellipse", "arc", "pie"
+        ],
+        "label" :"Type ",
+        "id"    :"typeMarkerLegend",
+        "key"   :"type",
+      },
+      {
+        "type" : "range",
+        "id"   : "alphaMarkerLegend",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "markerlegend", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "text",
+        "id"   : "backgroundImageMarkerLegend",
+        "key"  : "backgroundImage",
+        "label": "Background Image",
+        "divider" :"true"
+      },
+      {
+        "type" : "border",
+        "id"   : "markerlegend",
+        "key"  : "",
+        "label": "",
+        "divider" : "true",
+      },
+    ],};
+var plotareaData       = {
+    "category" : "plotarea",
+    "subcategory" :"plotarea",
+    "inputs":[
+      {
+        "type":"checkbox",
+        "label": "Adjust Layout",
+        "id" :"adjustLayoutPlotArea",
+        "key" :"adjust-layout",
+        "divider" :"true"
+      },
+      {
+        "type" : "range",
+        "id"   : "alphaPlotArea",
+        "key"  : "alpha",
+        "label": "Alpha",
+        "min"  : '0',
+        "max"  : '1',
+        "step" :'.1'
+      },
+      {
+        "type" : "bgcolor",
+        "id"   : "plotareaplotarea", //In the case of category ID the id should match the category name
+        "key"  : "",
+        "label": "",
+        "divider" :"true",
+      },
+      {
+        "type" : "text",
+        "id"   : "backgroundImagePlotArea",
+        "key"  : "backgroundImage",
+        "label": "Background Image",
+      },
+      {
+        "type"  :"select",
+        "values":["X","Y","XY"
+        ],
+        "label" :"Background fit",
+        "id"    :"background-fitPlotArea",
+        "key"   :"background-fit",
+      },
+      {
+        "type" : "border",
+        "id"   : "plotarea",
+        "key"  : "",
+        "label": "",
+        "divider" : "true",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingTopPlotArea",
+        "key"  : "padding-top",
+        "label": "padding-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingRightPlotArea",
+        "key"  : "padding-right",
+        "label": "padding-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingBottomPlotArea",
+        "key"  : "padding-bottom",
+        "label": "padding-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "paddingleftPlotArea",
+        "key"  : "padding-left",
+        "label": "padding-left",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginTopPlotArea",
+        "key"  : "margin-top",
+        "label": "margin-top",
+        "divider" :"true"
+      },
+      {
+        "type" : "text",
+        "id"   : "marginRightPlotArea",
+        "key"  : "margin-right",
+        "label": "margin-right",
+      },
+      {
+        "type" : "text",
+        "id"   : "marginBottomPlotArea",
+        "key"  : "margin-bottom",
+        "label": "margin-bottom",
+      },
+      {
+        "type" : "text",
+        "id"   : "margingleftPlotArea",
+        "key"  : "margin-left",
+        "label": "margin-left",
+      },
+    ],};
+var plotGeneralData    = {
     "category" : "plot",
     "subcategory" :"plot",
     "inputs":[
@@ -192,7 +833,7 @@ var plotGeneralData = {
       },
       
     ],};
-var plotAnimationData ={
+var plotAnimationData  = {
     "category" : "plot",
     "subcategory" :"animation",
     "inputs" :[
@@ -258,7 +899,7 @@ var plotAnimationData ={
       },
       
     ],};
-var plotHoverState = {
+var plotHoverState     = {
     "category" : "plot",
     "subcategory" :"hoverState",
     "inputs" : [
@@ -294,7 +935,7 @@ var plotHoverState = {
         "divider" :"true",
       }
     ],};
-var hoverMarker = {
+var hoverMarker        = {
    "category" : "plot",
     "subcategory" :"hoverMarker",
     "inputs" : [
@@ -385,7 +1026,7 @@ var hoverMarker = {
         "divider" :"true"
       },
       ]};
-var plotMarkerData ={
+var plotMarkerData     = {
     "category" : "plot",
     "subcategory" :"marker",
     "inputs" :[
@@ -476,7 +1117,7 @@ var plotMarkerData ={
         "divider" :"true"
       },
     ]};
-var tooltip ={
+var tooltip            = {
     "category" : "plot",
     "subcategory" :"tooltip",
     "inputs" :[
@@ -687,7 +1328,7 @@ var tooltip ={
         "divider" :"true"
       },
     ]};
-var valueBox ={
+var valueBox           = {
     "category" : "plot",
     "subcategory" :"value-box",
     "inputs" :[
@@ -905,7 +1546,7 @@ var valueBox ={
         "divider" :"true"
       },
     ]};
-var previewData ={
+var previewData        = {
       "category" : "preview",
       "subcategory" :"preview",
       "inputs" : [ 
@@ -1008,7 +1649,7 @@ var previewData ={
         "label": "",
         "divider" :"true",
       },],}
-var scaleRData = {
+var scaleRData         = {
   "category" : "scale-r",
       "subcategory" :"scale-r",
       "inputs" : [ 
@@ -1021,9 +1662,8 @@ var scaleRData = {
         "max"  : '360',
         "step" :'1'
       },
-      ],
-};
-var scaleData = {
+      ],};
+var scaleData          = {
     "category" : "scale",
       "subcategory" :"scale",
       "inputs" : [ 
@@ -1049,7 +1689,7 @@ var scaleData = {
         "step" :'.1'
       },
       ],};
-var labelData = {
+var labelData          = {
       "category" : "labels",
       "subcategory" :"labels",
       "inputs" : [ 
@@ -1300,9 +1940,8 @@ var labelData = {
         "label": "Offset Y",
         "defValue" : "0"
       },
-      ],
-}
-var seriesGeneralData = {
+      ],};
+var seriesGeneralData  = {
     "category" : "series",
     "subcategory" :"series",
     "inputs":[
@@ -1484,7 +2123,7 @@ var seriesGeneralData = {
       },
       
     ],};
-var seriesAnimationData ={
+var seriesAnimationData= {
     "category" : "series",
     "subcategory" :"animation",
     "inputs" :[
@@ -1550,7 +2189,7 @@ var seriesAnimationData ={
       },
       
     ],};
-var seriesHoverState = {
+var seriesHoverState   = {
     "category" : "series",
     "subcategory" :"hoverState",
     "inputs" : [
@@ -1586,7 +2225,7 @@ var seriesHoverState = {
         "divider" :"true",
       }
     ],};
-var serieshoverMarker = {
+var serieshoverMarker  = {
    "category" : "series",
     "subcategory" :"hoverMarker",
     "inputs" : [
@@ -1677,7 +2316,7 @@ var serieshoverMarker = {
         "divider" :"true"
       },
       ]};
-var seriesMarkerData ={
+var seriesMarkerData   = {
     "category" : "series",
     "subcategory" :"marker",
     "inputs" :[
@@ -1777,7 +2416,7 @@ var seriesMarkerData ={
         "divider" :"true"
       },
     ]};
-var seriestooltip ={
+var seriestooltip      = {
     "category" : "series",
     "subcategory" :"tooltip",
     "inputs" :[
@@ -1988,7 +2627,7 @@ var seriestooltip ={
         "divider" :"true"
       },
     ]};
-var seriesvalueBox ={
+var seriesvalueBox     = {
     "category" : "series",
     "subcategory" :"value-box",
     "inputs" :[
@@ -2206,35 +2845,859 @@ var seriesvalueBox ={
         "divider" :"true"
       },
     ]};
-var scaleX = {
-  "category" : "scale",
-  "subcategory" :"scaleX",
+var scaleX             = {
+  "category" : "scale-x",
+  "subcategory" :"scale-x",
   "inputs" :[
   {
-        "type" : "range",
-        "id"   : "alphascaleX",
-        "key"  : "alpha",
-        "label": "Alpha",
-        "min"  : '0',
-        "max"  : '1',
-        "step" :'.1'
+    "type" : "range",
+    "id"   : "alphascaleX",
+    "key"  : "alpha",
+    "label": "Alpha",
+    "min"  : '0',
+    "max"  : '1',
+    "step" :'.1'
   },
   {
-        "type" : "text",
-        "id"   : "placementvalueBoxPlot",
-        "key"  : "placement",
-        "label": "Placement",
-        "divider" :"true"
+    "type" : "text",
+    "id"   : "decimalsScaleX",
+    "key"  : "decimals",
+    "label": "Decimals",
+    "divider" :"true"
   },
-  ],
-}
+  {
+    "type" : "text",
+    "id"   : "decimals-separatorScaleX",
+    "key"  : "decimals-separator",
+    "label": "Decimals separator",
+  },
+  {
+    "type" : "text",
+    "id"   : "formatScaleX",
+    "key"  : "format",
+    "label": "Format",
+    "divider" :"true"
+  },
+  {
+    "type" : "checkbox",
+    "id"   : "items-overlap",
+    "key"  : "items-overlap",
+    "label": "Callvitems-overlapout",
+    "divider" :"true",
+  },
+  {
+    "type" : "color",
+    "id"   : "line-colorScaleX",
+    "key"  : "line-color",
+    "label": "Line color",
+    "divider" :"true"
+  },
+  {
+    "type" : "range",
+    "id"   : "line-widthscaleX",
+    "key"  : "line-width",
+    "label": "Alpha",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "select",
+    "id"   : "methodAnimation", 
+    "values" :["solid","dotted","dashed"],
+    "labels" :['Solid',
+    'Dotted',
+    'Dashed',
+    ],
+    "key"  : "line-style",
+    "label": "Line style",
+  },
+  {
+    "type" : "text",
+    "id"   : "paddingTopScaleX",
+    "key"  : "padding-top",
+    "label": "padding-top",
+    "divider" :"true"
+  },
+  {
+    "type" : "text",
+    "id"   : "paddingTopScaleX",
+    "key"  : "padding-right",
+    "label": "padding-right",
+  },
+  {
+    "type" : "text",
+    "id"   : "paddingBottomScaleX",
+    "key"  : "padding-bottom",
+    "label": "padding-bottom",
+  },
+  {
+    "type" : "text",
+    "id"   : "paddingleftScaleX",
+    "key"  : "padding-left",
+    "label": "padding-left",
+  },
+  {
+    "type" : "text",
+    "id"   : "marginTopScaleX",
+    "key"  : "margin-top",
+    "label": "margin-top",
+    "divider" :"true"
+  },
+  {
+    "type" : "text",
+    "id"   : "marginTopScaleX",
+    "key"  : "margin-right",
+    "label": "margin-right",
+  },
+  {
+    "type" : "text",
+    "id"   : "marginBottomScaleX",
+    "key"  : "margin-bottom",
+    "label": "margin-bottom",
+  },
+  {
+    "type" : "text",
+    "id"   : "margingleftScaleX",
+    "key"  : "margin-left",
+    "label": "margin-left",
+  },
+  {
+    "type" : "range",
+    "id"   : "max-itemsscaleX",
+    "key"  : "max-items",
+    "label": "Max items",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1',
+    "divider" : "true"
+  },
+  {
+    "type" : "range",
+    "id"   : "max-ticksscaleX",
+    "key"  : "max-ticks",
+    "label": "Max ticks",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "select",
+    "id"   : "methodAnimation", 
+    "values" :["standard","currency"],
+    "labels" :['Standartd',
+    'Currancy',
+    ],
+    "key"  : "negation",
+    "label": "Negation",
+    "divider" : "true"
+  },
+  {
+    "type" : "select",
+    "id"   : "short-unitScaleX", 
+    "values" :["k","K","m","M","b","B"],
+    "key"  : "short-unit",
+    "label": "Short unit",
+    "divider" : "true"
+  },
+  {
+    "type" : "select",
+    "id"   : "thousands-separatorScaleX", 
+    "values" :[",","."],
+    "key"  : "thousands-separator",
+    "label": "Thousands Separator",
+    "divider" : "true"
+  },
+  {
+    "type" : "text",
+    "id"   : "valuesScaleX",
+    "key"  : "values",
+    "label": "Values",
+    "divider" :"true"
+  },
+  {
+    "type" : "checkbox",
+    "id"   : "zoomingScaleX",
+    "key"  : "zooming",
+    "label": "Zooming",
+    "divider" :"true",
+  },
+  {
+    "type" : "checkbox",
+    "id"   : "zoom-snapScaleX",
+    "key"  : "zoom-snap",
+    "label": "zoom-snap",
+  },
+   {
+    "type" : "text",
+    "id"   : "zoom-toScaleX",
+    "key"  : "zoom-to",
+    "label": "Zoom to",
+    "divider" :"true"
+  },
+  {
+    "type" : "select",
+    "id"   : "placementScaleX", 
+    "values" :["default","opposite"],
+    "key"  : "placement",
+    "label": "Placement",
+    "divider" : "true"
+  },
 
-var formData =[plotGeneralData,plotAnimationData,plotHoverState,hoverMarker,plotMarkerData,tooltip,valueBox,scaleData,scaleRData,previewData];
-var seriesData  =[seriesGeneralData,seriesAnimationData,seriesHoverState,serieshoverMarker,seriesMarkerData,seriestooltip,seriesvalueBox];
+  ],};
+var scaleXGuid         = {
+  "category" : "scale-x",
+  "subcategory" :"guide",
+  "inputs" :[
+  {
+    "type" : "range",
+    "id"   : "alphascaleX",
+    "key"  : "alpha",
+    "label": "Alpha",
+    "min"  : '0',
+    "max"  : '1',
+    "step" :'.1'
+  },
+  {
+    "type" : "color",
+    "id"   : "line-colorScaleX",
+    "key"  : "line-color",
+    "label": "Line color",
+    "divider" :"true"
+  },
+  {
+    "type" : "range",
+    "id"   : "line-widthscaleX",
+    "key"  : "line-width",
+    "label": "Line width",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-gap-sizescaleX",
+    "key"  : "line-gap-size",
+    "label": "Line gap size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-segment-sizescaleX",
+    "key"  : "line-segment-size",
+    "label": "Line segment size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "select",
+    "id"   : "methodAnimation", 
+    "values" :["solid","dotted","dashed"],
+    "labels" :['Solid',
+    'Dotted',
+    'Dashed',
+    ],
+    "key"  : "line-style",
+    "label": "Line style",
+  },
+  {
+    "type" : "checkbox",
+    "id"   : "visibleScaleX",
+    "key"  : "visible",
+    "label": "Visible",
+    "divider" :"true",
+  },
+  ],};
+var scaleXLabel        = {
+  "category" : "scale-x",
+  "subcategory" :"label",
+  "inputs" :[
+    {
+      "type" : "range",
+      "id"   : "font-sizeLabelScaleX",
+      "key"  : "font-size",
+      "label": "Font size",
+      "min"  : '0',
+      "max"  : '100',
+      "step" :'1',
+    },
+    {
+      "type" : "color",
+      "id"   : "font-colorLabelScaleX",
+      "key"  : "font-color",
+      "label": "Font color",
+    },
+    {
+      "type" : "text",
+      "id"   : "font-familyLabelScaleX",
+      "key"  : "font-family",
+      "label": "Font family",
+    },
+    {
+      "type" : "checkbox",
+      "id"   : "boldLabelScaleX",
+      "key"  : "bold",
+      "label": "bold",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingTopLabelScaleX",
+      "key"  : "padding-top",
+      "label": "padding-top",
+      "divider" :"true",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingTopLabelScaleX",
+      "key"  : "padding-right",
+      "label": "padding-right",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingBottomLabelScaleX",
+      "key"  : "padding-bottom",
+      "label": "padding-bottom",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingleftLabelScaleX",
+      "key"  : "padding-left",
+      "label": "padding-left",
+    },
+    {
+      "type" : "text",
+      "id"   : "marginTopLabelScaleX",
+      "key"  : "margin-top",
+      "label": "margin-top",
+      "divider" :"true"
+    },
+    {
+      "type" : "text",
+      "id"   : "marginTopLabelScaleX",
+      "key"  : "margin-right",
+      "label": "margin-right",
+    },
+    {
+      "type" : "text",
+      "id"   : "marginBottomLabelScaleX",
+      "key"  : "margin-bottom",
+      "label": "margin-bottom",
+    },
+    {
+      "type" : "text",
+      "id"   : "margingleftLabelScaleX",
+      "key"  : "margin-left",
+      "label": "margin-left",
+    },
+    {
+      "type" : "text",
+      "id"   : "textLabelScaleX",
+      "key"  : "text",
+      "label": "Text",
+      "divider" :"true",
+    },
+    {
+      "type" : "range",
+      "id"   : "heightLabelScaleX",
+      "key"  : "height",
+      "label": "Height",
+      "min"  : '0',
+      "max"  : '1000',
+      "step" :'1',
+      "divider" : "true",
+    },
+    {
+      "type" : "range",
+      "id"   : "widthLabelScaleX",
+      "key"  : "width",
+      "label": "Width",
+      "min"  : '0',
+      "max"  : '1000',
+      "step" :'1'
+    },
+    {
+      "type" : "checkbox",
+      "id"   : "wrap-textLabelScaleX",
+      "key"  : "wrap-text",
+      "label": "Wrap text",
+    },
+  ], };
+var scaleXmarkers      = {
+  "category" : "scale-x",
+  "subcategory" :"markers",
+  "inputs" :[
+    {
+    "type" : "select",
+    "id"   : "typeMarkersScale-x", 
+    "values" :["line","area"],
+    "key"  : "type",
+    "label": "Type",
+  },
+  {
+    "type"   : "select",
+    "id"     : "placementMarkersScaleX", 
+    "values" :["default","opposite"],
+    "key"    : "placement",
+    "label"  : "Placement",
+    "divider" : "true"
+  },
+  {
+    "type" : "range",
+    "id"   : "alphaMarkerscaleX",
+    "key"  : "alpha",
+    "label": "Alpha",
+    "min"  : '0',
+    "max"  : '1',
+    "step" :'.1'
+  },
+  {
+    "type" : "bgcolor",
+    "id"   : "scale-xmarkers", //In the case of category ID the id should match the category name
+    "key"  : "",
+    "label": "",
+    "divider" :"true",
+  },
+  {
+    "type" : "color",
+    "id"   : "line-colorScaleX",
+    "key"  : "line-color",
+    "label": "Line color",
+    "divider" :"true"
+  },
+  {
+    "type" : "range",
+    "id"   : "line-widthscaleX",
+    "key"  : "line-width",
+    "label": "Line width",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-gap-sizescaleX",
+    "key"  : "line-gap-size",
+    "label": "Line gap size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-segment-sizescaleX",
+    "key"  : "line-segment-size",
+    "label": "Line segment size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "select",
+    "id"   : "methodAnimation", 
+    "values" :["solid","dotted","dashed"],
+    "labels" :['Solid',
+    'Dotted',
+    'Dashed',
+    ],
+    "key"  : "line-style",
+    "label": "Line style",
+  },
+
+  ],};
+var scaleXrefLine      = {
+  "category" : "scale-x",
+  "subcategory" :"ref-line",
+  "inputs" :[
+  {
+    "type" : "range",
+    "id"   : "alphaMarkerscaleX",
+    "key"  : "alpha",
+    "label": "Alpha",
+    "min"  : '0',
+    "max"  : '1',
+    "step" :'.1'
+  },
+  {
+    "type" : "color",
+    "id"   : "line-colorScaleX",
+    "key"  : "line-color",
+    "label": "Line color",
+    "divider" :"true"
+  },
+  {
+    "type" : "range",
+    "id"   : "line-widthscaleX",
+    "key"  : "line-width",
+    "label": "Line width",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-gap-sizescaleX",
+    "key"  : "line-gap-size",
+    "label": "Line gap size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-segment-sizescaleX",
+    "key"  : "line-segment-size",
+    "label": "Line segment size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "select",
+    "id"   : "lineStyleRefLineScaleX", 
+    "values" :["solid","dotted","dashed"],
+    "labels" :['Solid',
+    'Dotted',
+    'Dashed',
+    ],
+    "key"  : "line-style",
+    "label": "Line style",
+  },
+  {
+    "type" : "checkbox",
+    "id"   : "visibleRefLineScaleX",
+    "key"  : "visible",
+    "label": "Visible",
+    "divider" :"true"
+  },
+  ],};
+var scaleXTick         = {
+  "category" : "scale-x",
+  "subcategory" :"tick",
+  "inputs" :[
+  {
+    "type" : "range",
+    "id"   : "alphaTickscaleX",
+    "key"  : "alpha",
+    "label": "Alpha",
+    "min"  : '0',
+    "max"  : '1',
+    "step" :'.1'
+  },
+  {
+    "type" : "color",
+    "id"   : "line-colorTickScaleX",
+    "key"  : "line-color",
+    "label": "Line color",
+    "divider" :"true"
+  },
+  {
+    "type" : "range",
+    "id"   : "line-widthTickscaleX",
+    "key"  : "line-width",
+    "label": "Line width",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-gap-sizeTickscaleX",
+    "key"  : "line-gap-size",
+    "label": "Line gap size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "range",
+    "id"   : "line-segment-sizeTickscaleX",
+    "key"  : "line-segment-size",
+    "label": "Line segment size",
+    "min"  : '0',
+    "max"  : '100',
+    "step" :'1'
+  },
+  {
+    "type" : "select",
+    "id"   : "lineStyleRefLineTickScaleX", 
+    "values" :["solid","dotted","dashed"],
+    "labels" :['Solid',
+    'Dotted',
+    'Dashed',
+    ],
+    "key"  : "line-style",
+    "label": "Line style",
+  },
+  {
+    "type" : "select",
+    "id"   : "placementTickScaleX", 
+    "values" :["default","opposite"],
+    "key"  : "placement",
+    "label": "Placement",
+    "divider" : "true"
+  },
+  {
+    "type" : "checkbox",
+    "id"   : "visibleRefLineScaleX",
+    "key"  : "visible",
+    "label": "Visible",
+    "divider" :"true"
+  },
+  ],};
+var scaleXItem         = {
+  "category" : "scale-x",
+  "subcategory" :"item",
+  "inputs" :[
+    {
+      "type" : "range",
+      "id"   : "font-sizeItemScaleX",
+      "key"  : "font-size",
+      "label": "Font size",
+      "min"  : '0',
+      "max"  : '100',
+      "step" :'1',
+    },
+    {
+      "type" : "color",
+      "id"   : "font-colorItemScaleX",
+      "key"  : "font-color",
+      "label": "Font color",
+    },
+    {
+      "type" : "text",
+      "id"   : "font-familyItemScaleX",
+      "key"  : "font-family",
+      "label": "Font family",
+    },
+    {
+      "type" : "range",
+      "id"   : "font-angelItemScaleX",
+      "key"  : "font-angel",
+      "label": "Font angel",
+      "min"  : '0',
+      "max"  : '360',
+      "step" :'1',
+    },
+    {
+      "type" : "checkbox",
+      "id"   : "boldItemScaleX",
+      "key"  : "bold",
+      "label": "bold",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingTopItemScaleX",
+      "key"  : "padding-top",
+      "label": "padding-top",
+      "divider" :"true",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingTopItemScaleX",
+      "key"  : "padding-right",
+      "label": "padding-right",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingBottomItemScaleX",
+      "key"  : "padding-bottom",
+      "label": "padding-bottom",
+    },
+    {
+      "type" : "text",
+      "id"   : "paddingleftItemScaleX",
+      "key"  : "padding-left",
+      "label": "padding-left",
+    },
+    {
+      "type" : "text",
+      "id"   : "marginTopItemScaleX",
+      "key"  : "margin-top",
+      "label": "margin-top",
+      "divider" :"true"
+    },
+    {
+      "type" : "text",
+      "id"   : "marginTopItemScaleX",
+      "key"  : "margin-right",
+      "label": "margin-right",
+    },
+    {
+      "type" : "text",
+      "id"   : "marginBottomItemScaleX",
+      "key"  : "margin-bottom",
+      "label": "margin-bottom",
+    },
+    {
+      "type" : "text",
+      "id"   : "margingleftItemScaleX",
+      "key"  : "margin-left",
+      "label": "margin-left",
+    },
+    {
+      "type" : "text",
+      "id"   : "max-charsItemScaleX",
+      "key"  : "max-chars",
+      "label": "Max chars",
+      "divider" :"true",
+    },
+  ],};
+//These arrays will regeiustor Json to HTML 
+var formData   = [titleData,subtitleData,legendDatageneral,legendDataitem,
+legendDataMarker,plotareaData,plotGeneralData,plotAnimationData,
+plotHoverState,hoverMarker,plotMarkerData,tooltip,
+valueBox,scaleData,scaleRData,previewData];
+var seriesData = [seriesGeneralData,seriesAnimationData,seriesHoverState,
+serieshoverMarker,seriesMarkerData,seriestooltip,seriesvalueBox];
+var scaleData  = [scaleX,scaleXGuid,scaleXLabel,scaleXmarkers,
+scaleXrefLine,scaleXTick,scaleXItem];
 var j = 0;
 var labelConfigId  = 0; // This is for the label replaction. It holds each labels id.
 var seriesConfigId = 0;
-window.onload =function() {
+window.onload =function load_inputs() {
+
+/*All Scale data goes here*/ 
+  var seriesElement = document.getElementsByClassName("scl-el");
+  var linebreak = "";
+  for (var i = 0; i < seriesElement.length; i++) {
+    for (var m=0; m <scaleData.length;m++) {
+      if (seriesElement[i].getAttribute('data-category') == scaleData[m]["category"] && seriesElement[i].getAttribute('data-sub-category') == scaleData[m]["subcategory"]) {
+        for (j=0; j<scaleData[m].inputs.length; j++) {
+            linebreak = scaleData[m].inputs[j].divider ? "<hr>" :" ";
+            switch(scaleData[m].inputs[j].type){
+            case('checkbox') :
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ scaleData[m].inputs[j].label+": </label>"
+              +"<input type='checkbox' id='"+scaleData[m].inputs[j].id+"' data-category='"
+              +scaleData[m]["category"]+"' data-key='"+scaleData[m].inputs[j].key+"' dat-subcat='"+
+              scaleData[m].subcategory
+              +"' onchange='Modify_chart_scale(this, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case("color") :
+              var defaultVal= ''; 
+              if (typeof scaleData[m].inputs[j].defValue != 'undefined' ) {
+                defaultVal = scaleData[m].inputs[j].defValue;
+              };
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ scaleData[m].inputs[j].label+": </label>"
+              +"<input type='color' id='"+scaleData[m].inputs[j].id+"' data-category='"
+              +scaleData[m]["category"]+"' data-key='"+scaleData[m].inputs[j].key+"' dat-subcat='"+
+              scaleData[m].subcategory +"' onchange='Modify_chart_scale(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+            break;
+            case("text") :
+              var defaultVal= ''; 
+              if (typeof scaleData[m].inputs[j].defValue != 'undefined' ) {
+                defaultVal = scaleData[m].inputs[j].defValue;
+              };
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ scaleData[m].inputs[j].label+": </label>"
+              +"<input type='text' id='"+scaleData[m].inputs[j].id+"' data-category='"
+              +scaleData[m]["category"]+"' data-key='"+scaleData[m].inputs[j].key+"' dat-subcat='"+
+              scaleData[m].subcategory +"' onKeyUp='Modify_chart_scale(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+            break;
+            case ('select'):
+              var options = ''
+              var optionLable = '';
+              for (var k=0; k<scaleData[m].inputs[j].values.length;k++) {
+                if (scaleData[m].inputs[j].labels) {
+                   optionLable = scaleData[m].inputs[j].labels[k];
+                } else {
+                  optionLable = scaleData[m].inputs[j].values[k];
+                }
+                options += "<option value='"+scaleData[m].inputs[j].values[k]+"'>"+optionLable +"</option>"
+              };
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ scaleData[m].inputs[j].label+": </label>"
+              +"<select id='"+scaleData[m].inputs[j].id+"' data-category='"+scaleData[m]["category"]
+              +"' data-key='"+scaleData[m].inputs[j].key+"' dat-subcat='"+
+              scaleData[m].subcategory 
+              +"'onchange='Modify_chart_scale(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
+            break;
+            case ("range") :
+            //oninput is for IE compatibility.
+              seriesElement[i].innerHTML += linebreak
+              +"<label>"+ scaleData[m].inputs[j].label+": </label>"
+              +"<input type='range' id='"+scaleData[m].inputs[j].id+"' data-category='"
+              +scaleData[m]["category"]+"' data-key='"+scaleData[m].inputs[j].key+"' dat-subcat='"+
+              scaleData[m].subcategory
+              +"' min='"+scaleData[m].inputs[j].min+"' max='"+scaleData[m].inputs[j].max+"' step='"+scaleData[m].inputs[j].step
+              +"' onchange='Modify_chart_scale(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'"
+              +"  oninput='Modify_chart_scale(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case ("bgcolor") :
+              seriesElement[i].innerHTML += linebreak +"<label> Background:</label>";//ID here represents category
+              seriesElement[i].innerHTML += "<select id='backgroundType"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+
+              scaleData[m]["subcategory"]+"' data-count='"+seriesConfigId
+              +"'onchange='set_bg_type_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"),this.getAttribute(\"data-count\"))'>"
+              +"<option value='solid'>Solid</option><option value='gradiant'>Gradiant</option></select><br>"
+              +"<label> Background color 1 : </label> <input type='color' id='backgroundColor1"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]
+              +"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onchange='set_bg_color_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>"
+              +"<label> Background color 2 : </label> <input type='color' id='backgroundColor2"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]
+              +"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onchange='set_bg_color_series(this.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' style='visibility :hidden'><br>";
+            break;
+            case ("border") :
+              seriesElement[i].innerHTML += linebreak +"<label> Border :</label>";//ID here represents category
+              seriesElement[i].innerHTML += "<input type='checkbox' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]+"' id='border"+scaleData[m].inputs[j].id
+              +"' onchange='set_border_series(this.nextElementSibling.nextElementSibling.nextElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";  
+              seriesElement[i].innerHTML += "<label> Border width :</label><input type='text' id='borderWidth"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"
+              +scaleData[m]["subcategory"]+"' onKeyUp='set_border_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='1px'><br>";
+              seriesElement[i].innerHTML += " <label> Border color:</label><input type='color' id='borderColor"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"
+              +scaleData[m]["subcategory"]+"'onchange='set_border_series(this.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+            break;
+            case ("line") :
+              seriesElement[i].innerHTML += linebreak + "<label>Line color :</lable>";
+              seriesElement[i].innerHTML += "<input type='color' id='lineColor"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onchange='set_line_series(this.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              seriesElement[i].innerHTML += "<label>Line width :</label> <input type='text' id='lineWidth"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onKeyUp='set_line_series(this.nextElementSibling.nextElementSibling.nextElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px'><br>";
+              seriesElement[i].innerHTML += "<label> Line style :</label>"
+              +"<select id='lineStyle"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]+"' onchange='set_line_series(this,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option></option>"
+              +"<option value='solid'> Solid</option>"
+              +"<option value='dotted'> Dotted</option>"
+              +"<option value='dashed'> Dashed</option>"
+              +"</select><br>";
+              seriesElement[i].innerHTML +="<label>Line gap size :</label> <input type='text' id='lineGapSize"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onKeyUp='set_line_series(this.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+              seriesElement[i].innerHTML +="<label>Line segment size :</label> <input type='text' id='lineSegmentSize"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onKeyUp='set_line_series(this.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='2px' ><br>";
+            break;
+            case ("font") :
+              seriesElement[i].innerHTML += linebreak+"<lable> Font color :</label>";
+              seriesElement[i].innerHTML += " <input type='color' id='fontColor"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='#000000'><br>";
+              seriesElement[i].innerHTML += "<lable> Font size :</lable><input type='text' id='fontSize"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]
+              +"' dat-subcat='"+scaleData[m]["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='12px'><br>";
+              seriesElement[i].innerHTML += "<lable>Font style: </lable>";
+              seriesElement[i].innerHTML += "<select id='fontStyle"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option value ='normal' > normal</option>"
+              +"<option value ='italic' > italic</option>"
+              +"<option value ='oblique'> oblique</option>"
+              +"</select><br>";
+              seriesElement[i].innerHTML += "<lable> Font family :</lable>"; // It should get converted to select sometime!!!
+              seriesElement[i].innerHTML += "<input type='text' id='fontFamily"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onKeyUp='set_font(this.id,this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' ><br>";
+              seriesElement[i].innerHTML += "<lable> Text :</label>";
+              seriesElement[i].innerHTML += "<input  type='text' id='text"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]+"' onKeyUp='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              seriesElement[i].innerHTML += "<lable>Text align :</lable>"
+              +"<select id='textAlign"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]+"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+              +"<option></option>"
+              +"<option value='center'> Center</option>"
+              +"<option value='left'> Left</option>"
+              +"<option value='right'> Right </option>"
+              +"</select><br>";
+              seriesElement[i].innerHTML += "<lable> Bold : </label> <input type='checkbox' id='fontBold"+scaleData[m].inputs[j].id+"' data-category ='"+scaleData[m]["category"]+"' dat-subcat='"+scaleData[m]["subcategory"]
+              +"' onchange='set_font(this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'>"
+            break;
+          };
+        };
+      };
+    };
+  };
 
 /* ALL the series types will go here*/  
   var seriesElement = document.getElementsByClassName("series-el");
@@ -2505,17 +3968,27 @@ window.onload =function() {
   var linebreak = "";
   for (var i = 0; i < element.length; i++) {
     for (var m=0; m <formData.length;m++) {
-      if (element[i].getAttribute('data-category') == formData[m]["category"] && element[i].getAttribute('data-sub-category') == formData[m]["subcategory"]) {
+      if (element[i].getAttribute('data-category') == formData[m]["category"] 
+        && element[i].getAttribute('data-sub-category') 
+        == formData[m]["subcategory"]) {
         for (j=0; j<formData[m].inputs.length; j++) {
             linebreak = formData[m].inputs[j].divider ? "<hr>" :" ";
             switch(formData[m].inputs[j].type){
+            case("color") :
+              var defaultVal= ''; 
+              element[i].innerHTML += linebreak
+              +"<label>"+ formData[m].inputs[j].label+": </label>"
+              +"<input type='color' id='"+formData[m].inputs[j].id+"' data-category='"
+              +formData[m]["category"]+"' data-key='"+formData[m].inputs[j].key+"' dat-subcat='"+
+              formData[m].subcategory +"' onchange='Modify_chart(this,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+            break;
             case('checkbox') :
               element[i].innerHTML += linebreak
               +"<label>"+ formData[m].inputs[j].label+": </label>"
               +"<input type='checkbox' id='"+formData[m].inputs[j].id+"' data-category='"
               +formData[m]["category"]+"' data-key='"+formData[m].inputs[j].key+"' dat-subcat='"+
               formData[m].subcategory
-              +"' onchange='Modify_chart(this.id, this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              +"' onchange='Modify_chart(this,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
             break;
             case("text") :
               var defaultVal= ''; 
@@ -2527,7 +4000,7 @@ window.onload =function() {
               +"<input type='text' id='"+formData[m].inputs[j].id+"' data-category='"
               +formData[m]["category"]+"' data-key='"+formData[m].inputs[j].key+"' dat-subcat='"+
               formData[m].subcategory
-              +"'onKeyUp='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
+              +"'onKeyUp='Modify_chart(this,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))' value='"+defaultVal+"'><br>";
             break;
             case ('select'):
               var options = ''
@@ -2545,7 +4018,7 @@ window.onload =function() {
               +"<select id='"+formData[m].inputs[j].id+"' data-category='"+formData[m]["category"]
               +"' data-key='"+formData[m].inputs[j].key+"' dat-subcat='"+
               formData[m].subcategory
-              +"'onchange='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
+              +"'onchange='Modify_chart(this,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><option></option> "+options+"</select><br>";
             break;
             case ("range") :
             //oninput is for IE compatibility.
@@ -2555,8 +4028,8 @@ window.onload =function() {
               +formData[m]["category"]+"' data-key='"+formData[m].inputs[j].key+"' dat-subcat='"+
               formData[m].subcategory
               +"' min='"+formData[m].inputs[j].min+"' max='"+formData[m].inputs[j].max+"' step='"+formData[m].inputs[j].step
-              +"' onchange='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'"
-              +"  oninput='Modify_chart(this.id,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
+              +"' onchange='Modify_chart(this,this.type,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'"
+              +"  oninput='Modify_chart(this,this.getAttribute(\"data-key\"),this.getAttribute(\"data-category\"),this.getAttribute(\"dat-subcat\"))'><br>";
             break;
             case ("bgcolor") :
               element[i].innerHTML += linebreak +"<label> Background:</label>";//ID here represents category
@@ -2623,44 +4096,48 @@ window.onload =function() {
     };
   };
 };
-function Modify_chart(id,type,key,category,subcategory) {
-
+function Modify_chart(element,key,category,subCategory) {
   var value = ''
-  switch (type) {
+  switch (element.type) {
     case("checkbox") :
-      value = document.getElementById(id).checked;
+      value = element.checked;
     break;
     case("select-one") :
-      var opts = document.getElementById(id);
-      value  = opts.options[opts.selectedIndex].value;
+      value  = element.options[element.selectedIndex].value;
     break;
     default:
     //default is for text,range
-      value= document.getElementById(id).value;
+      value= element.value;
   }
-
   var dataObj = {};
   dataObj[category] = {};
 
-  if (category == "preview" && !document.getElementById(id).checked && id =="visiblePreview") {
+  if (category === "preview" && !element.checked && element.id === "visiblePreview") {
     var tempobj = zingchart.exec(chartID,'getdata' );
       delete tempobj.graphset[0][category];
       zingchart.exec(chartID,'setdata', {
         data : tempobj
       });
       creat_json();
+  } else if (category === "legend" && subCategory ==="legend"&& key === "layout" && value === "col x row"){ //Fix this part!!!
+    var row  =  (document.getElementById("rowLayoutLegend").value == "") ? 0 :  document.getElementById("rowLayoutLegend").value;
+    var col  =  (document.getElementById("columnLayoutLegend").value == "") ? 0 :  document.getElementById("columnLayoutLegend").value;
+    dataObj[category][key] = col +" x "+row;
+    zingchart.exec(chartID,'modify', {
+      graphid : 0,
+      data : dataObj   
+    });
+    creat_json();
   } else {
-   
-    if (category != subcategory ) {
-      dataObj[category][subcategory] ={};
-      dataObj[category][subcategory][key] = value;
+    if (category != subCategory ) {
+      dataObj[category][subCategory] ={};
+      dataObj[category][subCategory][key] = value;
     } else {
       dataObj[category][key] = value;
     }
     zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : dataObj
-        
+      graphid : 0,
+      data : dataObj   
     });
     creat_json();}
   }
@@ -3390,7 +4867,6 @@ function set_line_series(element,category,subCategory) {
   });
   creat_json();
 }
-
 /*
  * Series Modify chart
  */
@@ -3477,6 +4953,89 @@ function Modify_chart_series(element,type,key,category,subCategory) {
 
   }
   creat_json();}
+
+function Modify_chart_scale(element,type,key,category,subCategory) {
+  count = element.parentElement.parentElement.dataset.count
+  var value = ''
+  switch (type) {
+    case("checkbox") :
+      value = element.checked;
+    break;
+    case("select-one") :
+      value  = element.options[element.selectedIndex].value;
+    break;
+    default:
+    //default is for text,range
+      value= element.value;
+  }
+  // Get chart JSON
+  var chartDta = zingchart.exec(chartID, 'getdata');
+  var chartScale = chartDta['graphset'][0]['scale-x']; // Ternary operator to check to see if 'labels' exists
+
+  if (typeof chartScale  == "undefined" ){ //Empty array situation, creating a new series
+    var dataObj = {
+      "scale-x" :{},
+    };
+    if (category == subCategory) { // The same category part
+      dataObj["scale-x"][key] = value;
+    } else {
+      var vals ={};
+      dataObj[subCategory][key] = value;
+    }
+    zingchart.exec(chartID,'modify', {
+        graphid : 0,
+        data : dataObj  
+      });
+  } else { //Labels already exists, so we're modifying instead of creating 
+      if (category == subCategory) {
+        if (count == chartScale.length) {//New elemnt case we have to push it 
+            var vals = {};
+            vals[key] = value;
+            chartLabels.push(vals);
+           zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "scale-x": chartScale
+            }
+          });
+        } else {
+          chartScale[key] = value;
+          zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "scale-x": chartScale
+            }
+          });
+        }
+      } else {
+        if (count == chartScale.length) {//New elemnt case we have to push it 
+            var vals = {};
+            vals[key] = value;
+            var sub = {}
+            sub[subCategory] = vals;
+            chartLabels.push(sub);
+            zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "scale-x": chartScale
+            }
+          });
+        } else {
+          var vals = {};
+          vals[key] = value;
+          chartScale[subCategory] = vals;
+          zingchart.exec(chartID,'modify', {
+            graphid : 0,
+            data : {
+              "scale-x": chartScale
+            }
+          });
+        }
+      }
+
+  }
+  creat_json();
+}
 var jsonObject = '';
 var chartTitle = '';
 var chartType  = 'Bar';
@@ -3486,751 +5045,10 @@ var selectedChart = '';
 
 var chartID = 'chartDiv';
 
-/*****************************************************
- *                      Title                        *
- *****************************************************/
-function showtitle(){
-    //Set visible attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        title : {
-        visible : document.getElementById('visibleTitle').checked
-        }
-      }
-    });
-  creat_json();
-}
 
-function adjast_layout_title() {
-  //Set the adjust-layout attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "adjust-layout" : document.getElementById('adjustLayoutTitle').checked
-      }
-    }
-  });
-  creat_json();
-}
-var backgoundType = 'solid';
-function set_background_type_title () {
-  bgtypes    = document.getElementById('backgroundTypeTitle');
-  backgoundType = bgtypes.options[bgtypes.selectedIndex].value;
-  if (backgoundType == "gradiant") {
-    document.getElementById('backgroundColor2Title').style.visibility = "visible";
-  } else {
-    document.getElementById('backgroundColor2Title').style.visibility = "hidden";
-  };
-  set_background_color_title ();
-}
-function set_background_color_title () {
- 
-  if (backgoundType == "gradiant") {
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          title : {
-          "background-color-1" : document.getElementById('backgroundColor1Title').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          title : {
-          "background-color-2" : document.getElementById('backgroundColor2Title').value
-          }
-        }
-      });
-  } else {
-    //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          title : {
-          "background-color-1" : document.getElementById('backgroundColor1Title').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          title : {
-          "background-color-2" : document.getElementById('backgroundColor1Title').value
-          }
-        }
-      });
-  }
-  creat_json();
-}
-function set_text_title() {
- //Chnage the title text
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      text : document.getElementById('titleText').value,
-      }
-    }
-  });
-  creat_json();
-}
-function set_bold_title () {
-  // Set the Boold attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "bold" : document.getElementById('boldTitle').checked
-      }
-    }
-  });
-  creat_json();
-}
-function set_font_color_title () {
-  // Set the font-color attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "font-color" : document.getElementById('fontColorTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_font_style_title () {
-  var style= document.getElementById('fontStyleTitle');
-  var selectedStyle = style.options[style.selectedIndex].value;
-  // Set the font-color attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "font-style" : selectedStyle
-      }
-    }
-  });
-  creat_json();
-}
-function set_font_family_title() {
-  // Set the font-family attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "font-family" : document.getElementById('fontFamilyTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_text_align_title() {
-  var align = document.getElementById('textAlignTitle')
-  var selectedAlign = align.options[align.selectedIndex].value;
-  // Set the text-align attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "text-align" : selectedAlign
-      }
-    }
-  });
-  creat_json();
-}
-function set_margin_title() {
-   // Set the margin attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "margin-top" : document.getElementById('marginTopTitle').value,
-      "margin-right" : document.getElementById('marginRightTitle').value,
-      "margin-bottom" : document.getElementById('marginBottomTitle').value,
-      "margin-left" : document.getElementById('marginLeftTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_padding_title() {
-   // Set the margin attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      title : {
-      "padding-top" : document.getElementById('paddingTopTitle').value,
-      "padding-right" : document.getElementById('paddingRightTitle').value,
-      "padding-bottom" : document.getElementById('paddingBottomTitle').value,
-      "padding-left" : document.getElementById('paddingLeftTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_x_string_title () {
-  if (document.getElementById('visibleTitle').checked && document.getElementById('xStringTitle').value !='') {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        title : {
-        "x" : document.getElementById('xStringTitle').value
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_y_string_title () {
-  if (document.getElementById('visibleTitle').checked && document.getElementById('yStringTitle').value !='' ) {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        title : {
-        "y" : document.getElementById('yStringTitle').value
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_border_title() {
-  if (document.getElementById("borderTitle").checked) {
-      // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        title : {
-        "border-width" : document.getElementById('borderWidthTitle').value,
-        "border-color" : document.getElementById('borderColorTitle').value
-        }
-      }
-    });
-    creat_json();
-  } else {
-     zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        title : {
-        "border-width" : 0
-        }
-      }
-    });
-    creat_json();
-  }
-}
-
-/*****************************************************
- *                   SubTitle                        *
- *****************************************************/
-
-function show_sub_title(){
-    //Set visible attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        subtitle : {
-        visible : document.getElementById('visibleSubTitle').checked
-        }
-      }
-    });
-  creat_json();
-}
-function adjast_layout_sub_title() {
-  //Set the adjust-layout attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "adjust-layout" : document.getElementById('adjustLayoutSubTitle').checked
-      }
-    }
-  });
-  creat_json();
-}
-var backgoundType = 'solid';
-function set_background_type_sub_title () {
-  bgtypes    = document.getElementById('backgroundTypeSubTitle');
-  backgoundType = bgtypes.options[bgtypes.selectedIndex].value;
-  if (backgoundType == "gradiant") {
-    document.getElementById('backgroundColor2SubTitle').style.visibility = "visible";
-  } else {
-    document.getElementById('backgroundColor2SubTitle').style.visibility = "hidden";
-  };
-  set_background_color_sub_title ();
-}
-function set_background_color_sub_title () {
- 
-  if (backgoundType == "gradiant") {
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          subtitle : {
-          "background-color-1" : document.getElementById('backgroundColor1SubTitle').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          subtitle : {
-          "background-color-2" : document.getElementById('backgroundColor2SubTitle').value
-          }
-        }
-      });
-  } else {
-    //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          subtitle : {
-          "background-color-1" : document.getElementById('backgroundColor1SubTitle').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          subtitle : {
-          "background-color-2" : document.getElementById('backgroundColor1SubTitle').value
-          }
-        }
-      });
-  }
-  creat_json();
-}
-function set_text_sub_title() {
- //Chnage the title text
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      text : document.getElementById('subTitleText').value,
-      }
-    }
-  });
-  creat_json();
-}
-function set_bold_sub_title () {
-  // Set the Boold attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "bold" : document.getElementById('boldSubTitle').checked
-      }
-    }
-  });
-  creat_json();
-}
-function set_font_color_sub_title () {
-  // Set the font-color attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "font-color" : document.getElementById('fontColorSubTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_font_style_sub_title () {
-  var style= document.getElementById('fontStyleSubTitle');
-  var selectedStyle = style.options[style.selectedIndex].value;
-  // Set the font-color attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "font-style" : selectedStyle
-      }
-    }
-  });
-  creat_json();
-}
-function set_font_family_sub_title() {
-  // Set the font-family attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "font-family" : document.getElementById('fontFamilySubTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_text_align_sub_title() {
-  var align = document.getElementById('textAlignSubTitle')
-  var selectedAlign = align.options[align.selectedIndex].value;
-  // Set the text-align attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "text-align" : selectedAlign
-      }
-    }
-  });
-  creat_json();
-}
-function set_margin_sub_title() {
-   // Set the margin attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "margin-top" : document.getElementById('marginTopSubTitle').value,
-      "margin-right" : document.getElementById('marginRightSubTitle').value,
-      "margin-bottom" : document.getElementById('marginBottomSubTitle').value,
-      "margin-left" : document.getElementById('marginLeftSubTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_padding_sub_title() {
-   // Set the margin attr
-  zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : {
-      subtitle : {
-      "padding-top" : document.getElementById('paddingTopSubTitle').value,
-      "padding-right" : document.getElementById('paddingRightSubTitle').value,
-      "padding-bottom" : document.getElementById('paddingBottomSubTitle').value,
-      "padding-left" : document.getElementById('paddingLeftSubTitle').value
-      }
-    }
-  });
-  creat_json();
-}
-function set_x_string_sub_title () {
-  if (document.getElementById('visibleTitle').checked && document.getElementById('xStringSubTitle').value !='') {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        subtitle : {
-        "x" : document.getElementById('xStringSubTitle').value
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_y_string_sub_title () {
-  if (document.getElementById('visibleTitle').checked && document.getElementById('yStringSubTitle').value !='') {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        subtitle : {
-        "y" : document.getElementById('yStringSubTitle').value
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_border_sub_title() {
-  if (document.getElementById("borderSubTitle").checked) {
-      // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        subtitle : {
-        "border-width" : document.getElementById('borderWidthSubTitle').value,
-        "border-color" : document.getElementById('borderColorSubTitle').value
-        }
-      }
-    });
-    creat_json();
-  } else {
-     zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        subtitle : {
-        "border-width" : 0
-        }
-      }
-    });
-    creat_json();
-  }
-}
 /*****************************************************
  *                   Legend                          *
  *****************************************************/
-function show_legend() {
-  zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "visible" : document.getElementById('visibleLegend').checked
-        }
-      }
-    });
-  creat_json();
-}
-function adjast_layout_legend() {
-  zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "adjust-layout" : document.getElementById('adjustLayoutLegend').checked
-        }
-      }
-    });
-  zingchart.exec(chartID,'update');
-  creat_json();
-} 
-function align_legend() {
-  var style= document.getElementById('alignLegend');
-  var selectedAlign = style.options[style.selectedIndex].value;
-  zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "align" : selectedAlign
-        }
-      }
-    });
-  creat_json();
-}
-function draggable_legend() {
-  zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "draggable" : document.getElementById('draggableLegend').checked
-        }
-      }
-    });
-  zingchart.exec(chartID,'update');
-  creat_json();
-}
-function set_layout_legend() {
-  var layout = document.getElementById('layoutLegend');
-  var selectedLayout =  layout.options[layout.selectedIndex].value;
-  if (selectedLayout != 'colXrow') {
-     zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "layout" : selectedLayout
-        }
-      }
-    });
-  } else {
-    document.getElementById('colRowLegend').style.visibility = 'visible';
-     zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "layout" : document.getElementById('rowsLayout').value+'x'+document.getElementById('colsLayout').value
-        }
-      }
-    });
-  }
-  creat_json();
-}
-function set_x_string_legend() {
-  if (document.getElementById('visibleLegend').checked && document.getElementById('xStringLegend').value !='' ) {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-        "x" : document.getElementById('xStringLegend').value
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_y_string_legend() {
-  if (document.getElementById('visibleLegend').checked && document.getElementById('yStringLegend').value != '') {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-        "y" : document.getElementById('yStringLegend').value
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function minimize_legend() {
-  if (document.getElementById('visibleLegend').checked) {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-        "minimize" : document.getElementById('minimizeLegend').checked,
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function toggle_action_legend() {
-  var action = document.getElementById('toggleActionLegend');
-  var selectedAction = action.options[action.selectedIndex].value;
-  if (document.getElementById('visibleLegend').checked) {
-    // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-        "toggle-action" : selectedAction,
-        }
-      }
-    });
-    creat_json();
-  };
-}
-var backgoundTypeLegend ='';
-function set_background_type_legend () {
-  var bgtypesLegend    = document.getElementById('backgroundTypeLegend');
-  backgoundTypeLegend = bgtypesLegend.options[bgtypesLegend.selectedIndex].value;
-  if (backgoundTypeLegend == "gradiant") {
-    document.getElementById('backgroundColor2Legend').style.visibility = "visible";
-  } else {
-    document.getElementById('backgroundColor2Legend').style.visibility = "hidden";
-  };
-  set_background_color_legend ();
-}
-function set_background_color_legend () {
- 
-  if (backgoundTypeLegend == "gradiant") {
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-         legend : {
-          "background-color-1" : document.getElementById('backgroundColor1Legend').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-          "background-color-2" : document.getElementById('backgroundColor2Legend').value
-          }
-        }
-      });
-  } else {
-    //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-          "background-color-1" : document.getElementById('backgroundColor1Legend').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-          "background-color-2" : document.getElementById('backgroundColor1Legend').value
-          }
-        }
-      });
-  }
-  creat_json();
-}
-
-function set_border_legend() {
-  if (document.getElementById("borderLegend").checked) {
-      // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-        "border-width" : document.getElementById('borderWidthLegend').value,
-        "border-color" : document.getElementById('borderColorLegend').value
-        }
-      }
-    });
-    creat_json();
-  } else {
-     zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-        "border-width" : 0
-        }
-      }
-    });
-    creat_json();
-  }
-}
-function set_margin_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-      // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "margin-top"    : document.getElementById('marginTopLegend').value,
-          "margin-right"  : document.getElementById('marginRightLegend').value,
-          "margin-bottom" : document.getElementById('marginBottomLegend').value,
-          "margin-left"   : document.getElementById('marginLeftLegend').value
-        }
-      }
-    });
-    creat_json();
-  } 
-}
-function set_padding_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-      // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "paddingTop"    : document.getElementById('paddingTopLegend').value,
-          "paddingRight"  : document.getElementById('paddingRightLegend').value,
-          "paddingBottom" : document.getElementById('paddingBottomLegend').value,
-          "paddingLeft"   : document.getElementById('paddingLeftLegend').value
-        }
-      }
-    });
-    creat_json();
-  } 
-}
-function set_highlight_plot () {
-  if (document.getElementById("visibleLegend").checked) {
-      // Set the text-align attr
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "highlight-plot" : document.getElementById('highlightPlotLegend').checked,
-        }
-      }
-    });
-    creat_json();
-  } 
-}
 function set_xy_position_legend() {
   if (document.getElementById("visibleLegend").checked) {
     zingchart.exec(chartID,'modify', {
@@ -4244,374 +5062,10 @@ function set_xy_position_legend() {
     creat_json();
   };
 }
-function set_item_bold_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "item" :{
-            'bold' :document.getElementById('boldItemLegend').checked,
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_item_font_color_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "item" :{
-            'font-color' :document.getElementById('fontColorItemLegend').value,
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_font_style_item_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    var style = document.getElementById('fontStyleItemLegend');
-    var selected = style.options[style.selectedIndex].value;
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "item" :{
-            'font-style' :selected,
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_font_family_item_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "item" :{
-            'font-family' :document.getElementById('fontFamilyItemLegend').value
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_text_align_item_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    var align = document.getElementById('textAlignItemLegend');
-    var selected = align.options[align.selectedIndex].value;
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "item" :{
-            'text-align' :selected
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_margin_item_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "item" :{
-            "margin-top"    : document.getElementById('marginTopItemLegend').value,
-            "margin-right"  : document.getElementById('marginRightItemLegend').value,
-            "margin-bottom" : document.getElementById('marginBottomitemLegend').value,
-            "margin-left"   : document.getElementById('marginLeftItemLegend').value,
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_padding_item_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "item" :{
-            "padding-top"    : document.getElementById('paddingTopItemLegend').value,
-            "padding-right"  : document.getElementById('paddingRightItemLegend').value,
-            "padding-bottom" : document.getElementById('paddingBottomItemLegend').value,
-            "padding-left"   : document.getElementById('paddingLeftItemLegend').value,
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_marker_type_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    var marker = document.getElementById('typeMarkerLegend');
-    var selected = marker.options[marker.selectedIndex].value;
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "marker" :{
-            'type' :selected
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_alpha_marker_legend() {
-  if (document.getElementById("visibleLegend").checked) {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "marker" :{
-            'alpha' :document.getElementById('alphaMarkerLegend').value
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-var backgoundTypeMarkerLegend = '';
-function set_background_type_marker_legend() {
-  var bg= document.getElementById("backgroundTypeMarkerLegend");
-  backgoundTypeMarkerLegend = bg.options[bg.selectedIndex].value;
-  if (backgoundTypeMarkerLegend != 'gradiant') {
-    document.getElementById('backgroundColor2MarkerLegend').style.visibility = "hidden";
-  } else {
-    document.getElementById('backgroundColor2MarkerLegend').style.visibility = "visible";
-  }
-  set_background_color_marker_legend ();
-}
-function set_background_color_marker_legend () {
-  if (backgoundTypeMarkerLegend == "gradiant") {
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-         legend : {
-          'marker':{
-            "background-color-1" : document.getElementById('backgroundColor1MarkerLegend').value
-          }
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-            'marker': {
-              "background-color-2" : document.getElementById('backgroundColor2MarkerLegend').value
-            }
-          }
-        }
-      });
-  } else {
-    //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-            'marker': {
-              "background-color-1" : document.getElementById('backgroundColor1MarkerLegend').value
-            }
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-            'marker':{
-              "background-color-2" : document.getElementById('backgroundColor1MarkerLegend').value
-            }
-          }
-        }
-      });
-  }
-  creat_json();
-}
-function set_background_image_marker_legend() {
- if (document.getElementById("visibleLegend").checked) {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        legend : {
-          "marker" :{
-            "background-image" :document.getElementById('backgroundImageMarkerLegend').value
-          },
-        }
-      }
-    });
-    creat_json();
-  };
-}
-function set_border_marker_legend() {
-   if (document.getElementById("visibleLegend").checked) {
-    if (document.getElementById('borderMarkerLegend').checked) {
-        zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-            "marker" :{
-              "border-width" :document.getElementById('borderWidthMarkerLegend').value,
-              "border-color" :document.getElementById('borderColorMarkerLegend').value
-            },
-          }
-        }
-      });
-    } else {
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          legend : {
-            "marker" :{
-              "border-width" :0
-            },
-          }
-        }
-      });
-    }
-    creat_json();
-  };
-}
+
 /*****************************************************
  *                   Plot Area                       *
  *****************************************************/
- function adjust_layout_plot_area() {
-      zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        plotarea : {
-          "adjustLayout" : document.getElementById('adjustLayoutPlotArea').checked
-        }
-      }
-    });
-  creat_json();
- }
-
- function set_alpha_plot_area() {
-    zingchart.exec(chartID,'modify', {
-        graphid : 0,
-        data : {
-        plotarea : {
-          alpha: document.getElementById('alphaPlotArea').value
-        }
-      }
-    });
-    creat_json();
-}
-var backgroundTypePlotArea='';
-function set_background_type_plot_area() {
-  var bg= document.getElementById("backgroundTypePlotArea");
-  backgroundTypePlotArea = bg.options[bg.selectedIndex].value;
-  if (backgroundTypePlotArea != 'gradiant') {
-    document.getElementById('backgroundColor2PlotArea').style.visibility = "hidden";
-  } else {
-    document.getElementById('backgroundColor2PlotArea').style.visibility = "visible";
-  }
-  set_background_color_plot_area ();
-}
-function set_background_color_plot_area() {
-  if (backgroundTypePlotArea == "gradiant") {
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea: {
-            "background-color-1" : document.getElementById('backgroundColor1PlotArea').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "background-color-2" : document.getElementById('backgroundColor2PlotArea').value
-          }
-        }
-      });
-  } else {
-    //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "background-color-1" : document.getElementById('backgroundColor1PlotArea').value
-          }
-        }
-      });
-      //Set background-color-1 attr
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "background-color-2" : document.getElementById('backgroundColor1PlotArea').value
-          }
-        }
-      });
-  }
-  creat_json();
-}
-function set_background_image_plot_area() {
-  zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "background-image" : document.getElementById('backgroundImagePlotArea').value
-          }
-        }
-      });
-  creat_json();
-}
-function set_background_fir_plot_area() {
-  var fits = document.getElementById('backgroundFitPlotArea')
-  var selectedFit = fits.options[fits.selectedIndex].value;
-    zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "backgroundFit" : selectedFit
-          }
-        }
-      });
-  creat_json();
-}
-function set_background_repeat_plot_area() {
-  var repeats = document.getElementById('backgroundRepeatPlotArea')
-  var selectedRepeat = repeats.options[repeats.selectedIndex].value;
-    zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "backgroundRepeat" : selectedRepeat
-          }
-        }
-      });
-  creat_json();
-}
 function set_background_position_plot_area() {
   zingchart.exec(chartID,'modify', {
           graphid : 0,
@@ -4622,29 +5076,6 @@ function set_background_position_plot_area() {
         }
       });
   creat_json();
-}
-function set_border_plot_area() {
-      if (document.getElementById('borderPlotArea').checked) {
-        zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "border-width" :document.getElementById('borderWidthPlotArea').value,
-              "border-color" :document.getElementById('borderColorPlotArea').value
-          }
-        }
-      });
-    } else {
-      zingchart.exec(chartID,'modify', {
-          graphid : 0,
-          data : {
-          plotarea : {
-              "border-width" :0
-          }
-        }
-      });
-    }
-    creat_json();
 }
 function creat_json() {
   zingchart.exec(chartID,'update');
@@ -4659,6 +5090,9 @@ function creat_json() {
 }
 function chartRouter() {
   var charts = document.getElementById('whichChart');
+  document.getElementById("accordion").style.display = "block";
+  document.getElementById("dataTabs").style.display = "block";
+  document.getElementById("chartSelector").style.display = "none";
   var selectedChart = charts.options[charts.selectedIndex].value;
   switch (selectedChart) {
     case 'bar' :
