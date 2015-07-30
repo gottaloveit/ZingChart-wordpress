@@ -3557,6 +3557,8 @@ scaleXrefLine,scaleXTick,scaleXItem];
 var j = 0;
 var labelConfigId  = 0; // This is for the label replaction. It holds each labels id.
 var seriesConfigId = 0;
+var scaleXCounter  = 0;
+var scaleYCounter  = 0;
 window.onload =function load_inputs() {
 
 /*All Scale data goes here*/ 
@@ -4274,8 +4276,7 @@ function set_line(category,subCategory) {
     graphid : 0,
     data : dataObj
   });
-  creat_json();
-}
+  creat_json();}
 /*
  * Generic function for seting font
  */
@@ -4376,8 +4377,7 @@ function new_label() {
       data : chartLabels  
     });
   }
-  creat_json();
-}
+  creat_json();}
 /*
  * Label Modify chart
  */
@@ -4643,9 +4643,7 @@ function new_series() {
       data : chartseries  
     });
   }
-  creat_json();
-}
-
+  creat_json();}
 var bgTypeseries= [];
 function set_bg_type_series(element,category,subCategory,count) {
   count = (element.parentElement.parentElement.dataset.count != 0) ? element.parentElement.parentElement.dataset.count : ''; 
@@ -4660,9 +4658,7 @@ function set_bg_type_series(element,category,subCategory,count) {
   } else {
     element.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.style.visibility = "hidden";
   }
-  set_bg_color_series(element.nextElementSibling.nextElementSibling.nextElementSibling,category,subCategory,count);
-}
-
+  set_bg_color_series(element.nextElementSibling.nextElementSibling.nextElementSibling,category,subCategory,count);}
 function set_bg_color_series(element,category,subCategory) {
   count = (element.parentElement.parentElement.dataset.count != 0) ? element.parentElement.parentElement.dataset.count : ''; 
   var typeSeriesIndex = (count == "" ) ? 0 : count;
@@ -4771,8 +4767,7 @@ function set_bg_color_series(element,category,subCategory) {
       }); 
     } 
   }   
-  creat_json();
-}
+  creat_json();}
 function set_border_series(element,category,subCategory) {
 
   count = (element.parentElement.parentElement.dataset.count != 0) ? element.parentElement.parentElement.dataset.count : ''; 
@@ -4865,8 +4860,7 @@ function set_line_series(element,category,subCategory) {
       "series" : chartSeries
     }
   });
-  creat_json();
-}
+  creat_json();}
 /*
  * Series Modify chart
  */
@@ -4953,7 +4947,6 @@ function Modify_chart_series(element,type,key,category,subCategory) {
 
   }
   creat_json();}
-
 function Modify_chart_scale(element,type,key,category,subCategory) {
   count = element.parentElement.parentElement.dataset.count
   var value = ''
@@ -4970,14 +4963,17 @@ function Modify_chart_scale(element,type,key,category,subCategory) {
   }
   // Get chart JSON
   var chartDta = zingchart.exec(chartID, 'getdata');
-  var chartScale = chartDta['graphset'][0]['scale-x']; // Ternary operator to check to see if 'labels' exists
+  var temp = (scaleXCounter == 0)?"": "-"+scaleXCounter;
+  var scalename = "scale-x"+temp;
+
+  var chartScale = chartDta['graphset'][0][scalename]; // Ternary operator to check to see if 'scale' exists
 
   if (typeof chartScale  == "undefined" ){ //Empty array situation, creating a new series
     var dataObj = {
       "scale-x" :{},
     };
     if (category == subCategory) { // The same category part
-      dataObj["scale-x"][key] = value;
+      dataObj["scale-x"+temp][key] = value;
     } else {
       var vals ={};
       dataObj[subCategory][key] = value;
@@ -5034,8 +5030,32 @@ function Modify_chart_scale(element,type,key,category,subCategory) {
       }
 
   }
-  creat_json();
+  creat_json();}
+function new_scale_x() {
+  var clonedTitle  = document.getElementById("scaleX").cloneNode(true);
+  var clonedConfig = document.getElementById("scaleX").nextElementSibling.cloneNode(true);
+  scaleXCounter ++;
+  clonedTitle.id  = "scaleX"+scaleXCounter;
+  clonedTitle.innerHTML = "scale-x-"+scaleXCounter;
+  document.getElementById("scaleAccordion").appendChild(clonedTitle);
+  document.getElementById("scaleAccordion").appendChild(clonedConfig);
+  jQuery(function($) {
+    $('#scaleAccordion').accordion("refresh"); 
+  });
 }
+function new_scale_y() {
+  var clonedTitle  = document.getElementById("scaleY").cloneNode(true);
+  var clonedConfig = document.getElementById("scaleY").nextElementSibling.cloneNode(true);
+  scaleYCounter ++;
+  clonedTitle.innerHTML = "scale-y-"+scaleYCounter;
+  clonedTitle.id  = "scaleY"+scaleYCounter;
+  document.getElementById("scaleAccordion").appendChild(clonedTitle);
+  document.getElementById("scaleAccordion").appendChild(clonedConfig);
+  jQuery(function($) {
+    $('#scaleAccordion').accordion("refresh"); 
+  });
+}
+
 var jsonObject = '';
 var chartTitle = '';
 var chartType  = 'Bar';
@@ -5090,9 +5110,9 @@ function creat_json() {
 }
 function chartRouter() {
   var charts = document.getElementById('whichChart');
-  document.getElementById("accordion").style.display = "block";
-  document.getElementById("dataTabs").style.display = "block";
-  document.getElementById("chartSelector").style.display = "none";
+  //document.getElementById("accordion").style.display = "block";
+  //document.getElementById("dataTabs").style.display = "block";
+  //document.getElementById("chartSelector").style.display = "none";
   var selectedChart = charts.options[charts.selectedIndex].value;
   switch (selectedChart) {
     case 'bar' :

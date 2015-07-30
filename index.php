@@ -27,7 +27,6 @@ error_reporting(E_ALL | E_STRICT);
 define('ZING_PLUGIN_URL',plugin_dir_url(__FILE__));
 define('ZING_PLUGIN_PATH',plugin_dir_path(__FILE__));
 define('ZING_NOUNCE',plugin_dir_path(__FILE__));
-require_once(ZING_PLUGIN_PATH.'Zing_lib.php');
 require_once(ZING_PLUGIN_PATH.'Zing_help.php');
 //require_once(ZING_PLUGIN_PATH.'zing_edit.php');
 function zing_activate() {
@@ -100,7 +99,7 @@ function zing_designer() {
 <script>
 jQuery(document).ready(function($) {
   $('#tabs').tabs();
-  $('#accordion').accordion({ autoHeight: false,collapsible: true,heightStyle: "content" });
+  $('#accordion').accordion({ autoHeight: false,collapsible: true,heightStyle: "content", active : 'none' });
   $( "#slider" ).slider();
   $("#plotTabs").tabs();
   $("#labelsAccordion").accordion({
@@ -127,10 +126,10 @@ jQuery(document).ready(function($) {
 #accordion{
 float: left;
 width: 60%;
-display: none;
+-display: none;
 }
 #dataTabs {
-  display: none;
+  -display: none;
 }
 .ui-accordion .ui-accordion-header .ui-icon {
 left: -0.25em;
@@ -203,7 +202,7 @@ left: -0.25em;
   <h3>Scale</h3>
   <div class="frm-el" data-category = "scale" data-sub-category = "scaleX">
     <div id="scaleAccordion">
-      <h3> Scale-x<h3>
+      <h3 id="scaleX"> Scale-x</h3>
       <div>
         <div id="scaleXTabs" data-count = "0">
           <ul>
@@ -226,7 +225,7 @@ left: -0.25em;
           <div class = "scl-el" data-category = "scale-x" data-sub-category = "item"    id="scaleXItem"></div>
         </div>
       </div>
-      <h3>Scale-y</h3>
+      <h3 id="scaleY">Scale-y</h3>
       <div>
         <div id="scaleYTabs" data-count = "0">
           <ul>
@@ -254,8 +253,8 @@ left: -0.25em;
       <h3>Scale</h3>
       <div class="frm-el" data-category = "scale" data-sub-category = "scale"></div>
     </div>
-    <button type="button">New Scale-X</button>
-    <button type="button">New Scale-Y</button>
+    <button type="button" onclick="new_scale_x()">New Scale-X</button>
+    <button type="button" onclick="new_scale_y()">New Scale-Y</button>
   </div> 
   <h3>Labels</h3>
   <div >
@@ -356,9 +355,7 @@ function plot_it ($atts) {
             data:chartData<?php echo $value?>
           });
         }
-        </script>
-        
-        
+        </script>  
       <?php
     }
   }
