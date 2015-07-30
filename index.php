@@ -50,11 +50,12 @@ add_action('wp_enqueue_scripts','zing_loadLib');
 * Register custom post type
 */
 function Zing_custompost() {
-  wp_enqueue_script('jquery-ui','http://code.jquery.com/ui/1.11.4/jquery-ui.min.js');
-  wp_enqueue_script('translate', ZING_PLUGIN_URL.'translate.js');
-  wp_enqueue_script('translate', ZING_PLUGIN_URL.'showZigChart.js');
+  if(is_admin()) {
+    wp_enqueue_script('jquery-ui','http://code.jquery.com/ui/1.11.4/jquery-ui.min.js');
+    wp_enqueue_script('translate', ZING_PLUGIN_URL.'translate.js');
+    wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
+  }
   wp_enqueue_script('Zing_chart','http://cdn.zingchart.com/zingchart.min.js');
-  wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
   register_post_type('zing_chart',
   array(
   'labels'              => array(
@@ -343,20 +344,24 @@ function plot_it ($atts) {
     if ($key== 'id') {
       $post = get_post($value);
       ?>
-        <script type="text/javascript">
-        var chartData<?php echo $value?> = <?php echo get_post_meta($value,'zing_javascript_content',true);?>
-        
-        zingchart.render({
-          id:"chartDiv<?php echo $value?>",
-          height:400,
-          width:600,
-          data:chartData<?php echo $value?>
-        });
-        </script>
         <div class="ZingChart" id="chartDiv<?php echo $value?>"></div>
+        <script type="text/javascript">
+        var chartData<?php echo $value?> = <?php echo get_post_meta($value,'zing_javascript_content',true);?>;
+        window.addEventListener("load",draw_chart<?php echo $value?> () ,false);
+        function draw_chart<?php echo $value?> () {
+          zingchart.render({
+            id:"chartDiv<?php echo $value?>",
+            height:400,
+            width:600,
+            data:chartData<?php echo $value?>
+          });
+        }
+        </script>
+        
         
       <?php
     }
   }
 }
 add_shortcode("zing","plot_it");
+add_filter('widget_text', 'do_shortcode');
