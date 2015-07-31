@@ -126,10 +126,10 @@ jQuery(document).ready(function($) {
 #accordion{
 float: left;
 width: 60%;
--display: none;
+display: none;
 }
 #dataTabs {
-  -display: none;
+  display: none;
 }
 .ui-accordion .ui-accordion-header .ui-icon {
 left: -0.25em;
@@ -315,6 +315,7 @@ left: -0.25em;
 function zing_javascript($post) {
   wp_nonce_field( ZING_NOUNCE, 'zing_nounce' );
   $javaScript =  get_post_meta($post->ID,'zing_javascript_content',true);
+  add_thickbox();
   ?>
     <textarea name="JavaScriptZing" class="widefat code code-html" id="zingcharts-javaScript"> <?php echo esc_textarea( $javaScript ); ?></textarea>
   <?php
@@ -332,6 +333,7 @@ function zing_save_chart($post_id,$post,$update) {
       update_post_meta($post_id,'zing_javascript_content',trim($_POST['JavaScriptZing']));
     }
   }
+
 }
 add_action('save_post_zing_chart','zing_save_chart',10,3);
 /**
@@ -342,21 +344,20 @@ function plot_it ($atts) {
   foreach ($atts as $key => $value) {
     if ($key== 'id') {
       $post = get_post($value);
-      ?>
-        <div class="ZingChart" id="chartDiv<?php echo $value?>"></div>
-        <script type="text/javascript">
-        var chartData<?php echo $value?> = <?php echo get_post_meta($value,'zing_javascript_content',true);?>;
-        window.addEventListener("load",draw_chart<?php echo $value?> () ,false);
-        function draw_chart<?php echo $value?> () {
+      return "<div class='ZingChart' id='chartDiv".$value."'></div>
+        <script type='text/javascript'>
+        var chartData".$value."= ".(get_post_meta($value,'zing_javascript_content',true) != ''?get_post_meta($value,'zing_javascript_content',true) : 0).";
+        window.addEventListener('load',draw_chart".$value." () ,false);
+        function draw_chart".$value." () {
           zingchart.render({
-            id:"chartDiv<?php echo $value?>",
+            id:'chartDiv".$value."',
             height:400,
             width:600,
-            data:chartData<?php echo $value?>
+            data:chartData".$value."
           });
         }
-        </script>  
-      <?php
+        </script> ";
+      
     }
   }
 }

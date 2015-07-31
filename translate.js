@@ -4121,15 +4121,6 @@ function Modify_chart(element,key,category,subCategory) {
         data : tempobj
       });
       creat_json();
-  } else if (category === "legend" && subCategory ==="legend"&& key === "layout" && value === "col x row"){ //Fix this part!!!
-    var row  =  (document.getElementById("rowLayoutLegend").value == "") ? 0 :  document.getElementById("rowLayoutLegend").value;
-    var col  =  (document.getElementById("columnLayoutLegend").value == "") ? 0 :  document.getElementById("columnLayoutLegend").value;
-    dataObj[category][key] = col +" x "+row;
-    zingchart.exec(chartID,'modify', {
-      graphid : 0,
-      data : dataObj   
-    });
-    creat_json();
   } else {
     if (category != subCategory ) {
       dataObj[category][subCategory] ={};
@@ -4316,7 +4307,6 @@ function set_font(category,subCategory) {
   });
   zingchart.exec(chartID,'update');
   creat_json();}
-
 function new_label() {
   var ttl = document.getElementById("LabelsTitle");
   var lbl = document.getElementById("lableConfig");
@@ -4580,7 +4570,7 @@ function new_series() {
   var clonedTitle = title.cloneNode(true);
   childs = clonedSeries.childNodes;
   seriesConfigId++;
-  // THis for will add id to the id and data count,
+  // THis for will add id and data count,
   // In our case this will be only the tabseris div
   for (var i= 0 , len = clonedSeries.childNodes.length ; i<len; i++) {
     //We only care about the elements that has id
@@ -4593,7 +4583,7 @@ function new_series() {
           //if the child has data-category == series and it is a elemnet 
         if (childs[i].childNodes[k].nodeName != "#text") {
           if (childs[i].childNodes[k].getAttribute("data-category") == "series") {
-            childs[i].childNodes[k] += seriesConfigId;
+            childs[i].childNodes[k].innerHTML += seriesConfigId;
             childs[i].childNodes[k].setAttribute("data-count",seriesConfigId);
           };
         };
@@ -4961,46 +4951,43 @@ function Modify_chart_scale(element,type,key,category,subCategory) {
     //default is for text,range
       value= element.value;
   }
-  // Get chart JSON
+  // Get chart JSON, see if it has our category or not
   var chartDta = zingchart.exec(chartID, 'getdata');
   var temp = (scaleXCounter == 0)?"": "-"+scaleXCounter;
   var scalename = "scale-x"+temp;
-
   var chartScale = chartDta['graphset'][0][scalename]; // Ternary operator to check to see if 'scale' exists
 
-  if (typeof chartScale  == "undefined" ){ //Empty array situation, creating a new series
-    var dataObj = {
-      "scale-x" :{},
-    };
+  if (typeof chartScale  == "undefined" ){ //Empty array situation, creating a new scale-x
+    var dataObj = {};
+    dataObj[scalename] ={};
     if (category == subCategory) { // The same category part
-      dataObj["scale-x"+temp][key] = value;
+      dataObj[scalename][key] = value;
     } else {
-      var vals ={};
-      dataObj[subCategory][key] = value;
+      dataObj[scalename][subCategory] = {};
+      dataObj[scalename][subCategory][key] = value;
     }
     zingchart.exec(chartID,'modify', {
         graphid : 0,
         data : dataObj  
       });
-  } else { //Labels already exists, so we're modifying instead of creating 
+  } else { //Scale already exists, so we're modifying instead of creating 
       if (category == subCategory) {
+        //Not sure when this case will happen
         if (count == chartScale.length) {//New elemnt case we have to push it 
             var vals = {};
             vals[key] = value;
-            chartLabels.push(vals);
+            chartDta['graphset'][0][scalename].push(vals);
+            ////TODO
            zingchart.exec(chartID,'modify', {
             graphid : 0,
-            data : {
-              "scale-x": chartScale
-            }
+            data : chartDta['graphset'][0]
           });
         } else {
-          chartScale[key] = value;
-          zingchart.exec(chartID,'modify', {
+          //This should happen in general tabs in all categories
+          chartDta['graphset'][0][scalename][key] = value;
+          zingchart.exec(chartID,'setdata', {
             graphid : 0,
-            data : {
-              "scale-x": chartScale
-            }
+            data : chartDta['graphset'][0]
           });
         }
       } else {
@@ -5017,14 +5004,11 @@ function Modify_chart_scale(element,type,key,category,subCategory) {
             }
           });
         } else {
-          var vals = {};
-          vals[key] = value;
-          chartScale[subCategory] = vals;
-          zingchart.exec(chartID,'modify', {
+          console.log(vals);
+          chartDta['graphset'][0][scalename][subCategory][key] = value;
+          zingchart.exec(chartID,'setdata', {
             graphid : 0,
-            data : {
-              "scale-x": chartScale
-            }
+            data : chartDta['graphset'][0] 
           });
         }
       }
@@ -5037,10 +5021,31 @@ function new_scale_x() {
   scaleXCounter ++;
   clonedTitle.id  = "scaleX"+scaleXCounter;
   clonedTitle.innerHTML = "scale-x-"+scaleXCounter;
+  childs = clonedConfig.childNodes;
+  for (var i= 0 , len = clonedConfig.childNodes.length ; i<len; i++) {
+    //We only care about the elements that has id
+    if (childs[i].id) {
+      childs[i].id += scaleXCounter;
+      childs[i].setAttribute("data-count",scaleXCounter);
+      //This one checks for the childs of the cloned node
+      //it checks for the childs of tabseries div
+      for (var k= 0;k<childs[i].childNodes.length;k++ ) {
+          //if the child has data-category == series and it is a elemnet 
+        if (childs[i].childNodes[k].nodeName != "#text") {
+          if (childs[i].childNodes[k].getAttribute("data-category") == "scale-x") {
+            //childs[i].childNodes[k] += scaleXCounter;
+            childs[i].childNodes[k].setAttribute("data-count",scaleXCounter);
+          };
+        };
+      };
+    };
+  }
+  clonedConfig.setAttribute("data-count",scaleXCounter);
   document.getElementById("scaleAccordion").appendChild(clonedTitle);
   document.getElementById("scaleAccordion").appendChild(clonedConfig);
   jQuery(function($) {
     $('#scaleAccordion').accordion("refresh"); 
+    $("#"+childs[1].id).tabs(); 
   });
 }
 function new_scale_y() {
@@ -5049,10 +5054,31 @@ function new_scale_y() {
   scaleYCounter ++;
   clonedTitle.innerHTML = "scale-y-"+scaleYCounter;
   clonedTitle.id  = "scaleY"+scaleYCounter;
+  childs = clonedConfig.childNodes;
+  for (var i= 0 , len = clonedConfig.childNodes.length ; i<len; i++) {
+    //We only care about the elements that has id
+    if (childs[i].id) {
+      childs[i].id += scaleYCounter;
+      childs[i].setAttribute("data-count",scaleYCounter);
+      //This one checks for the childs of the cloned node
+      //it checks for the childs of tabseries div
+      for (var k= 0;k<childs[i].childNodes.length;k++ ) {
+          //if the child has data-category == series and it is a elemnet 
+        if (childs[i].childNodes[k].nodeName != "#text") {
+          if (childs[i].childNodes[k].getAttribute("data-category") == "scale-x") {
+            //childs[i].childNodes[k] += scaleXCounter;
+            childs[i].childNodes[k].setAttribute("data-count",scaleYCounter);
+          };
+        };
+      };
+    };
+  }
+  clonedConfig.setAttribute("data-count",scaleYCounter);
   document.getElementById("scaleAccordion").appendChild(clonedTitle);
   document.getElementById("scaleAccordion").appendChild(clonedConfig);
   jQuery(function($) {
     $('#scaleAccordion').accordion("refresh"); 
+    $("#"+childs[1].id).tabs(); 
   });
 }
 
@@ -5110,9 +5136,9 @@ function creat_json() {
 }
 function chartRouter() {
   var charts = document.getElementById('whichChart');
-  //document.getElementById("accordion").style.display = "block";
-  //document.getElementById("dataTabs").style.display = "block";
-  //document.getElementById("chartSelector").style.display = "none";
+  document.getElementById("accordion").style.display = "block";
+  document.getElementById("dataTabs").style.display = "block";
+  document.getElementById("chartSelector").style.display = "none";
   var selectedChart = charts.options[charts.selectedIndex].value;
   switch (selectedChart) {
     case 'bar' :
