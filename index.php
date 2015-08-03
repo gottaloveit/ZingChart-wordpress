@@ -40,7 +40,7 @@ register_deactivation_hook(__FILE__,"zing_deactivate");
 function zing_admin_menu() {
   add_options_page('Zing Charts setting','Zing Chart','manage_options','Zing-chart','zing_admin');
 }
-add_action('admin_menu','zing_admin_menu');
+#add_action('admin_menu','zing_admin_menu');
 function zing_loadLib(){
   wp_enqueue_script('zing_chart','http://cdn.zingchart.com/zingchart.min.js',array(),'2.1.0',TRUE);
 }
